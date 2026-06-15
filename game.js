@@ -232,6 +232,7 @@ let actualScorers = loadScorerGoals();
 let actualKnockoutScores = loadKnockoutScores();
 
 const matchesView = document.querySelector("#matchesView");
+const daysView = document.querySelector("#daysView");
 const tablesView = document.querySelector("#tablesView");
 const thirdsView = document.querySelector("#thirdsView");
 const knockoutView = document.querySelector("#knockoutView");
@@ -365,6 +366,7 @@ function winProbability(home, away) {
 
 function render() {
   renderMatches();
+  renderDays();
   const predictedTables = calculateTables("predicted");
   const liveTables = calculateTables("live");
   const playedTables = calculateTables("actual");
@@ -384,7 +386,11 @@ function renderMatches() {
     <div class="section-grid">${Object.keys(groups).map(renderGroupMatches).join("")}</div>
   `;
   bindImportBox();
-  matchesView.querySelectorAll("input").forEach((input) => {
+  bindScoreInputs(matchesView);
+}
+
+function bindScoreInputs(root) {
+  root.querySelectorAll("input").forEach((input) => {
     input.addEventListener("change", (event) => {
       const { id, side, scoreType } = event.target.dataset;
       const value = Number.parseInt(event.target.value, 10);
@@ -400,6 +406,46 @@ function renderMatches() {
       render();
     });
   });
+}
+
+function renderDays() {
+  const matchesByDate = fixtures.reduce((days, match) => {
+    if (!days[match.date]) days[match.date] = [];
+    days[match.date].push(match);
+    return days;
+  }, {});
+  const orderedDates = Object.keys(matchesByDate).sort();
+  daysView.innerHTML = `
+    <div class="note">Dagoverzicht van alle groepswedstrijden. Je ziet per datum de voorspelling, eventuele echte uitslag en de kansverdeling. Scores aanpassen kan ook hier; alles rekent direct door.</div>
+    <div class="section-grid">
+      ${orderedDates.map((date) => renderDayCard(date, matchesByDate[date])).join("")}
+    </div>
+  `;
+  bindScoreInputs(daysView);
+}
+
+function renderDayCard(date, dayMatches) {
+  const playedCount = dayMatches.filter((match) => hasActualScore(match.id)).length;
+  const dayGroups = [...new Set(dayMatches.map((match) => `Groep ${match.group}`))].join(" / ");
+  return `
+    <article class="day-card">
+      <div class="group-head">
+        <div>
+          <h2>${formatLongDate(date)}</h2>
+          <span class="day-summary">${dayMatches.length} wedstrijden · ${playedCount} echte uitslagen ingevuld</span>
+        </div>
+        <span>${dayGroups}</span>
+      </div>
+      <div class="match-list">
+        ${dayMatches.map(renderDayMatchRow).join("")}
+      </div>
+    </article>
+  `;
+}
+
+function renderDayMatchRow(match) {
+  const status = hasActualScore(match.id) ? "Gespeeld" : "Nog te spelen";
+  return renderMatchRow(match, { showDate: false, extraStatus: status });
 }
 
 function renderImportBox() {
@@ -452,15 +498,17 @@ function renderGroupMatches(group) {
   `;
 }
 
-function renderMatchRow(match) {
+function renderMatchRow(match, options = {}) {
+  const showDate = options.showDate ?? true;
   const score = scores[match.id];
   const actual = actualScores[match.id] ?? { home: "", away: "" };
   const prob = winProbability(match.home, match.away);
   return `
     <div class="match-row">
       <div class="match-date">
-        <span class="team-name">${formatDate(match.date)}</span>
+        <span class="team-name">${showDate ? formatDate(match.date) : `Match ${match.id}`}</span>
         <span class="team-meta">Groep ${match.group}</span>
+        ${options.extraStatus ? `<span class="day-status ${hasActualScore(match.id) ? "is-played" : ""}">${options.extraStatus}</span>` : ""}
       </div>
       <div class="team">
         <span class="team-name">${match.home}</span>
@@ -503,10 +551,15 @@ function calculateTables(mode = "predicted") {
 
 function scoreForMatch(id, mode) {
   const actual = actualScores[id];
-  const hasActual = actual && Number.isFinite(actual.home) && Number.isFinite(actual.away);
+  const hasActual = hasActualScore(id);
   if (mode === "actual") return hasActual ? actual : null;
   if (mode === "live") return hasActual ? actual : scores[id];
   return scores[id];
+}
+
+function hasActualScore(id) {
+  const actual = actualScores[id];
+  return Boolean(actual && Number.isFinite(actual.home) && Number.isFinite(actual.away));
 }
 
 function createTableRow(team, group) {
@@ -1007,4 +1060,8 @@ function normalizePlayerName(value) {
 
 function formatDate(value) {
   return new Intl.DateTimeFormat("nl-NL", { day: "numeric", month: "short" }).format(new Date(`${value}T12:00:00`));
+}
+
+function formatLongDate(value) {
+  return new Intl.DateTimeFormat("nl-NL", { weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(new Date(`${value}T12:00:00`));
 }
