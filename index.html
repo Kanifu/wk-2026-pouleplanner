@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>WK 2026 Pouleplanner</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">WK voetbal 2026</p>
+        <h1>Pouleplanner</h1>
+      </div>
+      <div class="header-actions">
+        <button id="importResults" class="ghost-button" type="button">Importeer uitslagen</button>
+        <button id="resetScores" class="ghost-button" type="button">Reset voorspellingen</button>
+        <button id="copySummary" class="primary-button" type="button">Kopieer overzicht</button>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Navigatie en model">
+        <section class="panel">
+          <h2>Model</h2>
+          <p>
+            De voorspellingen combineren recente markt-kansen, teamsterkte,
+            groepsloting, host-voordeel en in de knock-outfase ook een
+            penaltyfactor. Echte uitslagen kun je per dag invullen of
+            importeren; live standen en projecties worden direct bijgewerkt.
+          </p>
+          <dl class="model-stats">
+            <div>
+              <dt>Teams</dt>
+              <dd>48</dd>
+            </div>
+            <div>
+              <dt>Groepsduels</dt>
+              <dd>72</dd>
+            </div>
+            <div>
+              <dt>Door</dt>
+              <dd>Top 2 + beste 8 nummers 3</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="panel">
+          <h2>Bronnen</h2>
+          <ul class="source-list">
+            <li><a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/match-schedule-fixtures-results-teams-stadiums" target="_blank" rel="noreferrer">FIFA speelschema</a></li>
+            <li><a href="https://www.covers.com/world-cup/odds" target="_blank" rel="noreferrer">Covers / Kalshi titelkansen</a></li>
+            <li><a href="https://inside.fifa.com/en/fifa-world-ranking/men" target="_blank" rel="noreferrer">FIFA wereldranglijst</a></li>
+            <li><a href="https://theanalyst.com/articles/world-cup-penalty-shootouts-the-facts" target="_blank" rel="noreferrer">Opta penaltyhistorie</a></li>
+          </ul>
+        </section>
+      </aside>
+
+      <section class="workspace">
+        <nav class="tabs" aria-label="Overzicht">
+          <button class="tab is-active" data-view="matches" type="button">Wedstrijden</button>
+          <button class="tab" data-view="tables" type="button">Poulestanden</button>
+          <button class="tab" data-view="thirds" type="button">Beste nummers 3</button>
+          <button class="tab" data-view="knockout" type="button">Knock-out</button>
+          <button class="tab" data-view="scorers" type="button">Topscorer</button>
+        </nav>
+
+        <section id="matchesView" class="view is-active" aria-label="Groepswedstrijden"></section>
+        <section id="tablesView" class="view" aria-label="Poulestanden"></section>
+        <section id="thirdsView" class="view" aria-label="Beste nummers drie"></section>
+        <section id="knockoutView" class="view" aria-label="Knock-outfase"></section>
+        <section id="scorersView" class="view" aria-label="Verwachte topscorer"></section>
+      </section>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
