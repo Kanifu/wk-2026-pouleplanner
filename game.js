@@ -197,18 +197,49 @@ const fixturePattern = [
 ];
 
 const fixtureDates = {
-  A: ["2026-06-11", "2026-06-12", "2026-06-18", "2026-06-19", "2026-06-24", "2026-06-24"],
-  B: ["2026-06-12", "2026-06-13", "2026-06-18", "2026-06-19", "2026-06-24", "2026-06-24"],
-  C: ["2026-06-13", "2026-06-13", "2026-06-20", "2026-06-20", "2026-06-24", "2026-06-24"],
-  D: ["2026-06-12", "2026-06-14", "2026-06-20", "2026-06-19", "2026-06-25", "2026-06-25"],
-  E: ["2026-06-14", "2026-06-15", "2026-06-20", "2026-06-21", "2026-06-25", "2026-06-25"],
-  F: ["2026-06-14", "2026-06-15", "2026-06-20", "2026-06-21", "2026-06-25", "2026-06-25"],
-  G: ["2026-06-15", "2026-06-16", "2026-06-21", "2026-06-22", "2026-06-26", "2026-06-26"],
-  H: ["2026-06-15", "2026-06-16", "2026-06-21", "2026-06-22", "2026-06-26", "2026-06-26"],
-  I: ["2026-06-16", "2026-06-17", "2026-06-22", "2026-06-23", "2026-06-26", "2026-06-26"],
-  J: ["2026-06-16", "2026-06-17", "2026-06-22", "2026-06-23", "2026-06-27", "2026-06-27"],
-  K: ["2026-06-17", "2026-06-18", "2026-06-23", "2026-06-24", "2026-06-27", "2026-06-27"],
-  L: ["2026-06-17", "2026-06-18", "2026-06-23", "2026-06-24", "2026-06-27", "2026-06-27"],
+  A: ["2026-06-11", "2026-06-11", "2026-06-18", "2026-06-18", "2026-06-24", "2026-06-24"],
+  B: ["2026-06-12", "2026-06-13", "2026-06-18", "2026-06-18", "2026-06-24", "2026-06-24"],
+  C: ["2026-06-13", "2026-06-13", "2026-06-19", "2026-06-19", "2026-06-24", "2026-06-24"],
+  D: ["2026-06-12", "2026-06-13", "2026-06-19", "2026-06-19", "2026-06-25", "2026-06-25"],
+  E: ["2026-06-14", "2026-06-14", "2026-06-20", "2026-06-20", "2026-06-25", "2026-06-25"],
+  F: ["2026-06-14", "2026-06-14", "2026-06-20", "2026-06-21", "2026-06-25", "2026-06-25"],
+  G: ["2026-06-15", "2026-06-15", "2026-06-21", "2026-06-21", "2026-06-26", "2026-06-26"],
+  H: ["2026-06-15", "2026-06-15", "2026-06-21", "2026-06-21", "2026-06-26", "2026-06-26"],
+  I: ["2026-06-16", "2026-06-16", "2026-06-22", "2026-06-22", "2026-06-26", "2026-06-26"],
+  J: ["2026-06-16", "2026-06-16", "2026-06-22", "2026-06-22", "2026-06-27", "2026-06-27"],
+  K: ["2026-06-17", "2026-06-17", "2026-06-23", "2026-06-23", "2026-06-27", "2026-06-27"],
+  L: ["2026-06-17", "2026-06-17", "2026-06-23", "2026-06-23", "2026-06-27", "2026-06-27"],
+};
+
+const verifiedActualScores = {
+  1: { home: 2, away: 0 },
+  2: { home: 2, away: 1 },
+  3: { home: 1, away: 1 },
+  4: { home: 1, away: 0 },
+  7: { home: 1, away: 1 },
+  8: { home: 1, away: 1 },
+  9: { home: 4, away: 1 },
+  10: { home: 6, away: 0 },
+  13: { home: 1, away: 1 },
+  14: { home: 0, away: 1 },
+  19: { home: 4, away: 1 },
+  20: { home: 2, away: 0 },
+  25: { home: 7, away: 1 },
+  26: { home: 1, away: 0 },
+  31: { home: 2, away: 2 },
+  32: { home: 5, away: 1 },
+  37: { home: 1, away: 1 },
+  38: { home: 2, away: 2 },
+  43: { home: 0, away: 0 },
+  44: { home: 1, away: 1 },
+  49: { home: 3, away: 1 },
+  50: { home: 1, away: 4 },
+  55: { home: 3, away: 0 },
+  56: { home: 3, away: 1 },
+  61: { home: 1, away: 1 },
+  62: { home: 1, away: 3 },
+  67: { home: 4, away: 2 },
+  68: { home: 1, away: 0 },
 };
 
 const fixtures = Object.entries(groups).flatMap(([group, teams], groupIndex) =>
@@ -227,7 +258,7 @@ const fixtures = Object.entries(groups).flatMap(([group, teams], groupIndex) =>
 
 const defaultScores = Object.fromEntries(fixtures.map((match) => [match.id, predictScore(match.home, match.away)]));
 let scores = { ...defaultScores, ...loadScores() };
-let actualScores = loadActualScores();
+let actualScores = { ...verifiedActualScores, ...loadActualScores() };
 let actualScorers = loadScorerGoals();
 let actualKnockoutScores = loadKnockoutScores();
 
@@ -240,6 +271,7 @@ const scorersView = document.querySelector("#scorersView");
 const resetScoresButton = document.querySelector("#resetScores");
 const copySummaryButton = document.querySelector("#copySummary");
 const importResultsButton = document.querySelector("#importResults");
+const updateActualResultsButton = document.querySelector("#updateActualResults");
 
 document.querySelectorAll(".tab").forEach((button) => {
   button.addEventListener("click", () => {
@@ -258,6 +290,14 @@ resetScoresButton.addEventListener("click", () => {
 importResultsButton.addEventListener("click", () => {
   const box = document.querySelector("#importBox");
   box?.classList.toggle("is-open");
+});
+
+updateActualResultsButton.addEventListener("click", async () => {
+  const loaded = await updateActualResultsFromFile();
+  updateActualResultsButton.textContent = loaded ? "Uitslagen bijgewerkt" : "Geen updatebestand";
+  window.setTimeout(() => {
+    updateActualResultsButton.textContent = "Update echte uitslagen";
+  }, 1600);
 });
 
 copySummaryButton.addEventListener("click", async () => {
@@ -299,6 +339,29 @@ function loadActualScores() {
 
 function saveActualScores() {
   localStorage.setItem(ACTUAL_SAVE_KEY, JSON.stringify(actualScores));
+}
+
+async function updateActualResultsFromFile() {
+  try {
+    const response = await fetch("actual-results.json", { cache: "no-store" });
+    if (!response.ok) return false;
+    const data = await response.json();
+    if (!data || typeof data !== "object" || !data.matches) return false;
+    actualScores = { ...actualScores, ...normalizeImportedScores(data.matches) };
+    saveActualScores();
+    render();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function normalizeImportedScores(matches) {
+  return Object.fromEntries(
+    Object.entries(matches)
+      .map(([id, score]) => [id, { home: Number(score.home), away: Number(score.away) }])
+      .filter(([, score]) => Number.isFinite(score.home) && Number.isFinite(score.away))
+  );
 }
 
 function loadScorerGoals() {
@@ -477,7 +540,7 @@ function renderImportBox() {
       <textarea id="importText" placeholder="Mexico 2-1 South Africa&#10;Korea Republic 1-0 Czechia&#10;M73 1-1 5-4p&#10;Kylian Mbappe 3 goals"></textarea>
       <div class="import-actions">
         <button id="applyImport" class="primary-button" type="button">Verwerk import</button>
-        <button id="clearActuals" class="ghost-button" type="button">Wis echte uitslagen</button>
+        <button id="clearActuals" class="ghost-button" type="button">Herstel geverifieerde uitslagen</button>
       </div>
     </section>
   `;
@@ -494,7 +557,7 @@ function bindImportBox() {
   });
 
   document.querySelector("#clearActuals")?.addEventListener("click", () => {
-    actualScores = {};
+    actualScores = { ...verifiedActualScores };
     actualScorers = {};
     actualKnockoutScores = {};
     saveActualScores();
