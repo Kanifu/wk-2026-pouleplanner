@@ -445,7 +445,28 @@ function renderDayCard(date, dayMatches) {
 
 function renderDayMatchRow(match) {
   const status = hasActualScore(match.id) ? "Gespeeld" : "Nog te spelen";
-  return renderMatchRow(match, { showDate: false, extraStatus: status });
+  const predicted = scores[match.id];
+  const actual = actualScores[match.id];
+  return `
+    <div class="day-match-row">
+      <div>
+        <span class="team-name">${match.home}</span>
+        <span class="team-meta">Groep ${match.group} · Match ${match.id}</span>
+      </div>
+      <div class="day-score-block">
+        <span>Voorspeld</span>
+        <strong>${predicted.home}-${predicted.away}</strong>
+      </div>
+      <div class="day-score-block ${hasActualScore(match.id) ? "has-actual" : ""}">
+        <span>Echt</span>
+        <strong>${hasActualScore(match.id) ? `${actual.home}-${actual.away}` : "-"}</strong>
+      </div>
+      <div>
+        <span class="team-name">${match.away}</span>
+        <span class="day-status ${hasActualScore(match.id) ? "is-played" : ""}">${status}</span>
+      </div>
+    </div>
+  `;
 }
 
 function renderImportBox() {

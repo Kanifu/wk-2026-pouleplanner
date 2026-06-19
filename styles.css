@@ -306,6 +306,45 @@ h3 {
   color: var(--accent-dark);
 }
 
+.day-match-row {
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(150px, 1fr) 92px 92px minmax(150px, 1fr);
+  min-height: 58px;
+  padding: 10px 14px;
+}
+
+.day-match-row:last-child {
+  border-bottom: 0;
+}
+
+.day-score-block {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 8px;
+  text-align: center;
+}
+
+.day-score-block.has-actual {
+  background: #fffef5;
+  border-color: #d8c48a;
+}
+
+.day-score-block span {
+  color: var(--muted);
+  display: block;
+  font-size: 10px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.day-score-block strong {
+  font-size: 17px;
+}
+
 .group-head,
 .round-head {
   align-items: center;
@@ -666,6 +705,14 @@ h3 {
 
   .scorer-row {
     grid-template-columns: 34px minmax(0, 1fr);
+  }
+
+  .day-match-row {
+    grid-template-columns: minmax(0, 1fr) 78px 78px;
+  }
+
+  .day-match-row > div:last-child {
+    grid-column: 1 / -1;
   }
 
   .scorer-row > div:nth-child(3),
