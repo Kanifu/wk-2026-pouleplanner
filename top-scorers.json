@@ -36,7 +36,7 @@
       "team": "Germany",
       "goals": 3,
       "assists": 2,
-      "minutes": 69
+      "minutes": 107
     },
     {
       "player": "Johan Manzambi",
@@ -123,6 +123,13 @@
       "minutes": 88
     },
     {
+      "player": "Nicolas Pépé",
+      "team": "Cote d'Ivoire",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 164
+    },
+    {
       "player": "Daichi Kamada",
       "team": "Japan",
       "goals": 2,
@@ -165,13 +172,6 @@
       "minutes": 190
     },
     {
-      "player": "Kai Havertz",
-      "team": "Germany",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 192
-    },
-    {
       "player": "Cristiano Ronaldo",
       "team": "Portugal",
       "goals": 2,
@@ -191,6 +191,13 @@
       "goals": 2,
       "assists": 0,
       "minutes": 207
+    },
+    {
+      "player": "Kai Havertz",
+      "team": "Germany",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 256
     },
     {
       "player": "Julian Quinones",
@@ -270,13 +277,6 @@
       "minutes": 181
     },
     {
-      "player": "Felix Nmecha",
-      "team": "Germany",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 182
-    },
-    {
       "player": "Nathaniel Brown",
       "team": "Germany",
       "goals": 1,
@@ -317,6 +317,13 @@
       "goals": 1,
       "assists": 1,
       "minutes": 209
+    },
+    {
+      "player": "Felix Nmecha",
+      "team": "Germany",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 250
     },
     {
       "player": "Achraf Hakimi",
@@ -543,25 +550,11 @@
       "minutes": 117
     },
     {
-      "player": "Amad Diallo",
-      "team": "Cote d'Ivoire",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 124
-    },
-    {
       "player": "Junya Ito",
       "team": "Japan",
       "goals": 1,
       "assists": 0,
       "minutes": 130
-    },
-    {
-      "player": "Jamal Musiala",
-      "team": "Germany",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 136
     },
     {
       "player": "Nico Schlotterbeck",
@@ -576,6 +569,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 153
+    },
+    {
+      "player": "Nilson Angulo",
+      "team": "Ecuador",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 157
     },
     {
       "player": "Amine Gouiri",
@@ -627,6 +627,13 @@
       "minutes": 167
     },
     {
+      "player": "Amad Diallo",
+      "team": "Cote d'Ivoire",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 169
+    },
+    {
       "player": "Mohammad Mohebbi",
       "team": "IR Iran",
       "goals": 1,
@@ -660,13 +667,6 @@
       "goals": 1,
       "assists": 0,
       "minutes": 182
-    },
-    {
-      "player": "Livano Comenencia",
-      "team": "Curacao",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 188
     },
     {
       "player": "Virgil van Dijk",
@@ -725,13 +725,6 @@
       "minutes": 206
     },
     {
-      "player": "Franck Kessié",
-      "team": "Cote d'Ivoire",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 207
-    },
-    {
       "player": "Caleb Yirenkyi",
       "team": "Ghana",
       "goals": 1,
@@ -746,11 +739,46 @@
       "minutes": 209
     },
     {
+      "player": "Jamal Musiala",
+      "team": "Germany",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 237
+    },
+    {
+      "player": "Livano Comenencia",
+      "team": "Curacao",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 253
+    },
+    {
+      "player": "Leroy Sané",
+      "team": "Germany",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 268
+    },
+    {
       "player": "John McGinn",
       "team": "Scotland",
       "goals": 1,
       "assists": 0,
       "minutes": 278
+    },
+    {
+      "player": "Franck Kessié",
+      "team": "Cote d'Ivoire",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 288
+    },
+    {
+      "player": "Gonzalo Plata",
+      "team": "Ecuador",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 304
     },
     {
       "player": "Granit Xhaka",
