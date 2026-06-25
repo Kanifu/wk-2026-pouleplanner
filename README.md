@@ -15,9 +15,9 @@ Statische webapp voor een WK 2026 voetbalpoule.
 
 Open `index.html` in een browser. Er is geen buildstap of server nodig.
 
-De app bevat echte uitslagen in `actual-results.json` en marktcorrecties in `market-adjustments.json`. Op GitHub Pages haalt de app deze bestanden automatisch op bij laden en daarna periodiek opnieuw.
+De app bevat echte uitslagen in `actual-results.json`, live topscorers in `top-scorers.json` en marktcorrecties in `market-adjustments.json`. Op GitHub Pages haalt de app deze bestanden automatisch op bij laden en daarna periodiek opnieuw.
 
-De uitslagen worden ook via GitHub Actions automatisch bijgewerkt. Lokaal kun je de scraper draaien met:
+De uitslagen en topscorers worden ook via GitHub Actions automatisch bijgewerkt. Lokaal kun je de scraper draaien met:
 
 ```bash
 node scripts/update-results.mjs

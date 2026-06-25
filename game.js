@@ -195,6 +195,24 @@ const topScorerContenders = [
   },
 ];
 
+const verifiedTopScorers = [
+  { player: "Lionel Messi", team: "Argentina", goals: 5, assists: 0, minutes: 188 },
+  { player: "Vinicius Jr.", team: "Brazil", goals: 4, assists: 1, minutes: 294 },
+  { player: "Kylian Mbappe", team: "France", goals: 4, assists: 0, minutes: 199 },
+  { player: "Erling Haaland", team: "Norway", goals: 4, assists: 0, minutes: 208 },
+  { player: "Deniz Undav", team: "Germany", goals: 3, assists: 2, minutes: 69 },
+  { player: "Johan Manzambi", team: "Switzerland", goals: 3, assists: 1, minutes: 147 },
+  { player: "Matheus Cunha", team: "Brazil", goals: 3, assists: 0, minutes: 191 },
+  { player: "Ismael Saibari", team: "Morocco", goals: 3, assists: 0, minutes: 255 },
+  { player: "Jonathan David", team: "Canada", goals: 3, assists: 0, minutes: 271 },
+  { player: "Crysencio Summerville", team: "Netherlands", goals: 2, assists: 1, minutes: 123 },
+  { player: "Mikel Oyarzabal", team: "Spain", goals: 2, assists: 1, minutes: 144 },
+  { player: "Ayase Ueda", team: "Japan", goals: 2, assists: 1, minutes: 174 },
+  { player: "Maxi Araujo", team: "Uruguay", goals: 2, assists: 1, minutes: 174 },
+  { player: "Cody Gakpo", team: "Netherlands", goals: 2, assists: 1, minutes: 182 },
+  { player: "Ruben Vargas", team: "Switzerland", goals: 2, assists: 1, minutes: 194 },
+];
+
 let marketAdjustments = {
   Germany: 4,
   Netherlands: 3,
@@ -337,6 +355,7 @@ let actualScores = { ...verifiedActualScores, ...loadActualScores() };
 const defaultScores = Object.fromEntries(fixtures.map((match) => [match.id, predictScore(match.home, match.away)]));
 let scores = { ...defaultScores, ...loadScores() };
 let actualScorers = loadScorerGoals();
+let liveTopScorers = [...verifiedTopScorers];
 let actualKnockoutScores = loadKnockoutScores();
 
 const matchesView = document.querySelector("#matchesView");
@@ -370,10 +389,10 @@ importResultsButton.addEventListener("click", () => {
 });
 
 updateActualResultsButton.addEventListener("click", async () => {
-  const loaded = await updateActualResultsFromFile();
-  updateActualResultsButton.textContent = loaded ? "Uitslagen bijgewerkt" : "Geen updatebestand";
+  const [resultsLoaded, scorersLoaded] = await Promise.all([updateActualResultsFromFile(), updateTopScorersFromFile()]);
+  updateActualResultsButton.textContent = resultsLoaded || scorersLoaded ? "Live data bijgewerkt" : "Geen updatebestand";
   window.setTimeout(() => {
-    updateActualResultsButton.textContent = "Update echte uitslagen";
+    updateActualResultsButton.textContent = "Update live data";
   }, 1600);
 });
 
@@ -388,8 +407,10 @@ copySummaryButton.addEventListener("click", async () => {
 
 render();
 updateActualResultsFromFile();
+updateTopScorersFromFile();
 updateMarketAdjustmentsFromFile();
 window.setInterval(updateActualResultsFromFile, 15 * 60 * 1000);
+window.setInterval(updateTopScorersFromFile, 15 * 60 * 1000);
 window.setInterval(updateMarketAdjustmentsFromFile, 60 * 60 * 1000);
 
 function loadScores() {
@@ -430,6 +451,29 @@ async function updateActualResultsFromFile() {
     if (!data || typeof data !== "object" || !data.matches) return false;
     actualScores = { ...actualScores, ...normalizeImportedScores(data.matches) };
     saveActualScores();
+    render();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function updateTopScorersFromFile() {
+  try {
+    const response = await fetch("top-scorers.json", { cache: "no-store" });
+    if (!response.ok) return false;
+    const data = await response.json();
+    if (!data || typeof data !== "object" || !Array.isArray(data.scorers)) return false;
+    liveTopScorers = data.scorers
+      .map((scorer) => ({
+        player: String(scorer.player),
+        team: String(scorer.team),
+        goals: Number(scorer.goals),
+        assists: Number(scorer.assists ?? 0),
+        minutes: Number(scorer.minutes ?? 0),
+      }))
+      .filter((scorer) => scorer.player && scorer.team && Number.isFinite(scorer.goals))
+      .sort(sortLiveScorers);
     render();
     return true;
   } catch {
@@ -904,19 +948,39 @@ function renderKnockout(predictedKnockout, liveKnockout) {
 
 function renderScorers(predictedKnockout, liveKnockout) {
   const predicted = rankScorers(predictedKnockout);
-  const live = rankScorers(liveKnockout, true);
+  const live = rankLiveScorers(liveKnockout);
   scorersView.innerHTML = `
-    <div class="note">Voorspeld gebruikt markt-kans, toernooivorm en route. Werkelijk telt geimporteerde echte goals mee en gebruikt alleen zekere of bekende routes. Importeer bijvoorbeeld: Kylian Mbappe 3 goals.</div>
+    <div class="note">Voorspeld gebruikt markt-kans, toernooivorm en route. Werkelijk is de live Golden Boot-stand: goals, assists en minuten volgens de tiebreakregels.</div>
     <div class="comparison-grid">
       <section class="comparison-column">
         <h2>Voorspelde topscorer</h2>
         <div class="scorer-list">${predicted.map((contender, index) => renderScorer(contender, index, false)).join("")}</div>
       </section>
       <section class="comparison-column">
-        <h2>Werkelijke topscorer + zekere route</h2>
-        <div class="scorer-list">${live.map((contender, index) => renderScorer(contender, index, true)).join("")}</div>
+        <h2>Live Golden Boot-stand</h2>
+        <div class="scorer-list">${live.map((contender, index) => renderLiveScorer(contender, index)).join("")}</div>
       </section>
     </div>
+  `;
+}
+
+function renderLiveScorer(contender, index) {
+  return `
+    <article class="scorer-row ${index === 0 ? "is-favorite" : ""}">
+      <span class="scorer-rank">${index + 1}</span>
+      <div>
+        <span class="team-name">${contender.player}</span>
+        <span class="team-meta">${contender.team} · ${contender.matches} verwachte wedstrijden</span>
+      </div>
+      <div>
+        <span class="team-name">${contender.goals} goals</span>
+        <span class="team-meta">${contender.assists} assists · ${contender.minutes} min</span>
+      </div>
+      <div>
+        <div class="meter" aria-hidden="true"><div class="meter-fill" style="width: ${Math.min(100, contender.goals * 16)}%"></div></div>
+        <span class="team-meta">Live stand, met route-indicatie op basis van zekere knock-outplaatsen.</span>
+      </div>
+    </article>
   `;
 }
 
@@ -1162,9 +1226,9 @@ function createSummary() {
     lines.push(`${index + 1}. ${scorer.player} (${scorer.team}) - ${scorer.expectedGoals.toFixed(1)} goals, kans ${scorer.adjustedProbability.toFixed(1)}%`);
   });
 
-  lines.push("", "Werkelijke topscorer + zekere route:");
-  rankScorers(actualKnockout, true).slice(0, 5).forEach((scorer, index) => {
-    lines.push(`${index + 1}. ${scorer.player} (${scorer.team}) - ${scorer.expectedGoals.toFixed(1)} goals (${scorer.actualGoals} echt), kans ${scorer.adjustedProbability.toFixed(1)}%`);
+  lines.push("", "Live Golden Boot-stand:");
+  rankLiveScorers(actualKnockout).slice(0, 5).forEach((scorer, index) => {
+    lines.push(`${index + 1}. ${scorer.player} (${scorer.team}) - ${scorer.goals} goals, ${scorer.assists} assists, ${scorer.minutes} min`);
   });
 
   return lines.join("\n");
@@ -1185,6 +1249,20 @@ function rankScorers(knockoutMatches, includeActual = false) {
       return { ...contender, matches, actualGoals, expectedGoals, adjustedProbability };
     })
     .sort((a, b) => b.adjustedProbability - a.adjustedProbability || b.expectedGoals - a.expectedGoals);
+}
+
+function rankLiveScorers(knockoutMatches) {
+  const gamesByTeam = projectedGamesByTeam(knockoutMatches);
+  return liveTopScorers
+    .map((scorer) => ({
+      ...scorer,
+      matches: gamesByTeam[scorer.team] ?? 3,
+    }))
+    .sort(sortLiveScorers);
+}
+
+function sortLiveScorers(a, b) {
+  return b.goals - a.goals || b.assists - a.assists || a.minutes - b.minutes || a.player.localeCompare(b.player);
 }
 
 function projectedGamesByTeam(knockoutMatches) {

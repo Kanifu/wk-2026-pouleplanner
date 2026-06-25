@@ -1,0 +1,763 @@
+{
+  "updatedAt": "2026-06-25",
+  "sourceUrl": "https://www.sbnation.com/fifa-world-cup/1118693/world-cup-2026-golden-boot-standings",
+  "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Golden Boot-stand.",
+  "scorers": [
+    {
+      "player": "Lionel Messi",
+      "team": "Argentina",
+      "goals": 5,
+      "assists": 0,
+      "minutes": 188
+    },
+    {
+      "player": "Vinicius Jr.",
+      "team": "Brazil",
+      "goals": 4,
+      "assists": 1,
+      "minutes": 294
+    },
+    {
+      "player": "Kylian Mbappe",
+      "team": "France",
+      "goals": 4,
+      "assists": 0,
+      "minutes": 199
+    },
+    {
+      "player": "Erling Haaland",
+      "team": "Norway",
+      "goals": 4,
+      "assists": 0,
+      "minutes": 208
+    },
+    {
+      "player": "Deniz Undav",
+      "team": "Germany",
+      "goals": 3,
+      "assists": 2,
+      "minutes": 69
+    },
+    {
+      "player": "Johan Manzambi",
+      "team": "Switzerland",
+      "goals": 3,
+      "assists": 1,
+      "minutes": 147
+    },
+    {
+      "player": "Matheus Cunha",
+      "team": "Brazil",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 191
+    },
+    {
+      "player": "Ismael Saibari",
+      "team": "Morocco",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 255
+    },
+    {
+      "player": "Jonathan David",
+      "team": "Canada",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 271
+    },
+    {
+      "player": "Crysencio Summerville",
+      "team": "Netherlands",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 123
+    },
+    {
+      "player": "Mikel Oyarzabal",
+      "team": "Spain",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 144
+    },
+    {
+      "player": "Ayase Ueda",
+      "team": "Japan",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 174
+    },
+    {
+      "player": "Maxi Araujo",
+      "team": "Uruguay",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 174
+    },
+    {
+      "player": "Cody Gakpo",
+      "team": "Netherlands",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 182
+    },
+    {
+      "player": "Ruben Vargas",
+      "team": "Switzerland",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 194
+    },
+    {
+      "player": "Ermin Mahmic",
+      "team": "Bosnia and Herzegovina",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 37
+    },
+    {
+      "player": "Brian Brobbey",
+      "team": "Netherlands",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 88
+    },
+    {
+      "player": "Daichi Kamada",
+      "team": "Japan",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 176
+    },
+    {
+      "player": "Folarin Balogun",
+      "team": "United States",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 180
+    },
+    {
+      "player": "Yasin Ayari",
+      "team": "Sweden",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 184
+    },
+    {
+      "player": "Ismaila Sarr",
+      "team": "Senegal",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 186
+    },
+    {
+      "player": "Cyle Larin",
+      "team": "Canada",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 187
+    },
+    {
+      "player": "Elijah Just",
+      "team": "New Zealand",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 190
+    },
+    {
+      "player": "Kai Havertz",
+      "team": "Germany",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 192
+    },
+    {
+      "player": "Cristiano Ronaldo",
+      "team": "Portugal",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 202
+    },
+    {
+      "player": "Harry Kane",
+      "team": "England",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 204
+    },
+    {
+      "player": "Daniel Munoz",
+      "team": "Colombia",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 207
+    },
+    {
+      "player": "Julian Quinones",
+      "team": "Mexico",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 270
+    },
+    {
+      "player": "Nathan-Dylan Saliba",
+      "team": "Canada",
+      "goals": 1,
+      "assists": 2,
+      "minutes": 143
+    },
+    {
+      "player": "Mohamed Salah",
+      "team": "Egypt",
+      "goals": 1,
+      "assists": 2,
+      "minutes": 168
+    },
+    {
+      "player": "Alexander Isak",
+      "team": "Sweden",
+      "goals": 1,
+      "assists": 2,
+      "minutes": 194
+    },
+    {
+      "player": "Breel Embolo",
+      "team": "Switzerland",
+      "goals": 1,
+      "assists": 2,
+      "minutes": 283
+    },
+    {
+      "player": "Soufiane Rahimi",
+      "team": "Morocco",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 54
+    },
+    {
+      "player": "Promise David",
+      "team": "Canada",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 58
+    },
+    {
+      "player": "Luis Romo",
+      "team": "Mexico",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 141
+    },
+    {
+      "player": "Ousmane Dembele",
+      "team": "France",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 156
+    },
+    {
+      "player": "Mostafa Ziko",
+      "team": "Egypt",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 160
+    },
+    {
+      "player": "Keito Nakamura",
+      "team": "Japan",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 181
+    },
+    {
+      "player": "Felix Nmecha",
+      "team": "Germany",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 182
+    },
+    {
+      "player": "Nathaniel Brown",
+      "team": "Germany",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 182
+    },
+    {
+      "player": "Hwang In-beom",
+      "team": "Korea Republic",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 187
+    },
+    {
+      "player": "Luis Diaz",
+      "team": "Colombia",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 199
+    },
+    {
+      "player": "Viktor Gyokeres",
+      "team": "Sweden",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 201
+    },
+    {
+      "player": "Ramin Rezaeian",
+      "team": "IR Iran",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 205
+    },
+    {
+      "player": "Alex Freeman",
+      "team": "United States",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 209
+    },
+    {
+      "player": "Achraf Hakimi",
+      "team": "Morocco",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 309
+    },
+    {
+      "player": "Mikel Svanberg",
+      "team": "Sweden",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 13
+    },
+    {
+      "player": "Gio Reyna",
+      "team": "United States",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 20
+    },
+    {
+      "player": "Mahmoud Trezeguet",
+      "team": "Egypt",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 25
+    },
+    {
+      "player": "Gessime Yassine",
+      "team": "Morocco",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 28
+    },
+    {
+      "player": "Jaminton Campaz",
+      "team": "Colombia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 29
+    },
+    {
+      "player": "Rafael Leao",
+      "team": "Portugal",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 37
+    },
+    {
+      "player": "Marcus Rashford",
+      "team": "England",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 38
+    },
+    {
+      "player": "Helio Varela",
+      "team": "Cabo Verde",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 40
+    },
+    {
+      "player": "Leo Østigard",
+      "team": "Norway",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 41
+    },
+    {
+      "player": "Anthony Elanga",
+      "team": "Sweden",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 47
+    },
+    {
+      "player": "Ante Budimir",
+      "team": "Croatia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 50
+    },
+    {
+      "player": "Nadhir Benbouali",
+      "team": "Algeria",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 52
+    },
+    {
+      "player": "Mauricio",
+      "team": "Paraguay",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 53
+    },
+    {
+      "player": "Marko Arnautovic",
+      "team": "Austria",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 58
+    },
+    {
+      "player": "Oh Hyeon-gyu",
+      "team": "Korea Republic",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 67
+    },
+    {
+      "player": "Lamine Yamal",
+      "team": "Spain",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 69
+    },
+    {
+      "player": "Hasan Al Haydos",
+      "team": "Qatar",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 70
+    },
+    {
+      "player": "Ibrahim Mbaye",
+      "team": "Senegal",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 71
+    },
+    {
+      "player": "Jovo Lukic",
+      "team": "Bosnia and Herzegovina",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 77
+    },
+    {
+      "player": "Mateo Chávez",
+      "team": "Mexico",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 82
+    },
+    {
+      "player": "Romano Schmid",
+      "team": "Austria",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 86
+    },
+    {
+      "player": "Marcus Pedersen",
+      "team": "Norway",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 92
+    },
+    {
+      "player": "Alvaro Fidalgo",
+      "team": "Mexico",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 94
+    },
+    {
+      "player": "Omar Rekik",
+      "team": "Tunisia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 100
+    },
+    {
+      "player": "Abdulelah Al-Amri",
+      "team": "Saudi Arabia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 102
+    },
+    {
+      "player": "Matías Galaraza",
+      "team": "Paraguay",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 102
+    },
+    {
+      "player": "Aymen Hussein",
+      "team": "Iraq",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 103
+    },
+    {
+      "player": "Michal Sadilek",
+      "team": "Czechia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 104
+    },
+    {
+      "player": "Bradley Barcola",
+      "team": "France",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 106
+    },
+    {
+      "player": "Petar Musa",
+      "team": "Croatia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 116
+    },
+    {
+      "player": "Nestory Irankunda",
+      "team": "Australia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 117
+    },
+    {
+      "player": "Amad Diallo",
+      "team": "Cote d'Ivoire",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 124
+    },
+    {
+      "player": "Junya Ito",
+      "team": "Japan",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 130
+    },
+    {
+      "player": "Jamal Musiala",
+      "team": "Germany",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 136
+    },
+    {
+      "player": "Nico Schlotterbeck",
+      "team": "Germany",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 145
+    },
+    {
+      "player": "Connor Metcalfe",
+      "team": "Australia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 153
+    },
+    {
+      "player": "Amine Gouiri",
+      "team": "Algeria",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 158
+    },
+    {
+      "player": "Agustin Canobbio",
+      "team": "Uruguay",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 160
+    },
+    {
+      "player": "Abbosbek Fayzullaev",
+      "team": "Uzbekistan",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 161
+    },
+    {
+      "player": "Emam Ashour",
+      "team": "Egypt",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 163
+    },
+    {
+      "player": "Jude Bellingham",
+      "team": "England",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 164
+    },
+    {
+      "player": "Raul Jimenez",
+      "team": "Mexico",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 164
+    },
+    {
+      "player": "Thapelo Maseko",
+      "team": "South Africa",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 167
+    },
+    {
+      "player": "Mohammad Mohebbi",
+      "team": "IR Iran",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 175
+    },
+    {
+      "player": "Kevin Lenini",
+      "team": "Cabo Verde",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 177
+    },
+    {
+      "player": "Alexandre Nuno Mendes",
+      "team": "Portugal",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 178
+    },
+    {
+      "player": "Joao Neves",
+      "team": "Portugal",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 182
+    },
+    {
+      "player": "Martin Baturina",
+      "team": "Croatia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 182
+    },
+    {
+      "player": "Livano Comenencia",
+      "team": "Curacao",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 188
+    },
+    {
+      "player": "Virgil van Dijk",
+      "team": "Netherlands",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 199
+    },
+    {
+      "player": "Ladislav Krejci",
+      "team": "Czechia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 201
+    },
+    {
+      "player": "Wilson Isidor",
+      "team": "Haiti",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 201
+    },
+    {
+      "player": "Kerim Alajbegovic",
+      "team": "Bosnia and Herzegovina",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 202
+    },
+    {
+      "player": "Teboho Mokoena",
+      "team": "South Africa",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 202
+    },
+    {
+      "player": "Yoane Wissa",
+      "team": "Congo DR",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 202
+    },
+    {
+      "player": "Ali Olwan",
+      "team": "Jordan",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 203
+    },
+    {
+      "player": "Finn Surman",
+      "team": "New Zealand",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 206
+    },
+    {
+      "player": "Franck Kessié",
+      "team": "Cote d'Ivoire",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 207
+    },
+    {
+      "player": "Caleb Yirenkyi",
+      "team": "Ghana",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 209
+    },
+    {
+      "player": "Nizar al-Rashdan",
+      "team": "Jordan",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 209
+    },
+    {
+      "player": "John McGinn",
+      "team": "Scotland",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 278
+    },
+    {
+      "player": "Granit Xhaka",
+      "team": "Switzerland",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 304
+    }
+  ]
+}
