@@ -15,7 +15,9 @@ Statische webapp voor een WK 2026 voetbalpoule.
 
 Open `index.html` in een browser. Er is geen buildstap of server nodig.
 
-De app bevat geverifieerde echte uitslagen in `actual-results.json`. Op GitHub Pages kan de knop `Update echte uitslagen` dit bestand opnieuw inladen. Lokaal kun je de dataset valideren met:
+De app bevat echte uitslagen in `actual-results.json` en marktcorrecties in `market-adjustments.json`. Op GitHub Pages haalt de app deze bestanden automatisch op bij laden en daarna periodiek opnieuw.
+
+De uitslagen worden ook via GitHub Actions automatisch bijgewerkt. Lokaal kun je de scraper draaien met:
 
 ```bash
 node scripts/update-results.mjs

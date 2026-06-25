@@ -311,7 +311,7 @@ h3 {
   border-bottom: 1px solid var(--line);
   display: grid;
   gap: 12px;
-  grid-template-columns: minmax(150px, 1fr) 92px 92px minmax(150px, 1fr);
+  grid-template-columns: minmax(150px, 1fr) 92px minmax(150px, 1fr);
   min-height: 58px;
   padding: 10px 14px;
 }
@@ -708,11 +708,7 @@ h3 {
   }
 
   .day-match-row {
-    grid-template-columns: minmax(0, 1fr) 78px 78px;
-  }
-
-  .day-match-row > div:last-child {
-    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr) 78px minmax(0, 1fr);
   }
 
   .scorer-row > div:nth-child(3),

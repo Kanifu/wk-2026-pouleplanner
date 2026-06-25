@@ -161,6 +161,23 @@ const topScorerContenders = [
   },
 ];
 
+let marketAdjustments = {
+  Germany: 4,
+  Netherlands: 3,
+  Portugal: 3,
+  Colombia: 2.5,
+  Brazil: 2,
+  Argentina: 1.5,
+  France: 1,
+  Spain: 1,
+  "United States": 1,
+  "Cote d'Ivoire": 1,
+  Ecuador: -1.5,
+  Curacao: -2,
+  Tunisia: -2,
+  Qatar: -2,
+};
+
 const rounds = [
   { name: "Ronde van 32", ids: knockoutTemplate.map((match) => match.id) },
   { name: "Achtste finales", ids: [89, 90, 91, 92, 93, 94, 95, 96] },
@@ -200,9 +217,9 @@ const fixtureDates = {
   A: ["2026-06-11", "2026-06-11", "2026-06-18", "2026-06-18", "2026-06-24", "2026-06-24"],
   B: ["2026-06-12", "2026-06-13", "2026-06-18", "2026-06-18", "2026-06-24", "2026-06-24"],
   C: ["2026-06-13", "2026-06-13", "2026-06-19", "2026-06-19", "2026-06-24", "2026-06-24"],
-  D: ["2026-06-12", "2026-06-13", "2026-06-19", "2026-06-19", "2026-06-25", "2026-06-25"],
+  D: ["2026-06-12", "2026-06-14", "2026-06-19", "2026-06-19", "2026-06-25", "2026-06-25"],
   E: ["2026-06-14", "2026-06-14", "2026-06-20", "2026-06-20", "2026-06-25", "2026-06-25"],
-  F: ["2026-06-14", "2026-06-14", "2026-06-20", "2026-06-21", "2026-06-25", "2026-06-25"],
+  F: ["2026-06-14", "2026-06-14", "2026-06-21", "2026-06-20", "2026-06-25", "2026-06-25"],
   G: ["2026-06-15", "2026-06-15", "2026-06-21", "2026-06-21", "2026-06-26", "2026-06-26"],
   H: ["2026-06-15", "2026-06-15", "2026-06-21", "2026-06-21", "2026-06-26", "2026-06-26"],
   I: ["2026-06-16", "2026-06-16", "2026-06-22", "2026-06-22", "2026-06-26", "2026-06-26"],
@@ -216,30 +233,56 @@ const verifiedActualScores = {
   2: { home: 2, away: 1 },
   3: { home: 1, away: 1 },
   4: { home: 1, away: 0 },
+  5: { home: 0, away: 3 },
+  6: { home: 1, away: 0 },
   7: { home: 1, away: 1 },
   8: { home: 1, away: 1 },
   9: { home: 4, away: 1 },
   10: { home: 6, away: 0 },
+  11: { home: 2, away: 1 },
+  12: { home: 3, away: 1 },
   13: { home: 1, away: 1 },
   14: { home: 0, away: 1 },
+  15: { home: 0, away: 1 },
+  16: { home: 3, away: 0 },
+  17: { home: 0, away: 3 },
+  18: { home: 4, away: 2 },
   19: { home: 4, away: 1 },
   20: { home: 2, away: 0 },
+  21: { home: 0, away: 1 },
+  22: { home: 2, away: 0 },
   25: { home: 7, away: 1 },
   26: { home: 1, away: 0 },
+  27: { home: 0, away: 0 },
+  28: { home: 2, away: 1 },
   31: { home: 2, away: 2 },
   32: { home: 5, away: 1 },
+  33: { home: 0, away: 4 },
+  34: { home: 5, away: 1 },
   37: { home: 1, away: 1 },
   38: { home: 2, away: 2 },
+  39: { home: 1, away: 3 },
+  40: { home: 0, away: 0 },
   43: { home: 0, away: 0 },
   44: { home: 1, away: 1 },
+  45: { home: 2, away: 2 },
+  46: { home: 4, away: 0 },
   49: { home: 3, away: 1 },
   50: { home: 1, away: 4 },
+  51: { home: 3, away: 2 },
+  52: { home: 3, away: 0 },
   55: { home: 3, away: 0 },
   56: { home: 3, away: 1 },
+  57: { home: 1, away: 2 },
+  58: { home: 2, away: 0 },
   61: { home: 1, away: 1 },
   62: { home: 1, away: 3 },
+  63: { home: 1, away: 0 },
+  64: { home: 5, away: 0 },
   67: { home: 4, away: 2 },
   68: { home: 1, away: 0 },
+  69: { home: 0, away: 1 },
+  70: { home: 0, away: 0 },
 };
 
 const fixtures = Object.entries(groups).flatMap(([group, teams], groupIndex) =>
@@ -256,9 +299,9 @@ const fixtures = Object.entries(groups).flatMap(([group, teams], groupIndex) =>
   })
 );
 
+let actualScores = { ...verifiedActualScores, ...loadActualScores() };
 const defaultScores = Object.fromEntries(fixtures.map((match) => [match.id, predictScore(match.home, match.away)]));
 let scores = { ...defaultScores, ...loadScores() };
-let actualScores = { ...verifiedActualScores, ...loadActualScores() };
 let actualScorers = loadScorerGoals();
 let actualKnockoutScores = loadKnockoutScores();
 
@@ -310,6 +353,10 @@ copySummaryButton.addEventListener("click", async () => {
 });
 
 render();
+updateActualResultsFromFile();
+updateMarketAdjustmentsFromFile();
+window.setInterval(updateActualResultsFromFile, 15 * 60 * 1000);
+window.setInterval(updateMarketAdjustmentsFromFile, 60 * 60 * 1000);
 
 function loadScores() {
   try {
@@ -349,6 +396,20 @@ async function updateActualResultsFromFile() {
     if (!data || typeof data !== "object" || !data.matches) return false;
     actualScores = { ...actualScores, ...normalizeImportedScores(data.matches) };
     saveActualScores();
+    render();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function updateMarketAdjustmentsFromFile() {
+  try {
+    const response = await fetch("market-adjustments.json", { cache: "no-store" });
+    if (!response.ok) return false;
+    const data = await response.json();
+    if (!data || typeof data !== "object" || !data.teams) return false;
+    marketAdjustments = { ...marketAdjustments, ...data.teams };
     render();
     return true;
   } catch {
@@ -397,8 +458,8 @@ function saveKnockoutScores() {
 function predictScore(home, away) {
   const homeData = teamData[home];
   const awayData = teamData[away];
-  const homeStrength = homeData.strength + (homeData.host ? 3 : 0);
-  const awayStrength = awayData.strength + (awayData.host ? 3 : 0);
+  const homeStrength = teamStrength(home);
+  const awayStrength = teamStrength(away);
   const gap = homeStrength - awayStrength;
   const base = 1.15;
   const homeGoals = clamp(base + gap / 22 + homeData.title / 28, 0.25, 3.7);
@@ -419,7 +480,7 @@ function clamp(value, min, max) {
 }
 
 function winProbability(home, away) {
-  const gap = teamData[home].strength + (teamData[home].host ? 3 : 0) - teamData[away].strength - (teamData[away].host ? 3 : 0);
+  const gap = teamStrength(home) - teamStrength(away);
   const homeWin = 1 / (1 + Math.exp(-gap / 10));
   const draw = clamp(0.28 - Math.abs(gap) / 120, 0.12, 0.28);
   const adjustedHome = homeWin * (1 - draw);
@@ -427,20 +488,49 @@ function winProbability(home, away) {
   return { home: adjustedHome, draw, away: adjustedAway };
 }
 
+function teamStrength(team) {
+  const data = teamData[team];
+  return data.strength + (data.host ? 3 : 0) + tournamentAdjustment(team) + (marketAdjustments[team] ?? 0);
+}
+
+function tournamentAdjustment(team) {
+  let points = 0;
+  let goalDiff = 0;
+  let played = 0;
+
+  fixtures.forEach((match) => {
+    const score = actualScores[match.id];
+    if (!score || !Number.isFinite(score.home) || !Number.isFinite(score.away)) return;
+    if (match.home !== team && match.away !== team) return;
+    const isHome = match.home === team;
+    const goalsFor = isHome ? score.home : score.away;
+    const goalsAgainst = isHome ? score.away : score.home;
+    played += 1;
+    goalDiff += goalsFor - goalsAgainst;
+    if (goalsFor > goalsAgainst) points += 3;
+    else if (goalsFor === goalsAgainst) points += 1;
+  });
+
+  if (played === 0) return 0;
+  const pointsPerGame = points / played;
+  const form = (pointsPerGame - 1.2) * 2.4;
+  const goalForm = clamp(goalDiff * 0.45, -4, 4);
+  return clamp(form + goalForm, -7, 7);
+}
+
 function render() {
   renderMatches();
   renderDays();
   const predictedTables = calculateTables("predicted");
-  const liveTables = calculateTables("live");
-  const playedTables = calculateTables("actual");
-  renderTables(predictedTables, liveTables, playedTables);
+  const actualTables = calculateTables("actual");
+  renderTables(predictedTables, actualTables, actualTables);
   const predictedThirds = rankThirds(predictedTables);
-  const liveThirds = rankThirds(liveTables);
-  renderThirds(predictedThirds, liveThirds);
+  const actualThirds = rankThirds(actualTables);
+  renderThirds(predictedThirds, actualThirds);
   const predictedKnockout = buildKnockout(predictedTables, predictedThirds);
-  const liveKnockout = buildKnockout(liveTables, liveThirds);
-  renderKnockout(predictedKnockout, liveKnockout);
-  renderScorers(predictedKnockout, liveKnockout);
+  const actualKnockout = buildCertainKnockout(actualTables);
+  renderKnockout(predictedKnockout, actualKnockout);
+  renderScorers(predictedKnockout, actualKnockout);
 }
 
 function renderMatches() {
@@ -479,7 +569,7 @@ function renderDays() {
   }, {});
   const orderedDates = Object.keys(matchesByDate).sort();
   daysView.innerHTML = `
-    <div class="note">Dagoverzicht van alle groepswedstrijden. Je ziet per datum de voorspelling, eventuele echte uitslag en de kansverdeling. Scores aanpassen kan ook hier; alles rekent direct door.</div>
+    <div class="note">Dagoverzicht van alle groepswedstrijden. Alleen teams en voorspelling; details, echte uitslagen en statistieken staan bij Wedstrijden en Poulestanden.</div>
     <div class="section-grid">
       ${orderedDates.map((date) => renderDayCard(date, matchesByDate[date])).join("")}
     </div>
@@ -488,14 +578,13 @@ function renderDays() {
 }
 
 function renderDayCard(date, dayMatches) {
-  const playedCount = dayMatches.filter((match) => hasActualScore(match.id)).length;
   const dayGroups = [...new Set(dayMatches.map((match) => `Groep ${match.group}`))].join(" / ");
   return `
     <article class="day-card">
       <div class="group-head">
         <div>
           <h2>${formatLongDate(date)}</h2>
-          <span class="day-summary">${dayMatches.length} wedstrijden · ${playedCount} echte uitslagen ingevuld</span>
+          <span class="day-summary">${dayMatches.length} wedstrijden</span>
         </div>
         <span>${dayGroups}</span>
       </div>
@@ -507,9 +596,7 @@ function renderDayCard(date, dayMatches) {
 }
 
 function renderDayMatchRow(match) {
-  const status = hasActualScore(match.id) ? "Gespeeld" : "Nog te spelen";
   const predicted = scores[match.id];
-  const actual = actualScores[match.id];
   return `
     <div class="day-match-row">
       <div>
@@ -520,13 +607,9 @@ function renderDayMatchRow(match) {
         <span>Voorspeld</span>
         <strong>${predicted.home}-${predicted.away}</strong>
       </div>
-      <div class="day-score-block ${hasActualScore(match.id) ? "has-actual" : ""}">
-        <span>Echt</span>
-        <strong>${hasActualScore(match.id) ? `${actual.home}-${actual.away}` : "-"}</strong>
-      </div>
       <div>
         <span class="team-name">${match.away}</span>
-        <span class="day-status ${hasActualScore(match.id) ? "is-played" : ""}">${status}</span>
+        <span class="team-meta">Speeldag ${formatDate(match.date)}</span>
       </div>
     </div>
   `;
@@ -677,7 +760,7 @@ function applyResult(home, away, score) {
 }
 
 function sortTableRows(a, b) {
-  return b.points - a.points || b.gd - a.gd || b.gf - a.gf || teamData[b.team].strength - teamData[a.team].strength || a.team.localeCompare(b.team);
+  return b.points - a.points || b.gd - a.gd || b.gf - a.gf || teamStrength(b.team) - teamStrength(a.team) || a.team.localeCompare(b.team);
 }
 
 function rankThirds(tables) {
@@ -687,10 +770,10 @@ function rankThirds(tables) {
     .map((row, index) => ({ ...row, thirdRank: index + 1, qualified: index < 8 }));
 }
 
-function renderTables(predictedTables, liveTables, playedTables) {
+function renderTables(predictedTables, actualTables, playedTables) {
   tablesView.innerHTML = `
-    <div class="note">Links staat je oorspronkelijke voorspelling. Rechts staat de live-projectie: echte uitslagen waar ingevuld, voorspellingen voor nog niet gespeelde duels. De puur gespeelde stand staat onder de live-projectie vermeld.</div>
-    <div class="section-grid">${Object.keys(groups).map((group) => renderTable(group, predictedTables[group], liveTables[group], playedTables[group])).join("")}</div>
+    <div class="note">Links staat de voorspelling met het actuele model. Rechts staat alleen de werkelijke stand op basis van gespeelde wedstrijden; er worden geen resterende duels geprojecteerd.</div>
+    <div class="section-grid">${Object.keys(groups).map((group) => renderTable(group, predictedTables[group], actualTables[group], playedTables[group])).join("")}</div>
   `;
 }
 
@@ -704,7 +787,7 @@ function renderTable(group, predictedTable, liveTable, playedTable) {
           <div class="table">${tableHeader()}${predictedTable.map((row) => tableRow(row, row.rank <= 2)).join("")}</div>
         </div>
         <div class="table-panel">
-          <div class="table-title">Live + projectie</div>
+          <div class="table-title">Werkelijke stand</div>
           <div class="table">${tableHeader()}${liveTable.map((row) => tableRow(row, row.rank <= 2)).join("")}</div>
           <div class="table-title">Alleen echt gespeeld: ${playedTable.reduce((sum, row) => sum + row.played, 0) / 2} duels</div>
         </div>
@@ -742,7 +825,7 @@ function renderThirds(predictedThirds, liveThirds) {
         <article class="third-card">${thirdHeader()}${predictedThirds.map((row) => thirdRow(row)).join("")}</article>
       </section>
       <section class="comparison-column">
-        <h2>Live + projectie</h2>
+        <h2>Werkelijke nummers drie</h2>
         <article class="third-card">${thirdHeader()}${liveThirds.map((row) => thirdRow(row)).join("")}</article>
       </section>
     </div>
@@ -771,14 +854,14 @@ function thirdRow(row) {
 
 function renderKnockout(predictedKnockout, liveKnockout) {
   knockoutView.innerHTML = `
-    <div class="note">Links staat de voorspelde route. Rechts staat de live-route: echte groepsuitslagen waar ingevuld, voorspelling voor de rest. Echte knock-outuitslagen kun je importeren met bijvoorbeeld M73 2-1 of M73 1-1 5-4p; de winnaar gaat dan door in de live-route.</div>
+    <div class="note">Links staat de modelvoorspelling. Rechts staan alleen zekere teams of positie-labels zoals 1D en 2G. Pas wanneer beide teams zeker zijn, vult de app een voorspelling in.</div>
     <div class="comparison-grid">
       <section class="comparison-column">
         <h2>Voorspelde knock-out</h2>
         <div class="knockout-grid">${rounds.map((round) => renderRound(round, predictedKnockout)).join("")}</div>
       </section>
       <section class="comparison-column">
-        <h2>Live + projectie</h2>
+        <h2>Zekere knock-out</h2>
         <div class="knockout-grid">${rounds.map((round) => renderRound(round, liveKnockout)).join("")}</div>
       </section>
     </div>
@@ -789,14 +872,14 @@ function renderScorers(predictedKnockout, liveKnockout) {
   const predicted = rankScorers(predictedKnockout);
   const live = rankScorers(liveKnockout, true);
   scorersView.innerHTML = `
-    <div class="note">Voorspeld gebruikt markt-kans plus route. Live + projectie telt geimporteerde echte goals mee en gebruikt daarna dezelfde routecorrectie. Importeer bijvoorbeeld: Kylian Mbappe 3 goals.</div>
+    <div class="note">Voorspeld gebruikt markt-kans, toernooivorm en route. Werkelijk telt geimporteerde echte goals mee en gebruikt alleen zekere of bekende routes. Importeer bijvoorbeeld: Kylian Mbappe 3 goals.</div>
     <div class="comparison-grid">
       <section class="comparison-column">
         <h2>Voorspelde topscorer</h2>
         <div class="scorer-list">${predicted.map((contender, index) => renderScorer(contender, index, false)).join("")}</div>
       </section>
       <section class="comparison-column">
-        <h2>Live + projectie topscorer</h2>
+        <h2>Werkelijke topscorer + zekere route</h2>
         <div class="scorer-list">${live.map((contender, index) => renderScorer(contender, index, true)).join("")}</div>
       </section>
     </div>
@@ -846,6 +929,51 @@ function buildKnockout(tables, thirds) {
   });
 
   return matches;
+}
+
+function buildCertainKnockout(actualTables) {
+  const placements = {};
+  for (const group of Object.keys(groups)) {
+    const isComplete = fixtures.filter((match) => match.group === group).every((match) => hasActualScore(match.id));
+    placements[`1${group}`] = isComplete ? actualTables[group][0] : placeholder(`1${group}`);
+    placements[`2${group}`] = isComplete ? actualTables[group][1] : placeholder(`2${group}`);
+    placements[`3${group}`] = isComplete ? actualTables[group][2] : placeholder(`3${group}`);
+  }
+
+  const allGroupsComplete = Object.keys(groups).every((group) =>
+    fixtures.filter((match) => match.group === group).every((match) => hasActualScore(match.id))
+  );
+  const thirdPool = allGroupsComplete ? rankThirds(actualTables).filter((row) => row.qualified) : [];
+  const thirdAssignments = allGroupsComplete ? assignThirdSlots(thirdPool) : {};
+  const matches = {};
+
+  knockoutTemplate.forEach((template) => {
+    const a = resolveCertainSlot(template.a, placements, thirdAssignments);
+    const b = resolveCertainSlot(template.b, placements, thirdAssignments);
+    matches[template.id] = createCertainKnockoutMatch(template.id, a, b);
+  });
+
+  Object.entries(nextRoundPairs).forEach(([id, [first, second]]) => {
+    const a = matches[first].winner ?? placeholder(`W${first}`);
+    const b = matches[second].winner ?? placeholder(`W${second}`);
+    matches[id] = createCertainKnockoutMatch(Number(id), a, b);
+  });
+
+  return matches;
+}
+
+function resolveCertainSlot(slot, placements, thirdAssignments) {
+  if (!slot.startsWith("3") || slot.length === 2) return placements[slot] ?? placeholder(slot);
+  return thirdAssignments[slot] ?? placeholder(slot);
+}
+
+function createCertainKnockoutMatch(id, a, b) {
+  if (!a?.team || !b?.team) return { id, a, b, score: null, winner: null, method: "wacht op zekerheid" };
+  return createKnockoutMatch(id, a, b);
+}
+
+function placeholder(label) {
+  return { team: null, label };
 }
 
 function assignThirdSlots(thirdPool) {
@@ -930,10 +1058,10 @@ function renderRound(round, matches) {
 }
 
 function renderKnockoutMatch(match) {
-  const a = match.a?.team ?? "Nog onbekend";
-  const b = match.b?.team ?? "Nog onbekend";
+  const a = entryLabel(match.a);
+  const b = entryLabel(match.b);
   const score = match.score ? formatKnockoutScore(match.score) : "-";
-  const method = match.method ? ` · ${match.method}` : "";
+  const method = match.method && match.winner ? ` · ${match.method}` : "";
   const chanceLine = match.probabilities
     ? `Verlenging ${pct(match.probabilities.extraTime)} · penalties ${pct(match.probabilities.penalties)}`
     : "";
@@ -941,23 +1069,26 @@ function renderKnockoutMatch(match) {
     <div class="knockout-match">
       <span class="team-meta">Match ${match.id}</span>
       <div class="knockout-teams">
-        <span class="team-name ${match.winner?.team === a ? "winner" : ""}">${a}</span>
+        <span class="team-name ${match.winner?.team === match.a?.team ? "winner" : ""} ${match.a?.team ? "" : "placeholder"}">${a}</span>
         <span class="score-pill">${score}</span>
-        <span class="team-name ${match.winner?.team === b ? "winner" : ""}">${b}</span>
+        <span class="team-name ${match.winner?.team === match.b?.team ? "winner" : ""} ${match.b?.team ? "" : "placeholder"}">${b}</span>
       </div>
-      <span class="team-meta">Winnaar: ${match.winner?.team ?? "n.t.b."}${method}</span>
+      <span class="team-meta">${match.winner ? `Winnaar: ${match.winner.team}${method}` : "Nog niet zeker"}</span>
       <span class="team-meta">${chanceLine}</span>
     </div>
   `;
 }
 
+function entryLabel(entry) {
+  return entry?.team ?? entry?.label ?? "Nog onbekend";
+}
+
 function createSummary() {
   const tables = calculateTables("predicted");
-  const liveTables = calculateTables("live");
+  const actualTables = calculateTables("actual");
   const thirds = rankThirds(tables);
-  const liveThirds = rankThirds(liveTables);
   const knockout = buildKnockout(tables, thirds);
-  const liveKnockout = buildKnockout(liveTables, liveThirds);
+  const actualKnockout = buildCertainKnockout(actualTables);
   const lines = ["WK 2026 voorspelling", ""];
 
   Object.keys(groups).forEach((group) => {
@@ -980,12 +1111,12 @@ function createSummary() {
     });
   });
 
-  lines.push("", "Live/projectie knock-out:");
+  lines.push("", "Zekere knock-out:");
   rounds.forEach((round) => {
     lines.push(round.name);
     round.ids.forEach((id) => {
-      const match = liveKnockout[id];
-      lines.push(`M${id}: ${match.a?.team ?? "?"} ${match.score ? formatKnockoutScore(match.score) : "-"} ${match.b?.team ?? "?"} -> ${match.winner?.team ?? "?"} ${match.method ?? ""}`);
+      const match = actualKnockout[id];
+      lines.push(`M${id}: ${entryLabel(match.a)} ${match.score ? formatKnockoutScore(match.score) : "-"} ${entryLabel(match.b)} -> ${match.winner?.team ?? "nog niet zeker"}`);
     });
   });
 
@@ -994,8 +1125,8 @@ function createSummary() {
     lines.push(`${index + 1}. ${scorer.player} (${scorer.team}) - ${scorer.expectedGoals.toFixed(1)} goals, kans ${scorer.adjustedProbability.toFixed(1)}%`);
   });
 
-  lines.push("", "Live/projectie topscorer:");
-  rankScorers(liveKnockout, true).slice(0, 5).forEach((scorer, index) => {
+  lines.push("", "Werkelijke topscorer + zekere route:");
+  rankScorers(actualKnockout, true).slice(0, 5).forEach((scorer, index) => {
     lines.push(`${index + 1}. ${scorer.player} (${scorer.team}) - ${scorer.expectedGoals.toFixed(1)} goals (${scorer.actualGoals} echt), kans ${scorer.adjustedProbability.toFixed(1)}%`);
   });
 

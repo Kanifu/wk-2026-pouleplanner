@@ -1,0 +1,20 @@
+{
+  "updatedAt": "2026-06-25",
+  "sourceNote": "Handmatige marktcorrectie op basis van toernooivorm, recente oddsartikelen en bookie-signalen. Positieve waarde verhoogt de modelrating.",
+  "teams": {
+    "Germany": 4,
+    "Netherlands": 3,
+    "Portugal": 3,
+    "Colombia": 2.5,
+    "Brazil": 2,
+    "Argentina": 1.5,
+    "France": 1,
+    "Spain": 1,
+    "United States": 1,
+    "Cote d'Ivoire": 1,
+    "Ecuador": -1.5,
+    "Curacao": -2,
+    "Tunisia": -2,
+    "Qatar": -2
+  }
+}
