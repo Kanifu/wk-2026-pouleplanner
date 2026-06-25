@@ -88,6 +88,40 @@ const knockoutTemplate = [
   { id: 88, a: "2D", b: "2G" },
 ];
 
+const knockoutSchedule = {
+  73: { date: "2026-06-28", time: "15:00 ET", venue: "Los Angeles" },
+  74: { date: "2026-06-29", time: "16:30 ET", venue: "Boston" },
+  75: { date: "2026-06-29", time: "21:00 ET", venue: "Monterrey" },
+  76: { date: "2026-06-29", time: "13:00 ET", venue: "Houston" },
+  77: { date: "2026-06-30", time: "17:00 ET", venue: "New York/New Jersey" },
+  78: { date: "2026-06-30", time: "13:00 ET", venue: "Dallas" },
+  79: { date: "2026-06-30", time: "21:00 ET", venue: "Mexico City" },
+  80: { date: "2026-07-01", time: "12:00 ET", venue: "Atlanta" },
+  81: { date: "2026-07-01", time: "20:00 ET", venue: "San Francisco Bay Area" },
+  82: { date: "2026-07-01", time: "16:00 ET", venue: "Seattle" },
+  83: { date: "2026-07-02", time: "19:00 ET", venue: "Toronto" },
+  84: { date: "2026-07-02", time: "15:00 ET", venue: "Los Angeles" },
+  85: { date: "2026-07-02", time: "23:00 ET", venue: "Vancouver" },
+  86: { date: "2026-07-03", time: "18:00 ET", venue: "Miami" },
+  87: { date: "2026-07-03", time: "21:30 ET", venue: "Kansas City" },
+  88: { date: "2026-07-03", time: "14:00 ET", venue: "Dallas" },
+  89: { date: "2026-07-04", time: "17:00 ET", venue: "Philadelphia" },
+  90: { date: "2026-07-04", time: "13:00 ET", venue: "Houston" },
+  91: { date: "2026-07-05", time: "16:00 ET", venue: "New York/New Jersey" },
+  92: { date: "2026-07-05", time: "20:00 ET", venue: "Mexico City" },
+  93: { date: "2026-07-06", time: "15:00 ET", venue: "Dallas" },
+  94: { date: "2026-07-06", time: "20:00 ET", venue: "Seattle" },
+  95: { date: "2026-07-07", time: "12:00 ET", venue: "Atlanta" },
+  96: { date: "2026-07-07", time: "16:00 ET", venue: "Vancouver" },
+  97: { date: "2026-07-09", time: "16:00 ET", venue: "Boston" },
+  98: { date: "2026-07-10", time: "15:00 ET", venue: "Los Angeles" },
+  99: { date: "2026-07-11", time: "17:00 ET", venue: "Miami" },
+  100: { date: "2026-07-11", time: "21:00 ET", venue: "Kansas City" },
+  101: { date: "2026-07-14", time: "15:00 ET", venue: "Dallas" },
+  102: { date: "2026-07-15", time: "15:00 ET", venue: "Atlanta" },
+  104: { date: "2026-07-19", time: "15:00 ET", venue: "New York/New Jersey" },
+};
+
 const topScorerContenders = [
   {
     player: "Kylian Mbappe",
@@ -1061,6 +1095,8 @@ function renderKnockoutMatch(match) {
   const a = entryLabel(match.a);
   const b = entryLabel(match.b);
   const score = match.score ? formatKnockoutScore(match.score) : "-";
+  const schedule = knockoutSchedule[match.id];
+  const scheduleText = schedule ? `${formatKnockoutDate(schedule.date)} · ${schedule.time} · ${schedule.venue}` : "Datum n.t.b.";
   const method = match.method && match.winner ? ` · ${match.method}` : "";
   const chanceLine = match.probabilities
     ? `Verlenging ${pct(match.probabilities.extraTime)} · penalties ${pct(match.probabilities.penalties)}`
@@ -1068,6 +1104,7 @@ function renderKnockoutMatch(match) {
   return `
     <div class="knockout-match">
       <span class="team-meta">Match ${match.id}</span>
+      <span class="team-meta">${scheduleText}</span>
       <div class="knockout-teams">
         <span class="team-name ${match.winner?.team === match.a?.team ? "winner" : ""} ${match.a?.team ? "" : "placeholder"}">${a}</span>
         <span class="score-pill">${score}</span>
@@ -1107,7 +1144,7 @@ function createSummary() {
     lines.push(round.name);
     round.ids.forEach((id) => {
       const match = knockout[id];
-      lines.push(`M${id}: ${match.a?.team ?? "?"} ${match.score ? formatKnockoutScore(match.score) : "-"} ${match.b?.team ?? "?"} -> ${match.winner?.team ?? "?"} ${match.method ?? ""}`);
+      lines.push(`M${id} (${summarySchedule(id)}): ${match.a?.team ?? "?"} ${match.score ? formatKnockoutScore(match.score) : "-"} ${match.b?.team ?? "?"} -> ${match.winner?.team ?? "?"} ${match.method ?? ""}`);
     });
   });
 
@@ -1116,7 +1153,7 @@ function createSummary() {
     lines.push(round.name);
     round.ids.forEach((id) => {
       const match = actualKnockout[id];
-      lines.push(`M${id}: ${entryLabel(match.a)} ${match.score ? formatKnockoutScore(match.score) : "-"} ${entryLabel(match.b)} -> ${match.winner?.team ?? "nog niet zeker"}`);
+      lines.push(`M${id} (${summarySchedule(id)}): ${entryLabel(match.a)} ${match.score ? formatKnockoutScore(match.score) : "-"} ${entryLabel(match.b)} -> ${match.winner?.team ?? "nog niet zeker"}`);
     });
   });
 
@@ -1279,4 +1316,14 @@ function formatDate(value) {
 
 function formatLongDate(value) {
   return new Intl.DateTimeFormat("nl-NL", { weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(new Date(`${value}T12:00:00`));
+}
+
+function formatKnockoutDate(value) {
+  return new Intl.DateTimeFormat("nl-NL", { weekday: "short", day: "numeric", month: "short" }).format(new Date(`${value}T12:00:00`));
+}
+
+function summarySchedule(id) {
+  const schedule = knockoutSchedule[id];
+  if (!schedule) return "datum n.t.b.";
+  return `${formatKnockoutDate(schedule.date)} ${schedule.time}, ${schedule.venue}`;
 }
