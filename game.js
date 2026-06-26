@@ -352,10 +352,10 @@ const fixtures = Object.entries(groups).flatMap(([group, teams], groupIndex) =>
 );
 
 let actualScores = { ...verifiedActualScores, ...loadActualScores() };
-const defaultScores = Object.fromEntries(fixtures.map((match) => [match.id, predictScore(match.home, match.away)]));
-let scores = { ...defaultScores, ...loadScores() };
 let actualScorers = loadScorerGoals();
 let liveTopScorers = [...verifiedTopScorers];
+let defaultScores = computeDefaultScores();
+let scores = { ...defaultScores, ...loadScores() };
 let actualKnockoutScores = loadKnockoutScores();
 
 const matchesView = document.querySelector("#matchesView");
@@ -378,7 +378,7 @@ document.querySelectorAll(".tab").forEach((button) => {
 });
 
 resetScoresButton.addEventListener("click", () => {
-  scores = structuredClone(defaultScores);
+  refreshPredictedScores();
   saveScores();
   render();
 });
@@ -428,6 +428,15 @@ function saveScores() {
   localStorage.setItem(SAVE_KEY, JSON.stringify(scores));
 }
 
+function computeDefaultScores() {
+  return Object.fromEntries(fixtures.map((match) => [match.id, predictScore(match.home, match.away)]));
+}
+
+function refreshPredictedScores() {
+  defaultScores = computeDefaultScores();
+  scores = structuredClone(defaultScores);
+}
+
 function loadActualScores() {
   try {
     const raw = localStorage.getItem(ACTUAL_SAVE_KEY);
@@ -450,6 +459,7 @@ async function updateActualResultsFromFile() {
     const data = await response.json();
     if (!data || typeof data !== "object" || !data.matches) return false;
     actualScores = { ...actualScores, ...normalizeImportedScores(data.matches) };
+    refreshPredictedScores();
     saveActualScores();
     render();
     return true;
@@ -474,6 +484,7 @@ async function updateTopScorersFromFile() {
       }))
       .filter((scorer) => scorer.player && scorer.team && Number.isFinite(scorer.goals))
       .sort(sortLiveScorers);
+    refreshPredictedScores();
     render();
     return true;
   } catch {
@@ -488,6 +499,7 @@ async function updateMarketAdjustmentsFromFile() {
     const data = await response.json();
     if (!data || typeof data !== "object" || !data.teams) return false;
     marketAdjustments = { ...marketAdjustments, ...data.teams };
+    refreshPredictedScores();
     render();
     return true;
   } catch {
@@ -539,16 +551,18 @@ function predictScore(home, away) {
   const homeStrength = teamStrength(home);
   const awayStrength = teamStrength(away);
   const gap = homeStrength - awayStrength;
-  const base = 1.08;
-  const homeGoals = clamp(base + gap / 28 + homeData.title / 38, 0.22, 3.2);
-  const awayGoals = clamp(base - gap / 30 + awayData.title / 42, 0.18, 3.0);
+  const base = 1.32;
+  const homeGoals = clamp(base + gap / 32 + homeData.title / 44 + attackAdjustment(home) - defensiveDrag(away), 0.25, 4.1);
+  const awayGoals = clamp(base - gap / 34 + awayData.title / 48 + attackAdjustment(away) - defensiveDrag(home), 0.22, 3.9);
   let best = { home: 0, away: 0, probability: -1 };
 
   for (let homeScore = 0; homeScore <= 5; homeScore += 1) {
     for (let awayScore = 0; awayScore <= 5; awayScore += 1) {
-      const drawBoost = homeScore === awayScore ? 1.22 : 1;
+      const totalGoals = homeScore + awayScore;
+      const drawBoost = homeScore === awayScore ? 1.32 : 1;
       const favoriteBoost = Math.abs(gap) > 14 && Math.sign(gap) === Math.sign(homeScore - awayScore) ? 1.08 : 1;
-      const probability = poisson(homeScore, homeGoals) * poisson(awayScore, awayGoals) * drawBoost * favoriteBoost;
+      const tempoBoost = totalGoals >= 3 ? 1.12 : 1;
+      const probability = poisson(homeScore, homeGoals) * poisson(awayScore, awayGoals) * drawBoost * favoriteBoost * tempoBoost;
       if (probability > best.probability) {
         best = { home: homeScore, away: awayScore, probability };
       }
@@ -556,6 +570,23 @@ function predictScore(home, away) {
   }
 
   return { home: best.home, away: best.away };
+}
+
+function attackAdjustment(team) {
+  const stats = teamTournamentStats(team);
+  const topScorerGoals = liveTopScorers
+    .filter((scorer) => scorer.team === team)
+    .slice(0, 3)
+    .reduce((total, scorer) => total + scorer.goals, 0);
+  const goalForm = stats.played > 0 ? (stats.goalsFor / stats.played - 1.35) * 0.22 : 0;
+  const scorerForm = clamp(topScorerGoals * 0.045, 0, 0.42);
+  return clamp(goalForm + scorerForm, -0.25, 0.55);
+}
+
+function defensiveDrag(team) {
+  const stats = teamTournamentStats(team);
+  if (stats.played === 0) return 0;
+  return clamp((1.25 - stats.goalsAgainst / stats.played) * 0.16, -0.22, 0.22);
 }
 
 function clamp(value, min, max) {
@@ -587,28 +618,33 @@ function teamStrength(team) {
 }
 
 function tournamentAdjustment(team) {
-  let points = 0;
-  let goalDiff = 0;
-  let played = 0;
-
-  fixtures.forEach((match) => {
-    const score = actualScores[match.id];
-    if (!score || !Number.isFinite(score.home) || !Number.isFinite(score.away)) return;
-    if (match.home !== team && match.away !== team) return;
-    const isHome = match.home === team;
-    const goalsFor = isHome ? score.home : score.away;
-    const goalsAgainst = isHome ? score.away : score.home;
-    played += 1;
-    goalDiff += goalsFor - goalsAgainst;
-    if (goalsFor > goalsAgainst) points += 3;
-    else if (goalsFor === goalsAgainst) points += 1;
-  });
-
-  if (played === 0) return 0;
-  const pointsPerGame = points / played;
+  const stats = teamTournamentStats(team);
+  if (stats.played === 0) return 0;
+  const pointsPerGame = stats.points / stats.played;
   const form = (pointsPerGame - 1.2) * 2.4;
-  const goalForm = clamp(goalDiff * 0.45, -4, 4);
+  const goalForm = clamp(stats.goalDiff * 0.45, -4, 4);
   return clamp(form + goalForm, -7, 7);
+}
+
+function teamTournamentStats(team) {
+  return fixtures.reduce(
+    (stats, match) => {
+      const score = actualScores[match.id];
+      if (!score || !Number.isFinite(score.home) || !Number.isFinite(score.away)) return stats;
+      if (match.home !== team && match.away !== team) return stats;
+      const isHome = match.home === team;
+      const goalsFor = isHome ? score.home : score.away;
+      const goalsAgainst = isHome ? score.away : score.home;
+      stats.played += 1;
+      stats.goalsFor += goalsFor;
+      stats.goalsAgainst += goalsAgainst;
+      stats.goalDiff += goalsFor - goalsAgainst;
+      if (goalsFor > goalsAgainst) stats.points += 3;
+      else if (goalsFor === goalsAgainst) stats.points += 1;
+      return stats;
+    },
+    { played: 0, points: 0, goalsFor: 0, goalsAgainst: 0, goalDiff: 0 }
+  );
 }
 
 function render() {
