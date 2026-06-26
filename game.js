@@ -539,22 +539,37 @@ function predictScore(home, away) {
   const homeStrength = teamStrength(home);
   const awayStrength = teamStrength(away);
   const gap = homeStrength - awayStrength;
-  const base = 1.15;
-  const homeGoals = clamp(base + gap / 22 + homeData.title / 28, 0.25, 3.7);
-  const awayGoals = clamp(base - gap / 24 + awayData.title / 30, 0.2, 3.4);
-  let homeRounded = Math.max(0, Math.round(homeGoals));
-  let awayRounded = Math.max(0, Math.round(awayGoals));
+  const base = 1.08;
+  const homeGoals = clamp(base + gap / 28 + homeData.title / 38, 0.22, 3.2);
+  const awayGoals = clamp(base - gap / 30 + awayData.title / 42, 0.18, 3.0);
+  let best = { home: 0, away: 0, probability: -1 };
 
-  if (homeRounded === awayRounded && Math.abs(gap) > 8) {
-    if (gap > 0) homeRounded += 1;
-    else awayRounded += 1;
+  for (let homeScore = 0; homeScore <= 5; homeScore += 1) {
+    for (let awayScore = 0; awayScore <= 5; awayScore += 1) {
+      const drawBoost = homeScore === awayScore ? 1.22 : 1;
+      const favoriteBoost = Math.abs(gap) > 14 && Math.sign(gap) === Math.sign(homeScore - awayScore) ? 1.08 : 1;
+      const probability = poisson(homeScore, homeGoals) * poisson(awayScore, awayGoals) * drawBoost * favoriteBoost;
+      if (probability > best.probability) {
+        best = { home: homeScore, away: awayScore, probability };
+      }
+    }
   }
 
-  return { home: homeRounded, away: awayRounded };
+  return { home: best.home, away: best.away };
 }
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
+}
+
+function poisson(goals, expectedGoals) {
+  return (Math.exp(-expectedGoals) * expectedGoals ** goals) / factorial(goals);
+}
+
+function factorial(value) {
+  let result = 1;
+  for (let index = 2; index <= value; index += 1) result *= index;
+  return result;
 }
 
 function winProbability(home, away) {
@@ -940,7 +955,7 @@ function renderKnockout(predictedKnockout, liveKnockout) {
       </section>
       <section class="comparison-column">
         <h2>Zekere knock-out</h2>
-        <div class="knockout-grid">${rounds.map((round) => renderRound(round, liveKnockout)).join("")}</div>
+        <div class="knockout-grid">${renderScheduledKnockoutList(liveKnockout)}</div>
       </section>
     </div>
   `;
@@ -1126,7 +1141,7 @@ function createKnockoutMatch(id, a, b) {
 
   const score = predictScore(a.team, b.team);
   const probabilities = knockoutProbabilities(a.team, b.team);
-  const strengthGap = teamData[a.team].strength - teamData[b.team].strength;
+  const strengthGap = teamStrength(a.team) - teamStrength(b.team);
   let method = "na 90 min";
   let winner = score.home > score.away ? a : b;
   let decidedScore = { ...score };
@@ -1153,6 +1168,26 @@ function renderRound(round, matches) {
       ${round.ids.map((id) => renderKnockoutMatch(matches[id])).join("")}
     </section>
   `;
+}
+
+function renderScheduledKnockoutList(matches) {
+  return `
+    <section class="knockout-round">
+      <div class="round-head"><h2>Op datum</h2><span>${scheduledKnockoutIds().length} wedstrijden</span></div>
+      ${scheduledKnockoutIds().map((id) => renderKnockoutMatch(matches[id])).join("")}
+    </section>
+  `;
+}
+
+function scheduledKnockoutIds() {
+  return Object.keys(knockoutSchedule)
+    .map(Number)
+    .sort((a, b) => scheduleSortValue(a).localeCompare(scheduleSortValue(b)));
+}
+
+function scheduleSortValue(id) {
+  const schedule = knockoutSchedule[id];
+  return `${schedule.date} ${schedule.time}`;
 }
 
 function renderKnockoutMatch(match) {
@@ -1213,12 +1248,9 @@ function createSummary() {
   });
 
   lines.push("", "Zekere knock-out:");
-  rounds.forEach((round) => {
-    lines.push(round.name);
-    round.ids.forEach((id) => {
-      const match = actualKnockout[id];
-      lines.push(`M${id} (${summarySchedule(id)}): ${entryLabel(match.a)} ${match.score ? formatKnockoutScore(match.score) : "-"} ${entryLabel(match.b)} -> ${match.winner?.team ?? "nog niet zeker"}`);
-    });
+  scheduledKnockoutIds().forEach((id) => {
+    const match = actualKnockout[id];
+    lines.push(`M${id} (${summarySchedule(id)}): ${entryLabel(match.a)} ${match.score ? formatKnockoutScore(match.score) : "-"} ${entryLabel(match.b)} -> ${match.winner?.team ?? "nog niet zeker"}`);
   });
 
   lines.push("", "Verwachte topscorer:");
