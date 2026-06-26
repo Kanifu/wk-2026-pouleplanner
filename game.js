@@ -214,17 +214,22 @@ const verifiedTopScorers = [
 ];
 
 let marketAdjustments = {
-  Germany: 4,
-  Netherlands: 3,
-  Portugal: 3,
+  France: 4.5,
+  Spain: 3.5,
+  Argentina: 3,
+  England: 3,
+  Portugal: 3.2,
+  Brazil: 2.8,
+  Germany: 2.4,
+  Netherlands: 2.2,
   Colombia: 2.5,
-  Brazil: 2,
-  Argentina: 1.5,
-  France: 1,
-  Spain: 1,
+  Norway: 1.4,
+  Switzerland: 1.1,
+  Mexico: 1,
   "United States": 1,
   "Cote d'Ivoire": 1,
   Ecuador: -1.5,
+  "South Africa": -0.5,
   Curacao: -2,
   Tunisia: -2,
   Qatar: -2,
@@ -1128,7 +1133,7 @@ function thirdRow(row) {
 
 function renderKnockout(predictedKnockout, liveKnockout) {
   knockoutView.innerHTML = `
-    <div class="note">Links staat de modelvoorspelling. Rechts staan alleen zekere teams of positie-labels zoals 1D en 2G. Pas wanneer beide teams zeker zijn, vult de app een voorspelling in.</div>
+    <div class="note">Links staat de modelvoorspelling. De exacte score is de meest waarschijnlijke scorelijn; doorgaan-kans gebruikt een apart knockoutmodel met 90-minutenkans, verlenging, penalties, toernooivorm, marktcorrectie, scorers, rust en knockoutprofiel. Rechts staan alleen zekere teams of positie-labels zoals 1D en 2G.</div>
     <div class="comparison-grid">
       <section class="comparison-column">
         <h2>Voorspelde knock-out</h2>
@@ -1314,26 +1319,26 @@ function createKnockoutMatch(id, a, b) {
       b,
       score: actual,
       regularScore: actual,
-      probabilities: knockoutProbabilities(a.team, b.team),
+      probabilities: knockoutProbabilities(a.team, b.team, id),
       method: actual.pensHome !== undefined ? "na penalties" : "echt",
       winner: winnerFromKnockoutScore(actual, a, b),
     };
   }
 
   const score = predictScore(a.team, b.team);
-  const probabilities = knockoutProbabilities(a.team, b.team);
-  const strengthGap = teamStrength(a.team) - teamStrength(b.team);
+  const probabilities = knockoutProbabilities(a.team, b.team, id);
+  const strengthGap = knockoutRating(a.team, id) - knockoutRating(b.team, id);
   let method = "na 90 min";
-  let winner = score.home > score.away ? a : b;
+  let winner = score.home > score.away ? a : score.away > score.home ? b : probabilities.homeAdvance >= probabilities.awayAdvance ? a : b;
   let decidedScore = { ...score };
 
   if (score.home === score.away) {
     const penaltyGap = penaltyRating(a.team) - penaltyRating(b.team);
-    const usePenalties = Math.abs(strengthGap) <= 4 || probabilities.penalties >= probabilities.extraTimeDecided;
+    const usePenalties = Math.abs(strengthGap) <= 5 || probabilities.penalties >= probabilities.extraTimeDecided;
     method = usePenalties ? "na penalties" : "na verlenging";
     winner = usePenalties
-      ? penaltyGap >= 0 ? a : b
-      : strengthGap >= 0 ? a : b;
+      ? probabilities.homePenaltyWin >= probabilities.awayPenaltyWin ? a : b
+      : probabilities.homeExtraTimeWin >= probabilities.awayExtraTimeWin ? a : b;
     decidedScore = usePenalties
       ? { home: score.home, away: score.away, pensHome: penaltyGap >= 0 ? 5 : 4, pensAway: penaltyGap >= 0 ? 4 : 5 }
       : { home: score.home + (winner === a ? 1 : 0), away: score.away + (winner === b ? 1 : 0) };
@@ -1378,9 +1383,7 @@ function renderKnockoutMatch(match) {
   const schedule = knockoutSchedule[match.id];
   const scheduleText = schedule ? `${formatKnockoutDate(schedule.date)} · ${schedule.time} · ${schedule.venue}` : "Datum n.t.b.";
   const method = match.method && match.winner ? ` · ${match.method}` : "";
-  const chanceLine = match.probabilities
-    ? `Verlenging ${pct(match.probabilities.extraTime)} · penalties ${pct(match.probabilities.penalties)}`
-    : "";
+  const chanceBlock = renderKnockoutProbabilityBlock(match);
   return `
     <div class="knockout-match">
       <span class="team-meta">Match ${match.id}</span>
@@ -1391,13 +1394,25 @@ function renderKnockoutMatch(match) {
         <span class="team-name ${match.winner?.team === match.b?.team ? "winner" : ""} ${match.b?.team ? "" : "placeholder"}">${b}</span>
       </div>
       <span class="team-meta">${match.winner ? `Winnaar: ${match.winner.team}${method}` : "Nog niet zeker"}</span>
-      <span class="team-meta">${chanceLine}</span>
+      ${chanceBlock}
     </div>
   `;
 }
 
 function entryLabel(entry) {
   return entry?.team ?? entry?.label ?? "Nog onbekend";
+}
+
+function renderKnockoutProbabilityBlock(match) {
+  if (!match.probabilities || !match.a?.team || !match.b?.team) return "";
+  const probabilities = match.probabilities;
+  return `
+    <div class="knockout-probabilities">
+      <span>90 min: ${match.a.team} ${pct(probabilities.homeWin90)} · gelijk ${pct(probabilities.draw90)} · ${match.b.team} ${pct(probabilities.awayWin90)}</span>
+      <span>Door: ${match.a.team} ${pct(probabilities.homeAdvance)} · ${match.b.team} ${pct(probabilities.awayAdvance)}</span>
+      <span>Verlenging ${pct(probabilities.extraTime)} · penalties ${pct(probabilities.penalties)} · modelrating ${probabilities.homeRating.toFixed(1)}-${probabilities.awayRating.toFixed(1)}</span>
+    </div>
+  `;
 }
 
 function createSummary() {
@@ -1499,15 +1514,134 @@ function penaltyRating(team) {
   return teamData[team].penalties ?? clamp(teamData[team].strength - 8, 40, 72);
 }
 
-function knockoutProbabilities(home, away) {
-  const { draw } = winProbability(home, away);
-  const extraTime = draw;
-  const penalties = draw * 0.55;
+function knockoutProbabilities(home, away, matchId) {
+  const homeRating = knockoutRating(home, matchId);
+  const awayRating = knockoutRating(away, matchId);
+  const ratingGap = homeRating - awayRating;
+  const scoreProfile = expectedGoalProfile(home, away, 1.18);
+  const lowGoalBonus = clamp((2.55 - scoreProfile.total) * 0.045, -0.035, 0.06);
+  const equalStrengthBonus = clamp((14 - Math.abs(ratingGap)) / 14 * 0.075, 0, 0.075);
+  const draw90 = clamp(0.185 + lowGoalBonus + equalStrengthBonus, 0.14, 0.31);
+  const homeNoDraw = logistic(ratingGap / 10.5);
+  const homeWin90 = homeNoDraw * (1 - draw90);
+  const awayWin90 = (1 - homeNoDraw) * (1 - draw90);
+  const homeExtraTimeWin = logistic(ratingGap / 11.5);
+  const awayExtraTimeWin = 1 - homeExtraTimeWin;
+  const penaltyGap = penaltyRating(home) - penaltyRating(away);
+  const homePenaltyWin = logistic((penaltyGap + ratingGap * 0.18) / 9);
+  const awayPenaltyWin = 1 - homePenaltyWin;
+  const penaltiesShare = clamp(0.48 + (0.04 - Math.abs(ratingGap) / 400), 0.42, 0.56);
+  const penalties = draw90 * penaltiesShare;
+  const extraTimeDecided = draw90 - penalties;
+  const homeAdvance = homeWin90 + extraTimeDecided * homeExtraTimeWin + penalties * homePenaltyWin;
+  const awayAdvance = awayWin90 + extraTimeDecided * awayExtraTimeWin + penalties * awayPenaltyWin;
+
   return {
-    extraTime,
+    homeWin90,
+    draw90,
+    awayWin90,
+    extraTime: draw90,
     penalties,
-    extraTimeDecided: draw - penalties,
+    extraTimeDecided,
+    homeAdvance,
+    awayAdvance,
+    homeExtraTimeWin,
+    awayExtraTimeWin,
+    homePenaltyWin,
+    awayPenaltyWin,
+    homeRating,
+    awayRating,
   };
+}
+
+function expectedGoalProfile(home, away, knockoutTempo = 1) {
+  const homeData = teamData[home];
+  const awayData = teamData[away];
+  const gap = teamStrength(home) - teamStrength(away);
+  const base = 1.32 * knockoutTempo;
+  const homeGoals = clamp(base + gap / 32 + homeData.title / 44 + attackAdjustment(home) - defensiveDrag(away), 0.2, 4.2);
+  const awayGoals = clamp(base - gap / 34 + awayData.title / 48 + attackAdjustment(away) - defensiveDrag(home), 0.18, 4);
+  return { homeGoals, awayGoals, total: homeGoals + awayGoals };
+}
+
+function knockoutRating(team, matchId) {
+  const parts = knockoutRatingParts(team, matchId);
+  return Object.values(parts).reduce((total, value) => total + value, 0);
+}
+
+function knockoutRatingParts(team, matchId) {
+  const data = teamData[team];
+  return {
+    base: data.strength,
+    host: data.host ? 2.2 : 0,
+    form: tournamentAdjustment(team) * 1.15,
+    market: marketAdjustments[team] ?? 0,
+    attack: attackAdjustment(team) * 4.2,
+    defense: defensiveDrag(team) * 3.2,
+    scorers: scorerMomentum(team),
+    knockoutPedigree: knockoutPedigree(team),
+    rest: restAdjustment(team, matchId),
+    penalties: (penaltyRating(team) - 58) * 0.045,
+  };
+}
+
+function scorerMomentum(team) {
+  const goals = liveTopScorers
+    .filter((scorer) => scorer.team === team)
+    .slice(0, 3)
+    .reduce((total, scorer) => total + scorer.goals, 0);
+  return clamp(goals * 0.18, 0, 1.8);
+}
+
+function knockoutPedigree(team) {
+  const pedigree = {
+    Argentina: 2.2,
+    France: 2.2,
+    Germany: 2,
+    Brazil: 1.8,
+    Croatia: 1.3,
+    Portugal: 1.1,
+    England: 1,
+    Spain: 1,
+    Netherlands: 0.9,
+    Uruguay: 0.7,
+    Morocco: 0.5,
+    Switzerland: 0.4,
+    Japan: 0.3,
+    "United States": 0.2,
+    Mexico: 0.2,
+  };
+  return pedigree[team] ?? 0;
+}
+
+function restAdjustment(team, matchId) {
+  const matchDate = knockoutSchedule[matchId]?.date;
+  const lastPlayed = lastPlayedDate(team);
+  if (!matchDate || !lastPlayed) return 0;
+  const restDays = daysBetween(lastPlayed, matchDate);
+  if (!Number.isFinite(restDays)) return 0;
+  if (restDays >= 5) return 0.8;
+  if (restDays === 4) return 0.35;
+  if (restDays === 3) return -0.15;
+  return -0.65;
+}
+
+function lastPlayedDate(team) {
+  return fixtures
+    .filter((match) => hasActualScore(match.id) && (match.home === team || match.away === team))
+    .map((match) => match.date)
+    .sort()
+    .at(-1);
+}
+
+function daysBetween(fromDate, toDate) {
+  const from = new Date(`${fromDate}T00:00:00Z`);
+  const to = new Date(`${toDate}T00:00:00Z`);
+  return Math.round((to - from) / 86400000);
+}
+
+function logistic(value) {
+  return 1 / (1 + Math.exp(-value));
 }
 
 function formatKnockoutScore(score) {
