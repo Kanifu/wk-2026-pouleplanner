@@ -1,0 +1,510 @@
+{
+  "modelVersion": "2026-06-11-pre-tournament",
+  "generatedFromCommit": "8cee0d3",
+  "predictions": {
+    "1": {
+      "predictedHome": 2,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "2": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "3": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "4": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "5": {
+      "predictedHome": 1,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "6": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "7": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "8": {
+      "predictedHome": 1,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "9": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "10": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "11": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "12": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "13": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "14": {
+      "predictedHome": 1,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "15": {
+      "predictedHome": 1,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "16": {
+      "predictedHome": 3,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "17": {
+      "predictedHome": 0,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "18": {
+      "predictedHome": 2,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "19": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "20": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "21": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "22": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "23": {
+      "predictedHome": 1,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "24": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "25": {
+      "predictedHome": 3,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "26": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "27": {
+      "predictedHome": 2,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "28": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "29": {
+      "predictedHome": 1,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "30": {
+      "predictedHome": 0,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "31": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "32": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "33": {
+      "predictedHome": 1,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "34": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "35": {
+      "predictedHome": 0,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "36": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "37": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "38": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "39": {
+      "predictedHome": 1,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "40": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "41": {
+      "predictedHome": 0,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "42": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "43": {
+      "predictedHome": 3,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "44": {
+      "predictedHome": 1,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "45": {
+      "predictedHome": 2,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "46": {
+      "predictedHome": 3,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "47": {
+      "predictedHome": 0,
+      "predictedAway": 3,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "48": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "49": {
+      "predictedHome": 3,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "50": {
+      "predictedHome": 0,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "51": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "52": {
+      "predictedHome": 3,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "53": {
+      "predictedHome": 1,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "54": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "55": {
+      "predictedHome": 3,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "56": {
+      "predictedHome": 2,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "57": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "58": {
+      "predictedHome": 2,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "59": {
+      "predictedHome": 0,
+      "predictedAway": 3,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "60": {
+      "predictedHome": 1,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "61": {
+      "predictedHome": 3,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "62": {
+      "predictedHome": 0,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "63": {
+      "predictedHome": 2,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "64": {
+      "predictedHome": 3,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "65": {
+      "predictedHome": 1,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "66": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "67": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "68": {
+      "predictedHome": 1,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "69": {
+      "predictedHome": 1,
+      "predictedAway": 2,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "70": {
+      "predictedHome": 3,
+      "predictedAway": 0,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "71": {
+      "predictedHome": 0,
+      "predictedAway": 3,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    },
+    "72": {
+      "predictedHome": 2,
+      "predictedAway": 1,
+      "modelVersion": "2026-06-11-pre-tournament",
+      "predictedAt": "2026-06-11T12:00:00Z",
+      "lockedAtKickoff": true
+    }
+  }
+}

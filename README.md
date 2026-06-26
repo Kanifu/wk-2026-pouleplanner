@@ -15,7 +15,9 @@ Statische webapp voor een WK 2026 voetbalpoule.
 
 Open `index.html` in een browser. Er is geen buildstap of server nodig.
 
-De app bevat echte uitslagen in `actual-results.json`, live topscorers in `top-scorers.json` en marktcorrecties in `market-adjustments.json`. Op GitHub Pages haalt de app deze bestanden automatisch op bij laden en daarna periodiek opnieuw.
+De app bevat vaste baseline-voorspellingen in `baseline-predictions.json`, echte uitslagen in `actual-results.json`, live topscorers in `top-scorers.json` en marktcorrecties in `market-adjustments.json`. Op GitHub Pages haalt de app deze bestanden automatisch op bij laden en daarna periodiek opnieuw.
+
+De tab `Modelanalyse` gebruikt uitsluitend de baseline-voorspellingen voor de backtest. Liveprojecties worden apart getoond en worden niet gebruikt als oorspronkelijke voorspelling.
 
 De uitslagen en topscorers worden ook via GitHub Actions automatisch bijgewerkt. Lokaal kun je de scraper draaien met:
 

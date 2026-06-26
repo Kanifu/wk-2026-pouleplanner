@@ -354,6 +354,8 @@ const fixtures = Object.entries(groups).flatMap(([group, teams], groupIndex) =>
 let actualScores = { ...verifiedActualScores, ...loadActualScores() };
 let actualScorers = loadScorerGoals();
 let liveTopScorers = [...verifiedTopScorers];
+let baselinePredictions = {};
+let baselineMeta = { modelVersion: "2026-06-11-pre-tournament", generatedFromCommit: "8cee0d3" };
 let defaultScores = computeDefaultScores();
 let scores = { ...defaultScores, ...loadScores() };
 let actualKnockoutScores = loadKnockoutScores();
@@ -364,6 +366,7 @@ const tablesView = document.querySelector("#tablesView");
 const thirdsView = document.querySelector("#thirdsView");
 const knockoutView = document.querySelector("#knockoutView");
 const scorersView = document.querySelector("#scorersView");
+const analysisView = document.querySelector("#analysisView");
 const resetScoresButton = document.querySelector("#resetScores");
 const copySummaryButton = document.querySelector("#copySummary");
 const importResultsButton = document.querySelector("#importResults");
@@ -409,6 +412,7 @@ render();
 updateActualResultsFromFile();
 updateTopScorersFromFile();
 updateMarketAdjustmentsFromFile();
+updateBaselinePredictionsFromFile();
 window.setInterval(updateActualResultsFromFile, 15 * 60 * 1000);
 window.setInterval(updateTopScorersFromFile, 15 * 60 * 1000);
 window.setInterval(updateMarketAdjustmentsFromFile, 60 * 60 * 1000);
@@ -500,6 +504,24 @@ async function updateMarketAdjustmentsFromFile() {
     if (!data || typeof data !== "object" || !data.teams) return false;
     marketAdjustments = { ...marketAdjustments, ...data.teams };
     refreshPredictedScores();
+    render();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function updateBaselinePredictionsFromFile() {
+  try {
+    const response = await fetch("baseline-predictions.json", { cache: "no-store" });
+    if (!response.ok) return false;
+    const data = await response.json();
+    if (!data || typeof data !== "object" || !data.predictions) return false;
+    baselinePredictions = data.predictions;
+    baselineMeta = {
+      modelVersion: data.modelVersion ?? baselineMeta.modelVersion,
+      generatedFromCommit: data.generatedFromCommit ?? baselineMeta.generatedFromCommit,
+    };
     render();
     return true;
   } catch {
@@ -660,6 +682,129 @@ function render() {
   const actualKnockout = buildCertainKnockout(actualTables);
   renderKnockout(predictedKnockout, actualKnockout);
   renderScorers(predictedKnockout, actualKnockout);
+  renderAnalysis();
+}
+
+function renderAnalysis() {
+  const baseline = analyzePredictions("Baseline", baselinePredictionRows());
+  const live = analyzePredictions("Live model", livePredictionRows());
+  analysisView.innerHTML = `
+    <div class="note">Deze analyse gebruikt voor de backtest de vergrendelde baseline uit ${baselineMeta.modelVersion} (${baselineMeta.generatedFromCommit}). Liveprojecties staan ernaast ter vergelijking, maar tellen niet als oorspronkelijke voorspelling.</div>
+    <div class="analysis-grid">
+      ${renderAnalysisCard("Baseline backtest", baseline)}
+      ${renderAnalysisCard("Live model vergelijking", live)}
+    </div>
+    <section class="analysis-section">
+      <h2>Grootste afwijkingen baseline</h2>
+      <div class="analysis-list">${baseline.biggestMisses.map(renderAnalysisMatch).join("")}</div>
+    </section>
+  `;
+}
+
+function baselinePredictionRows() {
+  return fixtures
+    .map((match) => {
+      const prediction = baselinePredictions[match.id];
+      const actual = actualScores[match.id];
+      if (!prediction || !hasActualScore(match.id)) return null;
+      return predictionRow(match, { home: prediction.predictedHome, away: prediction.predictedAway }, actual, prediction);
+    })
+    .filter(Boolean);
+}
+
+function livePredictionRows() {
+  return fixtures
+    .map((match) => {
+      if (!hasActualScore(match.id)) return null;
+      return predictionRow(match, scores[match.id], actualScores[match.id], { modelVersion: "live-current", predictedAt: "runtime" });
+    })
+    .filter(Boolean);
+}
+
+function predictionRow(match, predicted, actual, meta) {
+  const predOutcome = Math.sign(predicted.home - predicted.away);
+  const actualOutcome = Math.sign(actual.home - actual.away);
+  const favorite = predicted.home === predicted.away ? "draw" : predicted.home > predicted.away ? match.home : match.away;
+  const favoriteWon = favorite !== "draw" && ((favorite === match.home && actual.home > actual.away) || (favorite === match.away && actual.away > actual.home));
+  return {
+    match,
+    predicted,
+    actual,
+    meta,
+    exact: predicted.home === actual.home && predicted.away === actual.away,
+    outcome: predOutcome === actualOutcome,
+    predictedDraw: predicted.home === predicted.away,
+    actualDraw: actual.home === actual.away,
+    favorite,
+    favoriteWon,
+    absGoalError: Math.abs(predicted.home - actual.home) + Math.abs(predicted.away - actual.away),
+    predictedGoals: predicted.home + predicted.away,
+    actualGoals: actual.home + actual.away,
+  };
+}
+
+function analyzePredictions(label, rows) {
+  const total = rows.length || 1;
+  const count = (fn) => rows.filter(fn).length;
+  const sum = (fn) => rows.reduce((value, row) => value + fn(row), 0);
+  return {
+    label,
+    rows: rows.length,
+    exact: count((row) => row.exact),
+    outcome: count((row) => row.outcome),
+    wrongOutcome: count((row) => !row.outcome),
+    predictedDraws: count((row) => row.predictedDraw),
+    actualDraws: count((row) => row.actualDraw),
+    drawHits: count((row) => row.predictedDraw && row.actualDraw),
+    favoriteWins: count((row) => row.favoriteWon),
+    favoriteMisses: count((row) => row.favorite !== "draw" && !row.favoriteWon),
+    predictedGoals: sum((row) => row.predictedGoals),
+    actualGoals: sum((row) => row.actualGoals),
+    avgAbsGoalError: sum((row) => row.absGoalError) / total,
+    biggestMisses: [...rows].sort((a, b) => b.absGoalError - a.absGoalError).slice(0, 10),
+  };
+}
+
+function renderAnalysisCard(title, stats) {
+  return `
+    <section class="analysis-card">
+      <h2>${title}</h2>
+      <div class="metric-grid">
+        ${metric("Wedstrijden", stats.rows)}
+        ${metric("Exact goed", `${stats.exact} (${pctOf(stats.exact, stats.rows)})`)}
+        ${metric("1/X/2 goed", `${stats.outcome} (${pctOf(stats.outcome, stats.rows)})`)}
+        ${metric("Foute richting", stats.wrongOutcome)}
+        ${metric("Voorspelde goals", stats.predictedGoals)}
+        ${metric("Echte goals", stats.actualGoals)}
+        ${metric("Voorspelde draws", stats.predictedDraws)}
+        ${metric("Echte draws", stats.actualDraws)}
+        ${metric("Draw hits", stats.drawHits)}
+        ${metric("Favoriet won", stats.favoriteWins)}
+        ${metric("Favoriet mis", stats.favoriteMisses)}
+        ${metric("Gem. scorefout", stats.avgAbsGoalError.toFixed(2))}
+      </div>
+    </section>
+  `;
+}
+
+function metric(label, value) {
+  return `<div class="metric"><span>${label}</span><strong>${value}</strong></div>`;
+}
+
+function renderAnalysisMatch(row) {
+  return `
+    <div class="analysis-match">
+      <span>${row.match.home} - ${row.match.away}</span>
+      <strong>${row.predicted.home}-${row.predicted.away}</strong>
+      <span>echt ${row.actual.home}-${row.actual.away}</span>
+      <span>fout ${row.absGoalError}</span>
+    </div>
+  `;
+}
+
+function pctOf(value, total) {
+  if (!total) return "0%";
+  return `${Math.round((value / total) * 100)}%`;
 }
 
 function renderMatches() {
