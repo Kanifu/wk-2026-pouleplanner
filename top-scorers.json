@@ -291,11 +291,25 @@
       "minutes": 182
     },
     {
+      "player": "Sebastian Berhalter",
+      "team": "United States",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 183
+    },
+    {
       "player": "Hwang In-beom",
       "team": "Korea Republic",
       "goals": 1,
       "assists": 1,
       "minutes": 187
+    },
+    {
+      "player": "Baris Yilmaz",
+      "team": "Turkiye",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 196
     },
     {
       "player": "Luis Diaz",
@@ -316,7 +330,7 @@
       "team": "United States",
       "goals": 1,
       "assists": 1,
-      "minutes": 209
+      "minutes": 232
     },
     {
       "player": "Felix Nmecha",
@@ -347,18 +361,18 @@
       "minutes": 309
     },
     {
+      "player": "Kaan Ayhan",
+      "team": "Turkiye",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 12
+    },
+    {
       "player": "Mikel Svanberg",
       "team": "Sweden",
       "goals": 1,
       "assists": 0,
       "minutes": 13
-    },
-    {
-      "player": "Gio Reyna",
-      "team": "United States",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 20
     },
     {
       "player": "Mahmoud Trezeguet",
@@ -422,13 +436,6 @@
       "goals": 1,
       "assists": 0,
       "minutes": 52
-    },
-    {
-      "player": "Mauricio",
-      "team": "Paraguay",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 53
     },
     {
       "player": "Oh Hyeon-gyu",
@@ -501,15 +508,15 @@
       "minutes": 94
     },
     {
-      "player": "Abdulelah Al-Amri",
-      "team": "Saudi Arabia",
+      "player": "Gio Reyna",
+      "team": "United States",
       "goals": 1,
       "assists": 0,
-      "minutes": 102
+      "minutes": 101
     },
     {
-      "player": "Matías Galaraza",
-      "team": "Paraguay",
+      "player": "Abdulelah Al-Amri",
+      "team": "Saudi Arabia",
       "goals": 1,
       "assists": 0,
       "minutes": 102
@@ -522,8 +529,8 @@
       "minutes": 103
     },
     {
-      "player": "Michal Sadilek",
-      "team": "Czechia",
+      "player": "Mauricio",
+      "team": "Paraguay",
       "goals": 1,
       "assists": 0,
       "minutes": 104
@@ -543,11 +550,11 @@
       "minutes": 116
     },
     {
-      "player": "Nestory Irankunda",
-      "team": "Australia",
+      "player": "Auston Trusty",
+      "team": "United States",
       "goals": 1,
       "assists": 0,
-      "minutes": 117
+      "minutes": 123
     },
     {
       "player": "Nico Schlotterbeck",
@@ -555,13 +562,6 @@
       "goals": 1,
       "assists": 0,
       "minutes": 145
-    },
-    {
-      "player": "Connor Metcalfe",
-      "team": "Australia",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 153
     },
     {
       "player": "Nilson Angulo",
@@ -683,11 +683,11 @@
       "minutes": 182
     },
     {
-      "player": "Ladislav Krejci",
-      "team": "Czechia",
+      "player": "Matías Galaraza",
+      "team": "Paraguay",
       "goals": 1,
       "assists": 0,
-      "minutes": 201
+      "minutes": 199
     },
     {
       "player": "Omar Rekik",
@@ -732,11 +732,25 @@
       "minutes": 203
     },
     {
+      "player": "Michal Sadilek",
+      "team": "Czechia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 204
+    },
+    {
       "player": "Finn Surman",
       "team": "New Zealand",
       "goals": 1,
       "assists": 0,
       "minutes": 206
+    },
+    {
+      "player": "Nestory Irankunda",
+      "team": "Australia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 208
     },
     {
       "player": "Caleb Yirenkyi",
@@ -767,6 +781,13 @@
       "minutes": 253
     },
     {
+      "player": "Connor Metcalfe",
+      "team": "Australia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 255
+    },
+    {
       "player": "Leroy Sané",
       "team": "Germany",
       "goals": 1,
@@ -795,6 +816,13 @@
       "minutes": 298
     },
     {
+      "player": "Ladislav Krejci",
+      "team": "Czechia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 301
+    },
+    {
       "player": "Gonzalo Plata",
       "team": "Ecuador",
       "goals": 1,
@@ -807,6 +835,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 304
+    },
+    {
+      "player": "Arda Guler",
+      "team": "Turkiye",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 314
     }
   ]
 }
