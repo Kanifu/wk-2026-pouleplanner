@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-25",
+  "updatedAt": "2026-06-26",
   "sourceUrl": "https://www.sbnation.com/fifa-world-cup/1118693/world-cup-2026-golden-boot-standings",
   "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Golden Boot-stand.",
   "scorers": [
@@ -46,6 +46,13 @@
       "minutes": 147
     },
     {
+      "player": "Brian Brobbey",
+      "team": "Netherlands",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 168
+    },
+    {
       "player": "Matheus Cunha",
       "team": "Brazil",
       "goals": 3,
@@ -67,13 +74,6 @@
       "minutes": 271
     },
     {
-      "player": "Crysencio Summerville",
-      "team": "Netherlands",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 123
-    },
-    {
       "player": "Mikel Oyarzabal",
       "team": "Spain",
       "goals": 2,
@@ -81,11 +81,11 @@
       "minutes": 144
     },
     {
-      "player": "Ayase Ueda",
-      "team": "Japan",
+      "player": "Crysencio Summerville",
+      "team": "Netherlands",
       "goals": 2,
       "assists": 1,
-      "minutes": 174
+      "minutes": 147
     },
     {
       "player": "Maxi Araujo",
@@ -95,18 +95,25 @@
       "minutes": 174
     },
     {
-      "player": "Cody Gakpo",
-      "team": "Netherlands",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 182
-    },
-    {
       "player": "Ruben Vargas",
       "team": "Switzerland",
       "goals": 2,
       "assists": 1,
       "minutes": 194
+    },
+    {
+      "player": "Ayase Ueda",
+      "team": "Japan",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 245
+    },
+    {
+      "player": "Cody Gakpo",
+      "team": "Netherlands",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 268
     },
     {
       "player": "Ermin Mahmic",
@@ -116,11 +123,11 @@
       "minutes": 37
     },
     {
-      "player": "Brian Brobbey",
-      "team": "Netherlands",
+      "player": "Anthony Elanga",
+      "team": "Sweden",
       "goals": 2,
       "assists": 0,
-      "minutes": 88
+      "minutes": 149
     },
     {
       "player": "Nicolas Pépé",
@@ -130,25 +137,11 @@
       "minutes": 164
     },
     {
-      "player": "Daichi Kamada",
-      "team": "Japan",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 176
-    },
-    {
       "player": "Folarin Balogun",
       "team": "United States",
       "goals": 2,
       "assists": 0,
       "minutes": 180
-    },
-    {
-      "player": "Yasin Ayari",
-      "team": "Sweden",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 184
     },
     {
       "player": "Ismaila Sarr",
@@ -207,6 +200,20 @@
       "minutes": 270
     },
     {
+      "player": "Daichi Kamada",
+      "team": "Japan",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 278
+    },
+    {
+      "player": "Yasin Ayari",
+      "team": "Sweden",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 286
+    },
+    {
       "player": "Nathan-Dylan Saliba",
       "team": "Canada",
       "goals": 1,
@@ -221,18 +228,25 @@
       "minutes": 168
     },
     {
-      "player": "Alexander Isak",
-      "team": "Sweden",
-      "goals": 1,
-      "assists": 2,
-      "minutes": 194
-    },
-    {
       "player": "Breel Embolo",
       "team": "Switzerland",
       "goals": 1,
       "assists": 2,
       "minutes": 283
+    },
+    {
+      "player": "Alexander Isak",
+      "team": "Sweden",
+      "goals": 1,
+      "assists": 2,
+      "minutes": 296
+    },
+    {
+      "player": "Viktor Gyokeres",
+      "team": "Sweden",
+      "goals": 1,
+      "assists": 2,
+      "minutes": 303
     },
     {
       "player": "Soufiane Rahimi",
@@ -270,13 +284,6 @@
       "minutes": 160
     },
     {
-      "player": "Keito Nakamura",
-      "team": "Japan",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 181
-    },
-    {
       "player": "Nathaniel Brown",
       "team": "Germany",
       "goals": 1,
@@ -298,13 +305,6 @@
       "minutes": 199
     },
     {
-      "player": "Viktor Gyokeres",
-      "team": "Sweden",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 201
-    },
-    {
       "player": "Ramin Rezaeian",
       "team": "IR Iran",
       "goals": 1,
@@ -324,6 +324,20 @@
       "goals": 1,
       "assists": 1,
       "minutes": 250
+    },
+    {
+      "player": "Keito Nakamura",
+      "team": "Japan",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 261
+    },
+    {
+      "player": "Virgil van Dijk",
+      "team": "Netherlands",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 298
     },
     {
       "player": "Achraf Hakimi",
@@ -396,13 +410,6 @@
       "minutes": 41
     },
     {
-      "player": "Anthony Elanga",
-      "team": "Sweden",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 47
-    },
-    {
       "player": "Ante Budimir",
       "team": "Croatia",
       "goals": 1,
@@ -422,13 +429,6 @@
       "goals": 1,
       "assists": 0,
       "minutes": 53
-    },
-    {
-      "player": "Marko Arnautovic",
-      "team": "Austria",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 58
     },
     {
       "player": "Oh Hyeon-gyu",
@@ -473,11 +473,11 @@
       "minutes": 82
     },
     {
-      "player": "Romano Schmid",
+      "player": "Marko Arnautovic",
       "team": "Austria",
       "goals": 1,
       "assists": 0,
-      "minutes": 86
+      "minutes": 88
     },
     {
       "player": "Marcus Pedersen",
@@ -487,18 +487,18 @@
       "minutes": 92
     },
     {
+      "player": "Hazem Mastouri",
+      "team": "Tunisia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 93
+    },
+    {
       "player": "Alvaro Fidalgo",
       "team": "Mexico",
       "goals": 1,
       "assists": 0,
       "minutes": 94
-    },
-    {
-      "player": "Omar Rekik",
-      "team": "Tunisia",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 100
     },
     {
       "player": "Abdulelah Al-Amri",
@@ -550,13 +550,6 @@
       "minutes": 117
     },
     {
-      "player": "Junya Ito",
-      "team": "Japan",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 130
-    },
-    {
       "player": "Nico Schlotterbeck",
       "team": "Germany",
       "goals": 1,
@@ -599,6 +592,13 @@
       "minutes": 161
     },
     {
+      "player": "Junya Ito",
+      "team": "Japan",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 161
+    },
+    {
       "player": "Emam Ashour",
       "team": "Egypt",
       "goals": 1,
@@ -632,6 +632,20 @@
       "goals": 1,
       "assists": 0,
       "minutes": 169
+    },
+    {
+      "player": "Daizen Maeda",
+      "team": "Japan",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 171
+    },
+    {
+      "player": "Romano Schmid",
+      "team": "Austria",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 171
     },
     {
       "player": "Mohammad Mohebbi",
@@ -669,15 +683,15 @@
       "minutes": 182
     },
     {
-      "player": "Virgil van Dijk",
-      "team": "Netherlands",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 199
-    },
-    {
       "player": "Ladislav Krejci",
       "team": "Czechia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 201
+    },
+    {
+      "player": "Omar Rekik",
+      "team": "Tunisia",
       "goals": 1,
       "assists": 0,
       "minutes": 201
@@ -772,6 +786,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 288
+    },
+    {
+      "player": "Jan Paul van Hecke",
+      "team": "Netherlands",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 298
     },
     {
       "player": "Gonzalo Plata",
