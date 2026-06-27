@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-26",
+  "updatedAt": "2026-06-27",
   "sourceUrl": "https://www.sbnation.com/fifa-world-cup/1118693/world-cup-2026-golden-boot-standings",
   "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Golden Boot-stand.",
   "scorers": [
@@ -88,25 +88,11 @@
       "minutes": 271
     },
     {
-      "player": "Mikel Oyarzabal",
-      "team": "Spain",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 144
-    },
-    {
       "player": "Crysencio Summerville",
       "team": "Netherlands",
       "goals": 2,
       "assists": 1,
       "minutes": 147
-    },
-    {
-      "player": "Maxi Araujo",
-      "team": "Uruguay",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 174
     },
     {
       "player": "Pape Gueye",
@@ -123,6 +109,13 @@
       "minutes": 194
     },
     {
+      "player": "Mikel Oyarzabal",
+      "team": "Spain",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 228
+    },
+    {
       "player": "Ayase Ueda",
       "team": "Japan",
       "goals": 2,
@@ -135,6 +128,13 @@
       "goals": 2,
       "assists": 1,
       "minutes": 268
+    },
+    {
+      "player": "Maxi Araujo",
+      "team": "Uruguay",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 278
     },
     {
       "player": "Ermin Mahmic",
@@ -431,13 +431,6 @@
       "minutes": 38
     },
     {
-      "player": "Helio Varela",
-      "team": "Cabo Verde",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 40
-    },
-    {
       "player": "Ante Budimir",
       "team": "Croatia",
       "goals": 1,
@@ -459,18 +452,18 @@
       "minutes": 67
     },
     {
-      "player": "Lamine Yamal",
-      "team": "Spain",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 69
-    },
-    {
       "player": "Hasan Al Haydos",
       "team": "Qatar",
       "goals": 1,
       "assists": 0,
       "minutes": 70
+    },
+    {
+      "player": "Helio Varela",
+      "team": "Cabo Verde",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 75
     },
     {
       "player": "Jovo Lukic",
@@ -529,13 +522,6 @@
       "minutes": 101
     },
     {
-      "player": "Abdulelah Al-Amri",
-      "team": "Saudi Arabia",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 102
-    },
-    {
       "player": "Mauricio",
       "team": "Paraguay",
       "goals": 1,
@@ -571,6 +557,13 @@
       "minutes": 137
     },
     {
+      "player": "Álex Baena",
+      "team": "Spain",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 140
+    },
+    {
       "player": "Leo Østigard",
       "team": "Norway",
       "goals": 1,
@@ -592,6 +585,13 @@
       "minutes": 145
     },
     {
+      "player": "Lamine Yamal",
+      "team": "Spain",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 153
+    },
+    {
       "player": "Nilson Angulo",
       "team": "Ecuador",
       "goals": 1,
@@ -604,13 +604,6 @@
       "goals": 1,
       "assists": 0,
       "minutes": 158
-    },
-    {
-      "player": "Agustin Canobbio",
-      "team": "Uruguay",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 160
     },
     {
       "player": "Abbosbek Fayzullaev",
@@ -823,11 +816,25 @@
       "minutes": 255
     },
     {
+      "player": "Agustin Canobbio",
+      "team": "Uruguay",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 262
+    },
+    {
       "player": "Leroy Sané",
       "team": "Germany",
       "goals": 1,
       "assists": 0,
       "minutes": 268
+    },
+    {
+      "player": "Abdulelah Al-Amri",
+      "team": "Saudi Arabia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 269
     },
     {
       "player": "John McGinn",
