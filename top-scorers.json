@@ -88,6 +88,13 @@
       "minutes": 271
     },
     {
+      "player": "Elijah Just",
+      "team": "New Zealand",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 292
+    },
+    {
       "player": "Crysencio Summerville",
       "team": "Netherlands",
       "goals": 2,
@@ -172,13 +179,6 @@
       "minutes": 187
     },
     {
-      "player": "Elijah Just",
-      "team": "New Zealand",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 190
-    },
-    {
       "player": "Cristiano Ronaldo",
       "team": "Portugal",
       "goals": 2,
@@ -221,6 +221,13 @@
       "minutes": 278
     },
     {
+      "player": "Leandro Trossard",
+      "team": "Belgium",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 280
+    },
+    {
       "player": "Yasin Ayari",
       "team": "Sweden",
       "goals": 2,
@@ -246,7 +253,7 @@
       "team": "Egypt",
       "goals": 1,
       "assists": 2,
-      "minutes": 168
+      "minutes": 231
     },
     {
       "player": "Breel Embolo",
@@ -284,6 +291,13 @@
       "minutes": 58
     },
     {
+      "player": "Romelu Lukaku",
+      "team": "Belgium",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 121
+    },
+    {
       "player": "Bradley Barcola",
       "team": "France",
       "goals": 1,
@@ -296,13 +310,6 @@
       "goals": 1,
       "assists": 1,
       "minutes": 141
-    },
-    {
-      "player": "Mostafa Ziko",
-      "team": "Egypt",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 160
     },
     {
       "player": "Nathaniel Brown",
@@ -354,6 +361,13 @@
       "minutes": 232
     },
     {
+      "player": "Mostafa Ziko",
+      "team": "Egypt",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 241
+    },
+    {
       "player": "Felix Nmecha",
       "team": "Germany",
       "goals": 1,
@@ -396,13 +410,6 @@
       "minutes": 13
     },
     {
-      "player": "Mahmoud Trezeguet",
-      "team": "Egypt",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 25
-    },
-    {
       "player": "Gessime Yassine",
       "team": "Morocco",
       "goals": 1,
@@ -429,6 +436,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 38
+    },
+    {
+      "player": "Mahmoud Saber",
+      "team": "Egypt",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 45
     },
     {
       "player": "Ante Budimir",
@@ -485,6 +499,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 88
+    },
+    {
+      "player": "Alexis Saelemaekers",
+      "team": "Belgium",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 89
     },
     {
       "player": "Habib Diarra",
@@ -545,6 +566,13 @@
     {
       "player": "Aymen Hussein",
       "team": "Iraq",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 129
+    },
+    {
+      "player": "Mahmoud Trezeguet",
+      "team": "Egypt",
       "goals": 1,
       "assists": 0,
       "minutes": 129
@@ -618,13 +646,6 @@
       "goals": 1,
       "assists": 0,
       "minutes": 161
-    },
-    {
-      "player": "Emam Ashour",
-      "team": "Egypt",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 163
     },
     {
       "player": "Jude Bellingham",
@@ -760,11 +781,11 @@
       "minutes": 204
     },
     {
-      "player": "Finn Surman",
-      "team": "New Zealand",
+      "player": "Emam Ashour",
+      "team": "Egypt",
       "goals": 1,
       "assists": 0,
-      "minutes": 206
+      "minutes": 208
     },
     {
       "player": "Nestory Irankunda",
@@ -818,6 +839,13 @@
     {
       "player": "Agustin Canobbio",
       "team": "Uruguay",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 262
+    },
+    {
+      "player": "Kevin De Bruyne",
+      "team": "Belgium",
       "goals": 1,
       "assists": 0,
       "minutes": 262
@@ -877,6 +905,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 304
+    },
+    {
+      "player": "Finn Surman",
+      "team": "New Zealand",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 307
     },
     {
       "player": "Arda Guler",
