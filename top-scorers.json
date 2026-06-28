@@ -81,13 +81,6 @@
       "minutes": 255
     },
     {
-      "player": "Jonathan David",
-      "team": "Canada",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 271
-    },
-    {
       "player": "Harry Kane",
       "team": "England",
       "goals": 3,
@@ -107,6 +100,13 @@
       "goals": 3,
       "assists": 0,
       "minutes": 307
+    },
+    {
+      "player": "Jonathan David",
+      "team": "Canada",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 371
     },
     {
       "player": "Crysencio Summerville",
@@ -281,7 +281,7 @@
       "team": "Canada",
       "goals": 1,
       "assists": 2,
-      "minutes": 143
+      "minutes": 204
     },
     {
       "player": "Mohamed Salah",
@@ -323,7 +323,7 @@
       "team": "Canada",
       "goals": 1,
       "assists": 1,
-      "minutes": 58
+      "minutes": 84
     },
     {
       "player": "Romelu Lukaku",
@@ -704,13 +704,6 @@
       "minutes": 164
     },
     {
-      "player": "Thapelo Maseko",
-      "team": "South Africa",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 167
-    },
-    {
       "player": "Amad Diallo",
       "team": "Cote d'Ivoire",
       "goals": 1,
@@ -755,13 +748,6 @@
     {
       "player": "Kerim Alajbegovic",
       "team": "Bosnia and Herzegovina",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 202
-    },
-    {
-      "player": "Teboho Mokoena",
-      "team": "South Africa",
       "goals": 1,
       "assists": 0,
       "minutes": 202
@@ -849,6 +835,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 255
+    },
+    {
+      "player": "Thapelo Maseko",
+      "team": "South Africa",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 256
     },
     {
       "player": "Agustin Canobbio",
@@ -956,6 +949,13 @@
       "minutes": 301
     },
     {
+      "player": "Teboho Mokoena",
+      "team": "South Africa",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 302
+    },
+    {
       "player": "Eldor Shomurodov",
       "team": "Uzbekistan",
       "goals": 1,
@@ -996,6 +996,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 314
+    },
+    {
+      "player": "Antunes Stephen Estáquio",
+      "team": "Canada",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 339
     }
   ]
 }
