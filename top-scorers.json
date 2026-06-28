@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-27",
+  "updatedAt": "2026-06-28",
   "sourceUrl": "https://www.sbnation.com/fifa-world-cup/1118693/world-cup-2026-golden-boot-standings",
   "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Golden Boot-stand.",
   "scorers": [
@@ -88,11 +88,25 @@
       "minutes": 271
     },
     {
+      "player": "Harry Kane",
+      "team": "England",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 291
+    },
+    {
       "player": "Elijah Just",
       "team": "New Zealand",
       "goals": 3,
       "assists": 0,
       "minutes": 292
+    },
+    {
+      "player": "Yoane Wissa",
+      "team": "Congo DR",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 307
     },
     {
       "player": "Crysencio Summerville",
@@ -123,6 +137,13 @@
       "minutes": 228
     },
     {
+      "player": "Jude Bellingham",
+      "team": "England",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 238
+    },
+    {
       "player": "Ayase Ueda",
       "team": "Japan",
       "goals": 2,
@@ -142,6 +163,13 @@
       "goals": 2,
       "assists": 1,
       "minutes": 278
+    },
+    {
+      "player": "Ramin Rezaeian",
+      "team": "IR Iran",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 309
     },
     {
       "player": "Ermin Mahmic",
@@ -179,25 +207,11 @@
       "minutes": 187
     },
     {
-      "player": "Cristiano Ronaldo",
-      "team": "Portugal",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 202
-    },
-    {
-      "player": "Harry Kane",
-      "team": "England",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 204
-    },
-    {
       "player": "Daniel Munoz",
       "team": "Colombia",
       "goals": 2,
       "assists": 0,
-      "minutes": 207
+      "minutes": 216
     },
     {
       "player": "Kai Havertz",
@@ -233,6 +247,13 @@
       "goals": 2,
       "assists": 0,
       "minutes": 286
+    },
+    {
+      "player": "Cristiano Ronaldo",
+      "team": "Portugal",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 301
     },
     {
       "player": "Iliman-Cheikh Ndiaye",
@@ -340,18 +361,11 @@
       "minutes": 196
     },
     {
-      "player": "Luis Diaz",
-      "team": "Colombia",
+      "player": "Petar Sucic",
+      "team": "Croatia",
       "goals": 1,
       "assists": 1,
-      "minutes": 199
-    },
-    {
-      "player": "Ramin Rezaeian",
-      "team": "IR Iran",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 205
+      "minutes": 226
     },
     {
       "player": "Alex Freeman",
@@ -380,6 +394,13 @@
       "goals": 1,
       "assists": 1,
       "minutes": 261
+    },
+    {
+      "player": "Luis Diaz",
+      "team": "Colombia",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 298
     },
     {
       "player": "Virgil van Dijk",
@@ -424,20 +445,6 @@
       "minutes": 29
     },
     {
-      "player": "Rafael Leao",
-      "team": "Portugal",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 37
-    },
-    {
-      "player": "Marcus Rashford",
-      "team": "England",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 38
-    },
-    {
       "player": "Mahmoud Saber",
       "team": "Egypt",
       "goals": 1,
@@ -445,11 +452,11 @@
       "minutes": 45
     },
     {
-      "player": "Ante Budimir",
-      "team": "Croatia",
+      "player": "Fiston Mayele",
+      "team": "Congo DR",
       "goals": 1,
       "assists": 0,
-      "minutes": 50
+      "minutes": 47
     },
     {
       "player": "Nadhir Benbouali",
@@ -457,6 +464,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 52
+    },
+    {
+      "player": "Rafael Leao",
+      "team": "Portugal",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 63
     },
     {
       "player": "Oh Hyeon-gyu",
@@ -550,11 +564,25 @@
       "minutes": 104
     },
     {
+      "player": "Nikola Vlasic",
+      "team": "Croatia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 108
+    },
+    {
       "player": "Petar Musa",
       "team": "Croatia",
       "goals": 1,
       "assists": 0,
       "minutes": 116
+    },
+    {
+      "player": "Ante Budimir",
+      "team": "Croatia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 119
     },
     {
       "player": "Auston Trusty",
@@ -580,6 +608,13 @@
     {
       "player": "Ibrahim Mbaye",
       "team": "Senegal",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 137
+    },
+    {
+      "player": "Marcus Rashford",
+      "team": "England",
       "goals": 1,
       "assists": 0,
       "minutes": 137
@@ -634,25 +669,11 @@
       "minutes": 158
     },
     {
-      "player": "Abbosbek Fayzullaev",
-      "team": "Uzbekistan",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 161
-    },
-    {
       "player": "Junya Ito",
       "team": "Japan",
       "goals": 1,
       "assists": 0,
       "minutes": 161
-    },
-    {
-      "player": "Jude Bellingham",
-      "team": "England",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 164
     },
     {
       "player": "Raul Jimenez",
@@ -690,39 +711,11 @@
       "minutes": 171
     },
     {
-      "player": "Mohammad Mohebbi",
-      "team": "IR Iran",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 175
-    },
-    {
       "player": "Kevin Lenini",
       "team": "Cabo Verde",
       "goals": 1,
       "assists": 0,
       "minutes": 177
-    },
-    {
-      "player": "Alexandre Nuno Mendes",
-      "team": "Portugal",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 178
-    },
-    {
-      "player": "Joao Neves",
-      "team": "Portugal",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 182
-    },
-    {
-      "player": "Martin Baturina",
-      "team": "Croatia",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 182
     },
     {
       "player": "Matías Galaraza",
@@ -755,13 +748,6 @@
     {
       "player": "Teboho Mokoena",
       "team": "South Africa",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 202
-    },
-    {
-      "player": "Yoane Wissa",
-      "team": "Congo DR",
       "goals": 1,
       "assists": 0,
       "minutes": 202
@@ -816,11 +802,25 @@
       "minutes": 218
     },
     {
+      "player": "Joao Neves",
+      "team": "Portugal",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 233
+    },
+    {
       "player": "Jamal Musiala",
       "team": "Germany",
       "goals": 1,
       "assists": 0,
       "minutes": 237
+    },
+    {
+      "player": "Abbosbek Fayzullaev",
+      "team": "Uzbekistan",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 240
     },
     {
       "player": "Livano Comenencia",
@@ -865,6 +865,27 @@
       "minutes": 269
     },
     {
+      "player": "Martin Baturina",
+      "team": "Croatia",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 272
+    },
+    {
+      "player": "Mohammad Mohebi",
+      "team": "IR Iran",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 272
+    },
+    {
+      "player": "Alexandre Nuno Mendes",
+      "team": "Portugal",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 273
+    },
+    {
       "player": "John McGinn",
       "team": "Scotland",
       "goals": 1,
@@ -891,6 +912,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 301
+    },
+    {
+      "player": "Eldor Shomurodov",
+      "team": "Uzbekistan",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 304
     },
     {
       "player": "Gonzalo Plata",

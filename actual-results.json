@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-27",
+  "updatedAt": "2026-06-28",
   "sourceUrl": "https://www.sbnation.com/soccer/1117513/world-cup-schedule-2026-how-to-watch-every-match-scores-and-more",
   "sourceNote": "Automatisch bijgewerkt vanuit de SBNation World Cup scorelijst.",
   "matches": {
@@ -251,6 +251,14 @@
       "home": 5,
       "away": 0
     },
+    "65": {
+      "home": 0,
+      "away": 0
+    },
+    "66": {
+      "home": 3,
+      "away": 1
+    },
     "67": {
       "home": 4,
       "away": 2
@@ -266,6 +274,14 @@
     "70": {
       "home": 0,
       "away": 0
+    },
+    "71": {
+      "home": 0,
+      "away": 2
+    },
+    "72": {
+      "home": 2,
+      "away": 1
     }
   }
 }
