@@ -6,9 +6,9 @@
     {
       "player": "Lionel Messi",
       "team": "Argentina",
-      "goals": 5,
+      "goals": 6,
       "assists": 0,
-      "minutes": 188
+      "minutes": 223
     },
     {
       "player": "Kylian Mbappe",
@@ -130,6 +130,13 @@
       "minutes": 194
     },
     {
+      "player": "Riyad Mahrez",
+      "team": "Algeria",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 214
+    },
+    {
       "player": "Mikel Oyarzabal",
       "team": "Spain",
       "goals": 2,
@@ -177,6 +184,13 @@
       "goals": 2,
       "assists": 0,
       "minutes": 37
+    },
+    {
+      "player": "Marko Arnautovic",
+      "team": "Austria",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 133
     },
     {
       "player": "Anthony Elanga",
@@ -368,6 +382,13 @@
       "minutes": 226
     },
     {
+      "player": "Mousa Tamari",
+      "team": "Jordan",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 230
+    },
+    {
       "player": "Alex Freeman",
       "team": "United States",
       "goals": 1,
@@ -459,6 +480,13 @@
       "minutes": 47
     },
     {
+      "player": "Sasa Kalajdzic",
+      "team": "Austria",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 48
+    },
+    {
       "player": "Nadhir Benbouali",
       "team": "Algeria",
       "goals": 1,
@@ -473,11 +501,11 @@
       "minutes": 63
     },
     {
-      "player": "Oh Hyeon-gyu",
-      "team": "Korea Republic",
+      "player": "Giovani Lo Celso",
+      "team": "Argentina",
       "goals": 1,
       "assists": 0,
-      "minutes": 67
+      "minutes": 65
     },
     {
       "player": "Hasan Al Haydos",
@@ -506,13 +534,6 @@
       "goals": 1,
       "assists": 0,
       "minutes": 82
-    },
-    {
-      "player": "Marko Arnautovic",
-      "team": "Austria",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 88
     },
     {
       "player": "Alexis Saelemaekers",
@@ -648,6 +669,13 @@
       "minutes": 145
     },
     {
+      "player": "Oh Hyeon-gyu",
+      "team": "Korea Republic",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 145
+    },
+    {
       "player": "Lamine Yamal",
       "team": "Spain",
       "goals": 1,
@@ -660,13 +688,6 @@
       "goals": 1,
       "assists": 0,
       "minutes": 157
-    },
-    {
-      "player": "Amine Gouiri",
-      "team": "Algeria",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 158
     },
     {
       "player": "Junya Ito",
@@ -704,18 +725,11 @@
       "minutes": 171
     },
     {
-      "player": "Romano Schmid",
-      "team": "Austria",
+      "player": "Lautaro Martinez",
+      "team": "Argentina",
       "goals": 1,
       "assists": 0,
-      "minutes": 171
-    },
-    {
-      "player": "Kevin Lenini",
-      "team": "Cabo Verde",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 177
+      "minutes": 195
     },
     {
       "player": "Matías Galaraza",
@@ -753,13 +767,6 @@
       "minutes": 202
     },
     {
-      "player": "Ali Olwan",
-      "team": "Jordan",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 203
-    },
-    {
       "player": "Michal Sadilek",
       "team": "Czechia",
       "goals": 1,
@@ -788,11 +795,11 @@
       "minutes": 209
     },
     {
-      "player": "Nizar al-Rashdan",
-      "team": "Jordan",
+      "player": "Romano Schmid",
+      "team": "Austria",
       "goals": 1,
       "assists": 0,
-      "minutes": 209
+      "minutes": 216
     },
     {
       "player": "Désiré Doué",
@@ -800,6 +807,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 218
+    },
+    {
+      "player": "Amine Gouiri",
+      "team": "Algeria",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 233
     },
     {
       "player": "Joao Neves",
@@ -893,11 +907,39 @@
       "minutes": 278
     },
     {
+      "player": "Rafik Belghali",
+      "team": "Algeria",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 278
+    },
+    {
+      "player": "Kevin Lenini",
+      "team": "Cabo Verde",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 279
+    },
+    {
       "player": "Franck Kessié",
       "team": "Cote d'Ivoire",
       "goals": 1,
       "assists": 0,
       "minutes": 288
+    },
+    {
+      "player": "Nizar al-Rashdan",
+      "team": "Jordan",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 290
+    },
+    {
+      "player": "Ali Olwan",
+      "team": "Jordan",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 297
     },
     {
       "player": "Jan Paul van Hecke",
@@ -940,6 +982,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 307
+    },
+    {
+      "player": "Marcel Sabitzer",
+      "team": "Austria",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 312
     },
     {
       "player": "Arda Guler",
