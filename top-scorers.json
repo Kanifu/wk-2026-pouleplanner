@@ -29,7 +29,7 @@
       "team": "Brazil",
       "goals": 4,
       "assists": 1,
-      "minutes": 294
+      "minutes": 398
     },
     {
       "player": "Erling Haaland",
@@ -67,18 +67,18 @@
       "minutes": 168
     },
     {
-      "player": "Matheus Cunha",
-      "team": "Brazil",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 191
-    },
-    {
       "player": "Ismael Saibari",
       "team": "Morocco",
       "goals": 3,
       "assists": 0,
       "minutes": 255
+    },
+    {
+      "player": "Matheus Cunha",
+      "team": "Brazil",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 261
     },
     {
       "player": "Harry Kane",
@@ -151,13 +151,6 @@
       "minutes": 238
     },
     {
-      "player": "Ayase Ueda",
-      "team": "Japan",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 245
-    },
-    {
       "player": "Cody Gakpo",
       "team": "Netherlands",
       "goals": 2,
@@ -177,6 +170,13 @@
       "goals": 2,
       "assists": 1,
       "minutes": 309
+    },
+    {
+      "player": "Ayase Ueda",
+      "team": "Japan",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 350
     },
     {
       "player": "Ermin Mahmic",
@@ -242,13 +242,6 @@
       "minutes": 270
     },
     {
-      "player": "Daichi Kamada",
-      "team": "Japan",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 278
-    },
-    {
       "player": "Leandro Trossard",
       "team": "Belgium",
       "goals": 2,
@@ -268,6 +261,13 @@
       "goals": 2,
       "assists": 0,
       "minutes": 301
+    },
+    {
+      "player": "Daichi Kamada",
+      "team": "Japan",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 359
     },
     {
       "player": "Iliman-Cheikh Ndiaye",
@@ -410,13 +410,6 @@
       "minutes": 250
     },
     {
-      "player": "Keito Nakamura",
-      "team": "Japan",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 261
-    },
-    {
       "player": "Luis Diaz",
       "team": "Colombia",
       "goals": 1,
@@ -431,11 +424,25 @@
       "minutes": 298
     },
     {
+      "player": "Kaishu Sano",
+      "team": "Japan",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 304
+    },
+    {
       "player": "Achraf Hakimi",
       "team": "Morocco",
       "goals": 1,
       "assists": 1,
       "minutes": 309
+    },
+    {
+      "player": "Keito Nakamura",
+      "team": "Japan",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 330
     },
     {
       "player": "Kaan Ayhan",
@@ -564,6 +571,13 @@
       "minutes": 94
     },
     {
+      "player": "Gabriel Martinelli",
+      "team": "Brazil",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 99
+    },
+    {
       "player": "Thelonious Aasgaard",
       "team": "Norway",
       "goals": 1,
@@ -690,13 +704,6 @@
       "minutes": 157
     },
     {
-      "player": "Junya Ito",
-      "team": "Japan",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 161
-    },
-    {
       "player": "Raul Jimenez",
       "team": "Mexico",
       "goals": 1,
@@ -821,6 +828,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 240
+    },
+    {
+      "player": "Junya Ito",
+      "team": "Japan",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 242
     },
     {
       "player": "Livano Comenencia",
@@ -993,6 +1007,13 @@
     {
       "player": "Arda Guler",
       "team": "Turkiye",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 314
+    },
+    {
+      "player": "Carlos Casemiro",
+      "team": "Brazil",
       "goals": 1,
       "assists": 0,
       "minutes": 314
