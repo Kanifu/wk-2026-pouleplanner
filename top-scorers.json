@@ -11,6 +11,13 @@
       "minutes": 223
     },
     {
+      "player": "Erling Haaland",
+      "team": "Norway",
+      "goals": 5,
+      "assists": 0,
+      "minutes": 310
+    },
+    {
       "player": "Kylian Mbappe",
       "team": "France",
       "goals": 4,
@@ -30,13 +37,6 @@
       "goals": 4,
       "assists": 1,
       "minutes": 398
-    },
-    {
-      "player": "Erling Haaland",
-      "team": "Norway",
-      "goals": 4,
-      "assists": 0,
-      "minutes": 208
     },
     {
       "player": "Deniz Undav",
@@ -165,6 +165,13 @@
       "minutes": 238
     },
     {
+      "player": "Nicolas Pépé",
+      "team": "Cote d'Ivoire",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 255
+    },
+    {
       "player": "Maxi Araujo",
       "team": "Uruguay",
       "goals": 2,
@@ -207,13 +214,6 @@
       "minutes": 149
     },
     {
-      "player": "Nicolas Pépé",
-      "team": "Cote d'Ivoire",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 164
-    },
-    {
       "player": "Folarin Balogun",
       "team": "United States",
       "goals": 2,
@@ -226,6 +226,13 @@
       "goals": 2,
       "assists": 0,
       "minutes": 187
+    },
+    {
+      "player": "Amad Diallo",
+      "team": "Cote d'Ivoire",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 208
     },
     {
       "player": "Daniel Munoz",
@@ -676,13 +683,6 @@
       "minutes": 142
     },
     {
-      "player": "Marcus Pedersen",
-      "team": "Norway",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 142
-    },
-    {
       "player": "Nico Schlotterbeck",
       "team": "Germany",
       "goals": 1,
@@ -716,13 +716,6 @@
       "goals": 1,
       "assists": 0,
       "minutes": 164
-    },
-    {
-      "player": "Amad Diallo",
-      "team": "Cote d'Ivoire",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 169
     },
     {
       "player": "Mauricio",
@@ -802,6 +795,13 @@
       "minutes": 218
     },
     {
+      "player": "Marcus Pedersen",
+      "team": "Norway",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 229
+    },
+    {
       "player": "Amine Gouiri",
       "team": "Algeria",
       "goals": 1,
@@ -821,6 +821,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 240
+    },
+    {
+      "player": "Antonio Nusa",
+      "team": "Norway",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 241
     },
     {
       "player": "Junya Ito",
@@ -919,13 +926,6 @@
       "goals": 1,
       "assists": 0,
       "minutes": 279
-    },
-    {
-      "player": "Franck Kessié",
-      "team": "Cote d'Ivoire",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 288
     },
     {
       "player": "Nizar al-Rashdan",
@@ -1031,6 +1031,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 361
+    },
+    {
+      "player": "Franck Kessié",
+      "team": "Cote d'Ivoire",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 390
     },
     {
       "player": "Jan Paul van Hecke",
