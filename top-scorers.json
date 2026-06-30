@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-29",
+  "updatedAt": "2026-06-30",
   "sourceUrl": "https://www.sbnation.com/fifa-world-cup/1118693/world-cup-2026-golden-boot-standings",
   "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Golden Boot-stand.",
   "scorers": [
@@ -43,7 +43,7 @@
       "team": "Germany",
       "goals": 3,
       "assists": 2,
-      "minutes": 107
+      "minutes": 175
     },
     {
       "player": "Johan Manzambi",
@@ -107,6 +107,13 @@
       "goals": 3,
       "assists": 0,
       "minutes": 371
+    },
+    {
+      "player": "Kai Havertz",
+      "team": "Germany",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 388
     },
     {
       "player": "Crysencio Summerville",
@@ -228,13 +235,6 @@
       "minutes": 216
     },
     {
-      "player": "Kai Havertz",
-      "team": "Germany",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 256
-    },
-    {
       "player": "Julian Quinones",
       "team": "Mexico",
       "goals": 2,
@@ -312,6 +312,13 @@
       "minutes": 303
     },
     {
+      "player": "Julio Enciso",
+      "team": "Paraguay",
+      "goals": 1,
+      "assists": 2,
+      "minutes": 368
+    },
+    {
       "player": "Soufiane Rahimi",
       "team": "Morocco",
       "goals": 1,
@@ -345,13 +352,6 @@
       "goals": 1,
       "assists": 1,
       "minutes": 141
-    },
-    {
-      "player": "Nathaniel Brown",
-      "team": "Germany",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 182
     },
     {
       "player": "Sebastian Berhalter",
@@ -407,7 +407,7 @@
       "team": "Germany",
       "goals": 1,
       "assists": 1,
-      "minutes": 250
+      "minutes": 295
     },
     {
       "player": "Luis Diaz",
@@ -438,11 +438,25 @@
       "minutes": 309
     },
     {
+      "player": "Nathaniel Brown",
+      "team": "Germany",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 314
+    },
+    {
       "player": "Keito Nakamura",
       "team": "Japan",
       "goals": 1,
       "assists": 1,
       "minutes": 330
+    },
+    {
+      "player": "Matías Galaraza",
+      "team": "Paraguay",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 332
     },
     {
       "player": "Kaan Ayhan",
@@ -592,13 +606,6 @@
       "minutes": 101
     },
     {
-      "player": "Mauricio",
-      "team": "Paraguay",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 104
-    },
-    {
       "player": "Nikola Vlasic",
       "team": "Croatia",
       "goals": 1,
@@ -718,11 +725,11 @@
       "minutes": 169
     },
     {
-      "player": "Daizen Maeda",
-      "team": "Japan",
+      "player": "Mauricio",
+      "team": "Paraguay",
       "goals": 1,
       "assists": 0,
-      "minutes": 171
+      "minutes": 174
     },
     {
       "player": "Lautaro Martinez",
@@ -730,13 +737,6 @@
       "goals": 1,
       "assists": 0,
       "minutes": 195
-    },
-    {
-      "player": "Matías Galaraza",
-      "team": "Paraguay",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 199
     },
     {
       "player": "Omar Rekik",
@@ -816,13 +816,6 @@
       "minutes": 233
     },
     {
-      "player": "Jamal Musiala",
-      "team": "Germany",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 237
-    },
-    {
       "player": "Abbosbek Fayzullaev",
       "team": "Uzbekistan",
       "goals": 1,
@@ -872,18 +865,18 @@
       "minutes": 262
     },
     {
-      "player": "Leroy Sané",
-      "team": "Germany",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 268
-    },
-    {
       "player": "Abdulelah Al-Amri",
       "team": "Saudi Arabia",
       "goals": 1,
       "assists": 0,
       "minutes": 269
+    },
+    {
+      "player": "Daizen Maeda",
+      "team": "Japan",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 271
     },
     {
       "player": "Martin Baturina",
@@ -956,6 +949,13 @@
       "minutes": 298
     },
     {
+      "player": "Jamal Musiala",
+      "team": "Germany",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 301
+    },
+    {
       "player": "Ladislav Krejci",
       "team": "Czechia",
       "goals": 1,
@@ -1024,6 +1024,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 339
+    },
+    {
+      "player": "Leroy Sané",
+      "team": "Germany",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 361
     }
   ]
 }
