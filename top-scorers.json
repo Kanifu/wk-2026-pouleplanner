@@ -60,18 +60,18 @@
       "minutes": 275
     },
     {
+      "player": "Cody Gakpo",
+      "team": "Netherlands",
+      "goals": 3,
+      "assists": 1,
+      "minutes": 394
+    },
+    {
       "player": "Brian Brobbey",
       "team": "Netherlands",
       "goals": 3,
       "assists": 0,
-      "minutes": 168
-    },
-    {
-      "player": "Ismael Saibari",
-      "team": "Morocco",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 255
+      "minutes": 245
     },
     {
       "player": "Matheus Cunha",
@@ -116,11 +116,18 @@
       "minutes": 388
     },
     {
+      "player": "Ismael Saibari",
+      "team": "Morocco",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 390
+    },
+    {
       "player": "Crysencio Summerville",
       "team": "Netherlands",
       "goals": 2,
-      "assists": 1,
-      "minutes": 147
+      "assists": 2,
+      "minutes": 281
     },
     {
       "player": "Pape Gueye",
@@ -156,13 +163,6 @@
       "goals": 2,
       "assists": 1,
       "minutes": 238
-    },
-    {
-      "player": "Cody Gakpo",
-      "team": "Netherlands",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 268
     },
     {
       "player": "Maxi Araujo",
@@ -319,18 +319,18 @@
       "minutes": 368
     },
     {
-      "player": "Soufiane Rahimi",
-      "team": "Morocco",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 54
-    },
-    {
       "player": "Promise David",
       "team": "Canada",
       "goals": 1,
       "assists": 1,
       "minutes": 84
+    },
+    {
+      "player": "Soufiane Rahimi",
+      "team": "Morocco",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 96
     },
     {
       "player": "Romelu Lukaku",
@@ -417,25 +417,11 @@
       "minutes": 298
     },
     {
-      "player": "Virgil van Dijk",
-      "team": "Netherlands",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 298
-    },
-    {
       "player": "Kaishu Sano",
       "team": "Japan",
       "goals": 1,
       "assists": 1,
       "minutes": 304
-    },
-    {
-      "player": "Achraf Hakimi",
-      "team": "Morocco",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 309
     },
     {
       "player": "Nathaniel Brown",
@@ -459,6 +445,20 @@
       "minutes": 332
     },
     {
+      "player": "Virgil van Dijk",
+      "team": "Netherlands",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 432
+    },
+    {
+      "player": "Achraf Hakimi",
+      "team": "Morocco",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 443
+    },
+    {
       "player": "Kaan Ayhan",
       "team": "Turkiye",
       "goals": 1,
@@ -471,13 +471,6 @@
       "goals": 1,
       "assists": 0,
       "minutes": 13
-    },
-    {
-      "player": "Gessime Yassine",
-      "team": "Morocco",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 28
     },
     {
       "player": "Jaminton Campaz",
@@ -548,6 +541,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 77
+    },
+    {
+      "player": "Gessime Yassine",
+      "team": "Morocco",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 78
     },
     {
       "player": "Mateo Chávez",
@@ -942,13 +942,6 @@
       "minutes": 297
     },
     {
-      "player": "Jan Paul van Hecke",
-      "team": "Netherlands",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 298
-    },
-    {
       "player": "Jamal Musiala",
       "team": "Germany",
       "goals": 1,
@@ -1026,11 +1019,25 @@
       "minutes": 339
     },
     {
+      "player": "Issa Diop",
+      "team": "Morocco",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 340
+    },
+    {
       "player": "Leroy Sané",
       "team": "Germany",
       "goals": 1,
       "assists": 0,
       "minutes": 361
+    },
+    {
+      "player": "Jan Paul van Hecke",
+      "team": "Netherlands",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 432
     }
   ]
 }
