@@ -1,8 +1,15 @@
 {
-  "updatedAt": "2026-06-30",
+  "updatedAt": "2026-07-01",
   "sourceUrl": "https://www.sbnation.com/fifa-world-cup/1118693/world-cup-2026-golden-boot-standings",
   "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Golden Boot-stand.",
   "scorers": [
+    {
+      "player": "Kylian Mbappe",
+      "team": "France",
+      "goals": 6,
+      "assists": 2,
+      "minutes": 378
+    },
     {
       "player": "Lionel Messi",
       "team": "Argentina",
@@ -18,18 +25,11 @@
       "minutes": 310
     },
     {
-      "player": "Kylian Mbappe",
-      "team": "France",
-      "goals": 4,
-      "assists": 2,
-      "minutes": 290
-    },
-    {
       "player": "Ousmane Dembele",
       "team": "France",
       "goals": 4,
-      "assists": 1,
-      "minutes": 226
+      "assists": 2,
+      "minutes": 304
     },
     {
       "player": "Vinicius Jr.",
@@ -158,6 +158,13 @@
       "minutes": 228
     },
     {
+      "player": "Bradley Barcola",
+      "team": "France",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 234
+    },
+    {
       "player": "Jude Bellingham",
       "team": "England",
       "goals": 2,
@@ -207,13 +214,6 @@
       "minutes": 133
     },
     {
-      "player": "Anthony Elanga",
-      "team": "Sweden",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 149
-    },
-    {
       "player": "Folarin Balogun",
       "team": "United States",
       "goals": 2,
@@ -242,6 +242,13 @@
       "minutes": 216
     },
     {
+      "player": "Anthony Elanga",
+      "team": "Sweden",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 247
+    },
+    {
       "player": "Julian Quinones",
       "team": "Mexico",
       "goals": 2,
@@ -256,13 +263,6 @@
       "minutes": 280
     },
     {
-      "player": "Yasin Ayari",
-      "team": "Sweden",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 286
-    },
-    {
       "player": "Cristiano Ronaldo",
       "team": "Portugal",
       "goals": 2,
@@ -275,6 +275,13 @@
       "goals": 2,
       "assists": 0,
       "minutes": 359
+    },
+    {
+      "player": "Yasin Ayari",
+      "team": "Sweden",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 371
     },
     {
       "player": "Iliman-Cheikh Ndiaye",
@@ -305,25 +312,25 @@
       "minutes": 283
     },
     {
+      "player": "Julio Enciso",
+      "team": "Paraguay",
+      "goals": 1,
+      "assists": 2,
+      "minutes": 368
+    },
+    {
       "player": "Alexander Isak",
       "team": "Sweden",
       "goals": 1,
       "assists": 2,
-      "minutes": 296
+      "minutes": 389
     },
     {
       "player": "Viktor Gyokeres",
       "team": "Sweden",
       "goals": 1,
       "assists": 2,
-      "minutes": 303
-    },
-    {
-      "player": "Julio Enciso",
-      "team": "Paraguay",
-      "goals": 1,
-      "assists": 2,
-      "minutes": 368
+      "minutes": 402
     },
     {
       "player": "Promise David",
@@ -345,13 +352,6 @@
       "goals": 1,
       "assists": 1,
       "minutes": 121
-    },
-    {
-      "player": "Bradley Barcola",
-      "team": "France",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 136
     },
     {
       "player": "Luis Romo",
@@ -477,7 +477,7 @@
       "team": "Sweden",
       "goals": 1,
       "assists": 0,
-      "minutes": 13
+      "minutes": 26
     },
     {
       "player": "Jaminton Campaz",
@@ -788,13 +788,6 @@
       "minutes": 216
     },
     {
-      "player": "Désiré Doué",
-      "team": "France",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 218
-    },
-    {
       "player": "Marcus Pedersen",
       "team": "Norway",
       "goals": 1,
@@ -814,6 +807,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 233
+    },
+    {
+      "player": "Désiré Doué",
+      "team": "France",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 238
     },
     {
       "player": "Abbosbek Fayzullaev",
