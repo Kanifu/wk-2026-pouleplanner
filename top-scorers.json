@@ -60,6 +60,13 @@
       "minutes": 275
     },
     {
+      "player": "Julian Quinones",
+      "team": "Mexico",
+      "goals": 3,
+      "assists": 1,
+      "minutes": 354
+    },
+    {
       "player": "Cody Gakpo",
       "team": "Netherlands",
       "goals": 3,
@@ -242,18 +249,18 @@
       "minutes": 216
     },
     {
+      "player": "Raul Jimenez",
+      "team": "Mexico",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 242
+    },
+    {
       "player": "Anthony Elanga",
       "team": "Sweden",
       "goals": 2,
       "assists": 0,
       "minutes": 247
-    },
-    {
-      "player": "Julian Quinones",
-      "team": "Mexico",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 270
     },
     {
       "player": "Leandro Trossard",
@@ -354,13 +361,6 @@
       "minutes": 121
     },
     {
-      "player": "Luis Romo",
-      "team": "Mexico",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 141
-    },
-    {
       "player": "Sebastian Berhalter",
       "team": "United States",
       "goals": 1,
@@ -380,6 +380,13 @@
       "goals": 1,
       "assists": 1,
       "minutes": 196
+    },
+    {
+      "player": "Luis Romo",
+      "team": "Mexico",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 219
     },
     {
       "player": "Petar Sucic",
@@ -704,20 +711,6 @@
       "minutes": 153
     },
     {
-      "player": "Nilson Angulo",
-      "team": "Ecuador",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 157
-    },
-    {
-      "player": "Raul Jimenez",
-      "team": "Mexico",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 164
-    },
-    {
       "player": "Mauricio",
       "team": "Paraguay",
       "goals": 1,
@@ -818,6 +811,13 @@
     {
       "player": "Abbosbek Fayzullaev",
       "team": "Uzbekistan",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 240
+    },
+    {
+      "player": "Nilson Angulo",
+      "team": "Ecuador",
       "goals": 1,
       "assists": 0,
       "minutes": 240
@@ -970,13 +970,6 @@
       "minutes": 304
     },
     {
-      "player": "Gonzalo Plata",
-      "team": "Ecuador",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 304
-    },
-    {
       "player": "Granit Xhaka",
       "team": "Switzerland",
       "goals": 1,
@@ -1038,6 +1031,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 390
+    },
+    {
+      "player": "Gonzalo Plata",
+      "team": "Ecuador",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 408
     },
     {
       "player": "Jan Paul van Hecke",
