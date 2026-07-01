@@ -25,6 +25,13 @@
       "minutes": 310
     },
     {
+      "player": "Harry Kane",
+      "team": "England",
+      "goals": 5,
+      "assists": 0,
+      "minutes": 394
+    },
+    {
       "player": "Ousmane Dembele",
       "team": "France",
       "goals": 4,
@@ -88,25 +95,11 @@
       "minutes": 261
     },
     {
-      "player": "Harry Kane",
-      "team": "England",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 291
-    },
-    {
       "player": "Elijah Just",
       "team": "New Zealand",
       "goals": 3,
       "assists": 0,
       "minutes": 292
-    },
-    {
-      "player": "Yoane Wissa",
-      "team": "Congo DR",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 307
     },
     {
       "player": "Jonathan David",
@@ -128,6 +121,13 @@
       "goals": 3,
       "assists": 0,
       "minutes": 390
+    },
+    {
+      "player": "Yoane Wissa",
+      "team": "Congo DR",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 410
     },
     {
       "player": "Crysencio Summerville",
@@ -172,13 +172,6 @@
       "minutes": 234
     },
     {
-      "player": "Jude Bellingham",
-      "team": "England",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 238
-    },
-    {
       "player": "Nicolas Pépé",
       "team": "Cote d'Ivoire",
       "goals": 2,
@@ -198,6 +191,13 @@
       "goals": 2,
       "assists": 1,
       "minutes": 309
+    },
+    {
+      "player": "Jude Bellingham",
+      "team": "England",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 341
     },
     {
       "player": "Ayase Ueda",
@@ -501,13 +501,6 @@
       "minutes": 45
     },
     {
-      "player": "Fiston Mayele",
-      "team": "Congo DR",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 47
-    },
-    {
       "player": "Sasa Kalajdzic",
       "team": "Austria",
       "goals": 1,
@@ -520,6 +513,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 52
+    },
+    {
+      "player": "Fiston Mayele",
+      "team": "Congo DR",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 56
     },
     {
       "player": "Rafael Leao",
@@ -669,13 +669,6 @@
       "minutes": 137
     },
     {
-      "player": "Marcus Rashford",
-      "team": "England",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 137
-    },
-    {
       "player": "Álex Baena",
       "team": "Spain",
       "goals": 1,
@@ -711,6 +704,13 @@
       "minutes": 153
     },
     {
+      "player": "Brian Cipenga",
+      "team": "Congo DR",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 160
+    },
+    {
       "player": "Mauricio",
       "team": "Paraguay",
       "goals": 1,
@@ -744,6 +744,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 202
+    },
+    {
+      "player": "Marcus Rashford",
+      "team": "England",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 203
     },
     {
       "player": "Michal Sadilek",
