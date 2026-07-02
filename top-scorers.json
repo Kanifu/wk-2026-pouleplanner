@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-01",
+  "updatedAt": "2026-07-02",
   "sourceUrl": "https://www.sbnation.com/fifa-world-cup/1118693/world-cup-2026-golden-boot-standings",
   "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Golden Boot-stand.",
   "scorers": [
@@ -46,6 +46,13 @@
       "minutes": 398
     },
     {
+      "player": "Ismaila Sarr",
+      "team": "Senegal",
+      "goals": 4,
+      "assists": 1,
+      "minutes": 419
+    },
+    {
       "player": "Deniz Undav",
       "team": "Germany",
       "goals": 3,
@@ -58,13 +65,6 @@
       "goals": 3,
       "assists": 1,
       "minutes": 147
-    },
-    {
-      "player": "Ismaila Sarr",
-      "team": "Senegal",
-      "goals": 3,
-      "assists": 1,
-      "minutes": 275
     },
     {
       "player": "Julian Quinones",
@@ -86,6 +86,13 @@
       "goals": 3,
       "assists": 0,
       "minutes": 245
+    },
+    {
+      "player": "Folarin Balogun",
+      "team": "United States",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 253
     },
     {
       "player": "Matheus Cunha",
@@ -137,13 +144,6 @@
       "minutes": 281
     },
     {
-      "player": "Pape Gueye",
-      "team": "Senegal",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 186
-    },
-    {
       "player": "Ruben Vargas",
       "team": "Switzerland",
       "goals": 2,
@@ -156,6 +156,13 @@
       "goals": 2,
       "assists": 1,
       "minutes": 214
+    },
+    {
+      "player": "Romelu Lukaku",
+      "team": "Belgium",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 215
     },
     {
       "player": "Mikel Oyarzabal",
@@ -177,6 +184,13 @@
       "goals": 2,
       "assists": 1,
       "minutes": 255
+    },
+    {
+      "player": "Pape Gueye",
+      "team": "Senegal",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 257
     },
     {
       "player": "Maxi Araujo",
@@ -207,11 +221,18 @@
       "minutes": 350
     },
     {
+      "player": "Leandro Trossard",
+      "team": "Belgium",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 401
+    },
+    {
       "player": "Ermin Mahmic",
       "team": "Bosnia and Herzegovina",
       "goals": 2,
       "assists": 0,
-      "minutes": 37
+      "minutes": 88
     },
     {
       "player": "Marko Arnautovic",
@@ -221,11 +242,11 @@
       "minutes": 133
     },
     {
-      "player": "Folarin Balogun",
-      "team": "United States",
+      "player": "Habib Diarra",
+      "team": "Senegal",
       "goals": 2,
       "assists": 0,
-      "minutes": 180
+      "minutes": 169
     },
     {
       "player": "Cyle Larin",
@@ -263,13 +284,6 @@
       "minutes": 247
     },
     {
-      "player": "Leandro Trossard",
-      "team": "Belgium",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 280
-    },
-    {
       "player": "Cristiano Ronaldo",
       "team": "Portugal",
       "goals": 2,
@@ -291,11 +305,18 @@
       "minutes": 371
     },
     {
+      "player": "Youri Tielemans",
+      "team": "Belgium",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 438
+    },
+    {
       "player": "Iliman-Cheikh Ndiaye",
       "team": "Senegal",
       "goals": 1,
       "assists": 2,
-      "minutes": 56
+      "minutes": 134
     },
     {
       "player": "Nathan-Dylan Saliba",
@@ -354,20 +375,6 @@
       "minutes": 96
     },
     {
-      "player": "Romelu Lukaku",
-      "team": "Belgium",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 121
-    },
-    {
-      "player": "Sebastian Berhalter",
-      "team": "United States",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 183
-    },
-    {
       "player": "Hwang In-beom",
       "team": "Korea Republic",
       "goals": 1,
@@ -377,6 +384,13 @@
     {
       "player": "Baris Yilmaz",
       "team": "Turkiye",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 196
+    },
+    {
+      "player": "Sebastian Berhalter",
+      "team": "United States",
       "goals": 1,
       "assists": 1,
       "minutes": 196
@@ -401,13 +415,6 @@
       "goals": 1,
       "assists": 1,
       "minutes": 230
-    },
-    {
-      "player": "Alex Freeman",
-      "team": "United States",
-      "goals": 1,
-      "assists": 1,
-      "minutes": 232
     },
     {
       "player": "Mostafa Ziko",
@@ -445,6 +452,13 @@
       "minutes": 314
     },
     {
+      "player": "Malik Tillman",
+      "team": "United States",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 315
+    },
+    {
       "player": "Keito Nakamura",
       "team": "Japan",
       "goals": 1,
@@ -457,6 +471,13 @@
       "goals": 1,
       "assists": 1,
       "minutes": 332
+    },
+    {
+      "player": "Alex Freeman",
+      "team": "United States",
+      "goals": 1,
+      "assists": 1,
+      "minutes": 342
     },
     {
       "player": "Virgil van Dijk",
@@ -578,13 +599,6 @@
       "minutes": 89
     },
     {
-      "player": "Habib Diarra",
-      "team": "Senegal",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 90
-    },
-    {
       "player": "Hazem Mastouri",
       "team": "Tunisia",
       "goals": 1,
@@ -617,7 +631,7 @@
       "team": "United States",
       "goals": 1,
       "assists": 0,
-      "minutes": 101
+      "minutes": 106
     },
     {
       "player": "Nikola Vlasic",
@@ -660,13 +674,6 @@
       "goals": 1,
       "assists": 0,
       "minutes": 129
-    },
-    {
-      "player": "Ibrahim Mbaye",
-      "team": "Senegal",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 137
     },
     {
       "player": "Álex Baena",
@@ -739,11 +746,11 @@
       "minutes": 201
     },
     {
-      "player": "Kerim Alajbegovic",
-      "team": "Bosnia and Herzegovina",
+      "player": "Ibrahim Mbaye",
+      "team": "Senegal",
       "goals": 1,
       "assists": 0,
-      "minutes": 202
+      "minutes": 203
     },
     {
       "player": "Marcus Rashford",
@@ -872,13 +879,6 @@
       "minutes": 262
     },
     {
-      "player": "Kevin De Bruyne",
-      "team": "Belgium",
-      "goals": 1,
-      "assists": 0,
-      "minutes": 262
-    },
-    {
       "player": "Abdulelah Al-Amri",
       "team": "Saudi Arabia",
       "goals": 1,
@@ -998,6 +998,13 @@
       "minutes": 312
     },
     {
+      "player": "Kerim Alajbegovic",
+      "team": "Bosnia and Herzegovina",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 313
+    },
+    {
       "player": "Arda Guler",
       "team": "Turkiye",
       "goals": 1,
@@ -1010,6 +1017,13 @@
       "goals": 1,
       "assists": 0,
       "minutes": 314
+    },
+    {
+      "player": "Kevin De Bruyne",
+      "team": "Belgium",
+      "goals": 1,
+      "assists": 0,
+      "minutes": 323
     },
     {
       "player": "Antunes Stephen Estáquio",
