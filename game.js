@@ -138,6 +138,7 @@ const knockoutSchedule = {
   100: { date: "2026-07-11", time: "21:00 ET", venue: "Kansas City" },
   101: { date: "2026-07-14", time: "15:00 ET", venue: "Dallas" },
   102: { date: "2026-07-15", time: "15:00 ET", venue: "Atlanta" },
+  103: { date: "2026-07-18", time: "17:00 ET", venue: "Miami" },
   104: { date: "2026-07-19", time: "15:00 ET", venue: "New York/New Jersey" },
 };
 
@@ -259,6 +260,7 @@ const rounds = [
   { name: "Achtste finales", ids: [89, 90, 91, 92, 93, 94, 95, 96] },
   { name: "Kwartfinales", ids: [97, 98, 99, 100] },
   { name: "Halve finales", ids: [101, 102] },
+  { name: "Verliezersfinale", ids: [103] },
   { name: "Finale", ids: [104] },
 ];
 
@@ -279,6 +281,8 @@ const nextRoundPairs = {
   102: [99, 100],
   104: [101, 102],
 };
+
+const thirdPlacePair = [101, 102];
 
 const fixturePattern = [
   [0, 1],
@@ -762,10 +766,11 @@ function render() {
   const predictedThirds = rankThirds(predictedTables);
   const actualThirds = rankThirds(actualTables);
   renderThirds(predictedThirds, actualThirds);
-  const predictedKnockout = buildKnockout(predictedTables, predictedThirds);
+  const projectedKnockout = buildKnockout(predictedTables, predictedThirds);
+  const predictedKnockout = buildKnownKnockoutPredictions(actualTables);
   const actualKnockout = buildCertainKnockout(actualTables);
   renderKnockout(predictedKnockout, actualKnockout);
-  renderScorers(predictedKnockout, actualKnockout);
+  renderScorers(projectedKnockout, actualKnockout);
   renderAnalysis();
 }
 
@@ -1212,10 +1217,10 @@ function thirdRow(row) {
 
 function renderKnockout(predictedKnockout, liveKnockout) {
   knockoutView.innerHTML = `
-    <div class="note">Links staat de modelvoorspelling. De exacte score is de meest waarschijnlijke scorelijn; doorgaan-kans gebruikt een apart knockoutmodel met 90-minutenkans, verlenging, penalties, toernooivorm, marktcorrectie, scorers, rust en knockoutprofiel. Rechts staan alleen zekere teams of positie-labels zoals 1D en 2G.</div>
+    <div class="note">Links staat alleen een modelvoorspelling als de matchup echt bekend is. Latere rondes blijven op W/L-labels tot de voorafgaande wedstrijd is gespeeld. Rechts staan alleen echte uitslagen; geplande wedstrijden krijgen geen score.</div>
     <div class="comparison-grid">
       <section class="comparison-column">
-        <h2>Voorspelde knock-out</h2>
+        <h2>Voorspelling bekende matchups</h2>
         <div class="knockout-grid">${rounds.map((round) => renderRound(round, predictedKnockout)).join("")}</div>
       </section>
       <section class="comparison-column">
@@ -1306,7 +1311,35 @@ function buildKnockout(tables, thirds) {
     matches[id] = createKnockoutMatch(Number(id), matches[first].winner, matches[second].winner);
   });
 
+  matches[103] = createKnockoutMatch(103, matches[thirdPlacePair[0]].loser, matches[thirdPlacePair[1]].loser);
+
   return matches;
+}
+
+function buildKnownKnockoutPredictions(actualTables) {
+  const certain = buildCertainKnockout(actualTables);
+  const matches = {};
+
+  knockoutTemplate.forEach((template) => {
+    matches[template.id] = createKnownPredictionMatch(template.id, certain[template.id].a, certain[template.id].b);
+  });
+
+  Object.entries(nextRoundPairs).forEach(([id, [first, second]]) => {
+    const a = actualWinnerFromMatch(certain[first]) ?? placeholder(`W${first}`);
+    const b = actualWinnerFromMatch(certain[second]) ?? placeholder(`W${second}`);
+    matches[id] = createKnownPredictionMatch(Number(id), a, b);
+  });
+
+  const thirdA = actualLoserFromMatch(certain[thirdPlacePair[0]]) ?? placeholder(`L${thirdPlacePair[0]}`);
+  const thirdB = actualLoserFromMatch(certain[thirdPlacePair[1]]) ?? placeholder(`L${thirdPlacePair[1]}`);
+  matches[103] = createKnownPredictionMatch(103, thirdA, thirdB);
+
+  return matches;
+}
+
+function createKnownPredictionMatch(id, a, b) {
+  if (!a?.team || !b?.team) return { id, a, b, score: null, winner: null, method: "wacht op zekerheid" };
+  return createKnockoutMatch(id, a, b);
 }
 
 function buildCertainKnockout(actualTables) {
@@ -1338,6 +1371,10 @@ function buildCertainKnockout(actualTables) {
     matches[id] = createCertainKnockoutMatch(Number(id), a, b);
   });
 
+  const thirdA = matches[thirdPlacePair[0]].loser ?? placeholder(`L${thirdPlacePair[0]}`);
+  const thirdB = matches[thirdPlacePair[1]].loser ?? placeholder(`L${thirdPlacePair[1]}`);
+  matches[103] = createCertainKnockoutMatch(103, thirdA, thirdB);
+
   return matches;
 }
 
@@ -1350,6 +1387,7 @@ function createCertainKnockoutMatch(id, a, b) {
   if (!a?.team || !b?.team) return { id, a, b, score: null, winner: null, method: "wacht op zekerheid" };
   const actual = actualKnockoutScores[id];
   if (!actual) return { id, a, b, score: null, winner: null, method: "gepland" };
+  const winner = winnerFromKnockoutScore(actual, a, b);
   return {
     id,
     a,
@@ -1358,7 +1396,8 @@ function createCertainKnockoutMatch(id, a, b) {
     regularScore: actual,
     probabilities: knockoutProbabilities(a.team, b.team, id),
     method: actual.pensHome !== undefined ? "na penalties" : "gespeeld",
-    winner: winnerFromKnockoutScore(actual, a, b),
+    winner,
+    loser: oppositeEntry(winner, a, b),
   };
 }
 
@@ -1408,6 +1447,7 @@ function createKnockoutMatch(id, a, b) {
   if (!a || !b) return { id, a, b, score: null, winner: a ?? b ?? null };
   const actual = actualKnockoutScores[id];
   if (actual) {
+    const winner = winnerFromKnockoutScore(actual, a, b);
     return {
       id,
       a,
@@ -1416,7 +1456,8 @@ function createKnockoutMatch(id, a, b) {
       regularScore: actual,
       probabilities: knockoutProbabilities(a.team, b.team, id),
       method: actual.pensHome !== undefined ? "na penalties" : "echt",
-      winner: winnerFromKnockoutScore(actual, a, b),
+      winner,
+      loser: oppositeEntry(winner, a, b),
     };
   }
 
@@ -1439,7 +1480,7 @@ function createKnockoutMatch(id, a, b) {
       : { home: score.home + (winner === a ? 1 : 0), away: score.away + (winner === b ? 1 : 0) };
   }
 
-  return { id, a, b, score: decidedScore, regularScore: score, probabilities, method, winner };
+  return { id, a, b, score: decidedScore, regularScore: score, probabilities, method, winner, loser: oppositeEntry(winner, a, b) };
 }
 
 function renderRound(round, matches) {
@@ -1514,7 +1555,8 @@ function createSummary() {
   const tables = calculateTables("predicted");
   const actualTables = calculateTables("actual");
   const thirds = rankThirds(tables);
-  const knockout = buildKnockout(tables, thirds);
+  const projectedKnockout = buildKnockout(tables, thirds);
+  const knockout = buildKnownKnockoutPredictions(actualTables);
   const actualKnockout = buildCertainKnockout(actualTables);
   const lines = ["WK 2026 voorspelling", ""];
 
@@ -1529,7 +1571,7 @@ function createSummary() {
 
   lines.push("Beste nummers drie:");
   thirds.forEach((row) => lines.push(`${row.thirdRank}. ${row.team} (${row.group}) ${row.points}p ${formatGd(row.gd)} ${row.qualified ? "door" : "uit"}`));
-  lines.push("", "Knock-out:");
+  lines.push("", "Knock-out voorspelling bekende matchups:");
   rounds.forEach((round) => {
     lines.push(round.name);
     round.ids.forEach((id) => {
@@ -1545,7 +1587,7 @@ function createSummary() {
   });
 
   lines.push("", "Verwachte topscorer:");
-  rankScorers(knockout).slice(0, 5).forEach((scorer, index) => {
+  rankScorers(projectedKnockout).slice(0, 5).forEach((scorer, index) => {
     lines.push(`${index + 1}. ${scorer.player} (${scorer.team}) - ${scorer.expectedGoals.toFixed(1)} goals, kans ${scorer.adjustedProbability.toFixed(1)}%`);
   });
 
@@ -1753,6 +1795,19 @@ function winnerFromKnockoutScore(score, a, b) {
     return score.pensHome >= score.pensAway ? a : b;
   }
   return teamData[a.team].strength >= teamData[b.team].strength ? a : b;
+}
+
+function oppositeEntry(entry, a, b) {
+  if (!entry) return null;
+  return entry.team === a?.team ? b : a;
+}
+
+function actualWinnerFromMatch(match) {
+  return match?.score ? match.winner : null;
+}
+
+function actualLoserFromMatch(match) {
+  return match?.score ? match.loser : null;
 }
 
 function importActualData(text) {
