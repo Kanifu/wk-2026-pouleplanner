@@ -116,13 +116,6 @@
       "minutes": 292
     },
     {
-      "player": "Jonathan David",
-      "team": "Canada",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 371
-    },
-    {
       "player": "Cristiano Ronaldo",
       "team": "Portugal",
       "goals": 3,
@@ -137,18 +130,25 @@
       "minutes": 388
     },
     {
-      "player": "Ismael Saibari",
-      "team": "Morocco",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 390
-    },
-    {
       "player": "Yoane Wissa",
       "team": "Congo DR",
       "goals": 3,
       "assists": 0,
       "minutes": 410
+    },
+    {
+      "player": "Ismael Saibari",
+      "team": "Morocco",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 411
+    },
+    {
+      "player": "Jonathan David",
+      "team": "Canada",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 476
     },
     {
       "player": "Crysencio Summerville",
@@ -163,6 +163,13 @@
       "goals": 2,
       "assists": 2,
       "minutes": 369
+    },
+    {
+      "player": "Soufiane Rahimi",
+      "team": "Morocco",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 180
     },
     {
       "player": "Romelu Lukaku",
@@ -263,18 +270,18 @@
       "minutes": 169
     },
     {
-      "player": "Cyle Larin",
-      "team": "Canada",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 187
-    },
-    {
       "player": "Amad Diallo",
       "team": "Cote d'Ivoire",
       "goals": 2,
       "assists": 0,
       "minutes": 208
+    },
+    {
+      "player": "Cyle Larin",
+      "team": "Canada",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 224
     },
     {
       "player": "Raul Jimenez",
@@ -317,6 +324,13 @@
       "goals": 2,
       "assists": 0,
       "minutes": 371
+    },
+    {
+      "player": "Azz-Eddine Ounahi",
+      "team": "Morocco",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 376
     },
     {
       "player": "Youri Tielemans",
