@@ -27,4 +27,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Update live World Cup data
-          file_pattern: actual-results.json top-scorers.json
+          file_pattern: actual-results.json knockout-results.json top-scorers.json

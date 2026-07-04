@@ -88,6 +88,25 @@ const knockoutTemplate = [
   { id: 88, a: "2D", b: "2G" },
 ];
 
+const confirmedRoundOf32Pairs = {
+  73: { a: "South Africa", b: "Canada" },
+  74: { a: "Germany", b: "Paraguay" },
+  75: { a: "Netherlands", b: "Morocco" },
+  76: { a: "Brazil", b: "Japan" },
+  77: { a: "France", b: "Sweden" },
+  78: { a: "Cote d'Ivoire", b: "Norway" },
+  79: { a: "Mexico", b: "Ecuador" },
+  80: { a: "England", b: "Congo DR" },
+  81: { a: "United States", b: "Bosnia and Herzegovina" },
+  82: { a: "Belgium", b: "Senegal" },
+  83: { a: "Portugal", b: "Croatia" },
+  84: { a: "Spain", b: "Austria" },
+  85: { a: "Switzerland", b: "Algeria" },
+  86: { a: "Argentina", b: "Cabo Verde" },
+  87: { a: "Colombia", b: "Ghana" },
+  88: { a: "Australia", b: "Egypt" },
+};
+
 const knockoutSchedule = {
   73: { date: "2026-06-28", time: "15:00 ET", venue: "Los Angeles" },
   74: { date: "2026-06-29", time: "16:30 ET", venue: "Boston" },
@@ -361,6 +380,7 @@ let actualScorers = loadScorerGoals();
 let liveTopScorers = [...verifiedTopScorers];
 let baselinePredictions = {};
 let baselineMeta = { modelVersion: "2026-06-11-pre-tournament", generatedFromCommit: "8cee0d3" };
+let actualKnockoutEntries = {};
 let defaultScores = computeDefaultScores();
 let scores = { ...defaultScores, ...loadScores() };
 let actualKnockoutScores = loadKnockoutScores();
@@ -397,8 +417,12 @@ importResultsButton.addEventListener("click", () => {
 });
 
 updateActualResultsButton.addEventListener("click", async () => {
-  const [resultsLoaded, scorersLoaded] = await Promise.all([updateActualResultsFromFile(), updateTopScorersFromFile()]);
-  updateActualResultsButton.textContent = resultsLoaded || scorersLoaded ? "Live data bijgewerkt" : "Geen updatebestand";
+  const [resultsLoaded, knockoutLoaded, scorersLoaded] = await Promise.all([
+    updateActualResultsFromFile(),
+    updateKnockoutResultsFromFile(),
+    updateTopScorersFromFile(),
+  ]);
+  updateActualResultsButton.textContent = resultsLoaded || knockoutLoaded || scorersLoaded ? "Live data bijgewerkt" : "Geen updatebestand";
   window.setTimeout(() => {
     updateActualResultsButton.textContent = "Update live data";
   }, 1600);
@@ -415,10 +439,12 @@ copySummaryButton.addEventListener("click", async () => {
 
 render();
 updateActualResultsFromFile();
+updateKnockoutResultsFromFile();
 updateTopScorersFromFile();
 updateMarketAdjustmentsFromFile();
 updateBaselinePredictionsFromFile();
 window.setInterval(updateActualResultsFromFile, 15 * 60 * 1000);
+window.setInterval(updateKnockoutResultsFromFile, 15 * 60 * 1000);
 window.setInterval(updateTopScorersFromFile, 15 * 60 * 1000);
 window.setInterval(updateMarketAdjustmentsFromFile, 60 * 60 * 1000);
 
@@ -470,6 +496,24 @@ async function updateActualResultsFromFile() {
     actualScores = { ...actualScores, ...normalizeImportedScores(data.matches) };
     refreshPredictedScores();
     saveActualScores();
+    render();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function updateKnockoutResultsFromFile() {
+  try {
+    const response = await fetch("knockout-results.json", { cache: "no-store" });
+    if (!response.ok) return false;
+    const data = await response.json();
+    if (!data || typeof data !== "object" || !data.matches) return false;
+    const imported = normalizeImportedKnockoutScores(data.matches);
+    actualKnockoutScores = { ...actualKnockoutScores, ...imported.scores };
+    actualKnockoutEntries = { ...actualKnockoutEntries, ...imported.entries };
+    refreshPredictedScores();
+    saveKnockoutScores();
     render();
     return true;
   } catch {
@@ -540,6 +584,24 @@ function normalizeImportedScores(matches) {
       .map(([id, score]) => [id, { home: Number(score.home), away: Number(score.away) }])
       .filter(([, score]) => Number.isFinite(score.home) && Number.isFinite(score.away))
   );
+}
+
+function normalizeImportedKnockoutScores(matches) {
+  const scores = {};
+  const entries = {};
+  Object.entries(matches).forEach(([id, match]) => {
+    const score = { home: Number(match.home), away: Number(match.away) };
+    if (!Number.isFinite(score.home) || !Number.isFinite(score.away)) return;
+    if (Number.isFinite(Number(match.pensHome)) && Number.isFinite(Number(match.pensAway))) {
+      score.pensHome = Number(match.pensHome);
+      score.pensAway = Number(match.pensAway);
+    }
+    scores[id] = score;
+    if (match.a && match.b) {
+      entries[id] = { a: String(match.a), b: String(match.b), score };
+    }
+  });
+  return { scores, entries };
 }
 
 function loadScorerGoals() {
@@ -654,7 +716,7 @@ function tournamentAdjustment(team) {
 }
 
 function teamTournamentStats(team) {
-  return fixtures.reduce(
+  const stats = fixtures.reduce(
     (stats, match) => {
       const score = actualScores[match.id];
       if (!score || !Number.isFinite(score.home) || !Number.isFinite(score.away)) return stats;
@@ -672,6 +734,23 @@ function teamTournamentStats(team) {
     },
     { played: 0, points: 0, goalsFor: 0, goalsAgainst: 0, goalDiff: 0 }
   );
+
+  Object.values(actualKnockoutEntries).forEach((match) => {
+    if (match.a !== team && match.b !== team) return;
+    const score = match.score;
+    if (!score || !Number.isFinite(score.home) || !Number.isFinite(score.away)) return;
+    const isA = match.a === team;
+    const goalsFor = isA ? score.home : score.away;
+    const goalsAgainst = isA ? score.away : score.home;
+    stats.played += 1;
+    stats.goalsFor += goalsFor;
+    stats.goalsAgainst += goalsAgainst;
+    stats.goalDiff += goalsFor - goalsAgainst;
+    if (goalsFor > goalsAgainst) stats.points += 3;
+    else if (goalsFor === goalsAgainst) stats.points += 1;
+  });
+
+  return stats;
 }
 
 function render() {
@@ -1247,8 +1326,9 @@ function buildCertainKnockout(actualTables) {
   const matches = {};
 
   knockoutTemplate.forEach((template) => {
-    const a = resolveCertainSlot(template.a, placements, thirdAssignments);
-    const b = resolveCertainSlot(template.b, placements, thirdAssignments);
+    const entry = actualKnockoutEntries[template.id] ?? confirmedRoundOf32Pairs[template.id];
+    const a = entry ? teamEntry(entry.a) : resolveCertainSlot(template.a, placements, thirdAssignments);
+    const b = entry ? teamEntry(entry.b) : resolveCertainSlot(template.b, placements, thirdAssignments);
     matches[template.id] = createCertainKnockoutMatch(template.id, a, b);
   });
 
@@ -1273,6 +1353,10 @@ function createCertainKnockoutMatch(id, a, b) {
 
 function placeholder(label) {
   return { team: null, label };
+}
+
+function teamEntry(team) {
+  return { team };
 }
 
 function assignThirdSlots(thirdPool) {
