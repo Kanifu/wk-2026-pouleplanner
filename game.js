@@ -1348,7 +1348,18 @@ function resolveCertainSlot(slot, placements, thirdAssignments) {
 
 function createCertainKnockoutMatch(id, a, b) {
   if (!a?.team || !b?.team) return { id, a, b, score: null, winner: null, method: "wacht op zekerheid" };
-  return createKnockoutMatch(id, a, b);
+  const actual = actualKnockoutScores[id];
+  if (!actual) return { id, a, b, score: null, winner: null, method: "gepland" };
+  return {
+    id,
+    a,
+    b,
+    score: actual,
+    regularScore: actual,
+    probabilities: knockoutProbabilities(a.team, b.team, id),
+    method: actual.pensHome !== undefined ? "na penalties" : "gespeeld",
+    winner: winnerFromKnockoutScore(actual, a, b),
+  };
 }
 
 function placeholder(label) {
