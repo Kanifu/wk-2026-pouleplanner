@@ -102,6 +102,10 @@ const confirmedRoundOf32Pairs = [
   { id: "88", a: "Australia", b: "Egypt" },
 ];
 
+const verifiedKnockoutResults = {
+  85: { a: "Switzerland", b: "Algeria", home: 2, away: 0 },
+};
+
 const html = await fetch(sourceUrl).then((response) => {
   if (!response.ok) throw new Error(`Fetch failed: ${response.status}`);
   return response.text();
@@ -141,20 +145,24 @@ const knockoutHtml = await fetch(knockoutSourceUrl).then((response) => {
   return response.text();
 });
 const knockoutMatches = parseKnockoutResults(knockoutHtml, orderedMatches);
+const verifiedKnockoutMatches = {
+  ...verifiedKnockoutResults,
+  ...knockoutMatches,
+};
 await fs.writeFile(
   knockoutPath,
   `${JSON.stringify(
     {
       updatedAt: new Date().toISOString().slice(0, 10),
       sourceUrl: knockoutSourceUrl,
-      sourceNote: "Automatisch bijgewerkt vanuit de SBNation Round of 32-scorelijst.",
-      matches: knockoutMatches,
+      sourceNote: "Automatisch bijgewerkt vanuit de SBNation Round of 32-scorelijst. Match 85 is gecorrigeerd naar Switzerland 2-0 Algeria omdat de bronregel Austria vermeldt terwijl FIFA/verslaggeving Algeria bevestigt.",
+      matches: verifiedKnockoutMatches,
     },
     null,
     2
   )}\n`
 );
-console.log(`${Object.keys(knockoutMatches).length} echte knock-outuitslagen bijgewerkt.`);
+console.log(`${Object.keys(verifiedKnockoutMatches).length} echte knock-outuitslagen bijgewerkt.`);
 
 const scorerHtml = await fetch(scorerSourceUrl).then((response) => {
   if (!response.ok) throw new Error(`Top scorer fetch failed: ${response.status}`);

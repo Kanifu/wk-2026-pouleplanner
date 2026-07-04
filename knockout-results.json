@@ -1,7 +1,7 @@
 {
   "updatedAt": "2026-07-04",
   "sourceUrl": "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32",
-  "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Round of 32-scorelijst.",
+  "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Round of 32-scorelijst. Match 85 is gecorrigeerd naar Switzerland 2-0 Algeria omdat de bronregel Austria vermeldt terwijl FIFA/verslaggeving Algeria bevestigt.",
   "matches": {
     "73": {
       "a": "South Africa",
@@ -77,6 +77,12 @@
       "a": "Spain",
       "b": "Austria",
       "home": 3,
+      "away": 0
+    },
+    "85": {
+      "a": "Switzerland",
+      "b": "Algeria",
+      "home": 2,
       "away": 0
     },
     "86": {
