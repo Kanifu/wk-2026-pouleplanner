@@ -1217,7 +1217,7 @@ function thirdRow(row) {
 
 function renderKnockout(predictedKnockout, liveKnockout) {
   knockoutView.innerHTML = `
-    <div class="note">Links staat alleen een modelvoorspelling als de matchup echt bekend is. Latere rondes blijven op W/L-labels tot de voorafgaande wedstrijd is gespeeld. Rechts staan alleen echte uitslagen; geplande wedstrijden krijgen geen score.</div>
+    <div class="note">De score is altijd de stand na 90 minuten inclusief blessuretijd. Verlenging en penalties tellen niet mee voor die uitslag; doorgang staat apart op de regel "Door". Links staat alleen een modelvoorspelling als de matchup echt bekend is. Latere rondes blijven op W/L-labels tot de voorafgaande wedstrijd is gespeeld.</div>
     <div class="comparison-grid">
       <section class="comparison-column">
         <h2>Voorspelling bekende matchups</h2>
@@ -1466,21 +1466,18 @@ function createKnockoutMatch(id, a, b) {
   const strengthGap = knockoutRating(a.team, id) - knockoutRating(b.team, id);
   let method = "na 90 min";
   let winner = score.home > score.away ? a : score.away > score.home ? b : probabilities.homeAdvance >= probabilities.awayAdvance ? a : b;
-  let decidedScore = { ...score };
+  let advanceScore = null;
 
   if (score.home === score.away) {
-    const penaltyGap = penaltyRating(a.team) - penaltyRating(b.team);
     const usePenalties = Math.abs(strengthGap) <= 5 || probabilities.penalties >= probabilities.extraTimeDecided;
     method = usePenalties ? "na penalties" : "na verlenging";
     winner = usePenalties
       ? probabilities.homePenaltyWin >= probabilities.awayPenaltyWin ? a : b
       : probabilities.homeExtraTimeWin >= probabilities.awayExtraTimeWin ? a : b;
-    decidedScore = usePenalties
-      ? { home: score.home, away: score.away, pensHome: penaltyGap >= 0 ? 5 : 4, pensAway: penaltyGap >= 0 ? 4 : 5 }
-      : { home: score.home + (winner === a ? 1 : 0), away: score.away + (winner === b ? 1 : 0) };
+    advanceScore = usePenalties ? predictedPenaltyScore(winner, a, b) : null;
   }
 
-  return { id, a, b, score: decidedScore, regularScore: score, probabilities, method, winner, loser: oppositeEntry(winner, a, b) };
+  return { id, a, b, score, advanceScore, regularScore: score, probabilities, method, winner, loser: oppositeEntry(winner, a, b) };
 }
 
 function renderRound(round, matches) {
@@ -1518,7 +1515,7 @@ function renderKnockoutMatch(match) {
   const score = match.score ? formatKnockoutScore(match.score) : "-";
   const schedule = knockoutSchedule[match.id];
   const scheduleText = schedule ? `${formatKnockoutDate(schedule.date)} · ${schedule.time} · ${schedule.venue}` : "Datum n.t.b.";
-  const method = match.method && match.winner ? ` · ${match.method}` : "";
+  const advanceText = advancementText(match);
   const chanceBlock = renderKnockoutProbabilityBlock(match);
   return `
     <div class="knockout-match">
@@ -1529,7 +1526,7 @@ function renderKnockoutMatch(match) {
         <span class="score-pill">${score}</span>
         <span class="team-name ${match.winner?.team === match.b?.team ? "winner" : ""} ${match.b?.team ? "" : "placeholder"}">${b}</span>
       </div>
-      <span class="team-meta">${match.winner ? `Winnaar: ${match.winner.team}${method}` : "Nog niet zeker"}</span>
+      <span class="team-meta">${advanceText}</span>
       ${chanceBlock}
     </div>
   `;
@@ -1549,6 +1546,24 @@ function renderKnockoutProbabilityBlock(match) {
       <span>Verlenging ${pct(probabilities.extraTime)} · penalties ${pct(probabilities.penalties)} · modelrating ${probabilities.homeRating.toFixed(1)}-${probabilities.awayRating.toFixed(1)}</span>
     </div>
   `;
+}
+
+function advancementText(match) {
+  if (!match.winner) return "Doorgang nog niet bekend";
+  const detail = advancementMethodText(match);
+  return `Door: ${match.winner.team}${detail ? ` · ${detail}` : ""}`;
+}
+
+function advancementMethodText(match) {
+  if (!match.method) return "";
+  const penaltyScore = penaltyScoreText(match.score) ?? penaltyScoreText(match.advanceScore);
+  if (match.method.includes("penalties")) return penaltyScore ? `${match.method} (${penaltyScore})` : match.method;
+  return match.method;
+}
+
+function penaltyScoreText(score) {
+  if (!score || score.pensHome === undefined || score.pensAway === undefined) return null;
+  return `${score.pensHome}-${score.pensAway}p`;
 }
 
 function createSummary() {
@@ -1576,14 +1591,14 @@ function createSummary() {
     lines.push(round.name);
     round.ids.forEach((id) => {
       const match = knockout[id];
-      lines.push(`M${id} (${summarySchedule(id)}): ${match.a?.team ?? "?"} ${match.score ? formatKnockoutScore(match.score) : "-"} ${match.b?.team ?? "?"} -> ${match.winner?.team ?? "?"} ${match.method ?? ""}`);
+      lines.push(`M${id} (${summarySchedule(id)}): ${entryLabel(match.a)} ${match.score ? formatKnockoutScore(match.score) : "-"} ${entryLabel(match.b)} -> ${advancementText(match)}`);
     });
   });
 
   lines.push("", "Zekere knock-out:");
   scheduledKnockoutIds().forEach((id) => {
     const match = actualKnockout[id];
-    lines.push(`M${id} (${summarySchedule(id)}): ${entryLabel(match.a)} ${match.score ? formatKnockoutScore(match.score) : "-"} ${entryLabel(match.b)} -> ${match.winner?.team ?? "nog niet zeker"}`);
+    lines.push(`M${id} (${summarySchedule(id)}): ${entryLabel(match.a)} ${match.score ? formatKnockoutScore(match.score) : "-"} ${entryLabel(match.b)} -> ${advancementText(match)}`);
   });
 
   lines.push("", "Verwachte topscorer:");
@@ -1782,10 +1797,13 @@ function logistic(value) {
 }
 
 function formatKnockoutScore(score) {
-  if ("pensHome" in score && "pensAway" in score) {
-    return `${score.home}-${score.away} (${score.pensHome}-${score.pensAway}p)`;
-  }
   return `${score.home}-${score.away}`;
+}
+
+function predictedPenaltyScore(winner, a, b) {
+  return winner === a
+    ? { pensHome: 5, pensAway: 4 }
+    : { pensHome: 4, pensAway: 5 };
 }
 
 function winnerFromKnockoutScore(score, a, b) {
