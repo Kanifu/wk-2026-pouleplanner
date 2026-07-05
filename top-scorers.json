@@ -1,21 +1,21 @@
 {
-  "updatedAt": "2026-07-04",
+  "updatedAt": "2026-07-05",
   "sourceUrl": "https://www.sbnation.com/fifa-world-cup/1118693/world-cup-2026-golden-boot-standings",
   "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Golden Boot-stand.",
   "scorers": [
     {
       "player": "Kylian Mbappe",
       "team": "France",
-      "goals": 6,
+      "goals": 7,
       "assists": 2,
       "minutes": 378
     },
     {
       "player": "Lionel Messi",
       "team": "Argentina",
-      "goals": 6,
+      "goals": 7,
       "assists": 0,
-      "minutes": 223
+      "minutes": 358
     },
     {
       "player": "Erling Haaland",
@@ -179,13 +179,6 @@
       "minutes": 215
     },
     {
-      "player": "Bradley Barcola",
-      "team": "France",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 234
-    },
-    {
       "player": "Nicolas Pépé",
       "team": "Cote d'Ivoire",
       "goals": 2,
@@ -219,6 +212,13 @@
       "goals": 2,
       "assists": 1,
       "minutes": 289
+    },
+    {
+      "player": "Bradley Barcola",
+      "team": "France",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 298
     },
     {
       "player": "Ramin Rezaeian",
