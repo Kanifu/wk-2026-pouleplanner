@@ -1258,12 +1258,12 @@ function renderKnockout(predictedKnockout, liveKnockout) {
     ${renderKnockoutJumpNav()}
     <div class="comparison-grid">
       <section class="comparison-column">
-        <h2>Echte knock-out op datum</h2>
-        <div class="knockout-grid">${renderScheduledKnockoutList(liveKnockout)}</div>
-      </section>
-      <section class="comparison-column">
         <h2>Voorspelling bekende matchups</h2>
         <div class="knockout-grid">${rounds.map((round) => renderRound(round, predictedKnockout, "pred", "Voorspelling")).join("")}</div>
+      </section>
+      <section class="comparison-column">
+        <h2>Echte knock-out op datum</h2>
+        <div class="knockout-grid">${renderScheduledKnockoutList(liveKnockout)}</div>
       </section>
     </div>
   `;
@@ -1273,8 +1273,8 @@ function renderKnockoutJumpNav() {
   return `
     <nav class="knockout-jump-nav" aria-label="Snel naar ronde">
       <a href="#current-knockout">Huidige ronde</a>
-      <a href="#actual-schedule">Op datum</a>
       ${rounds.map((round) => `<a href="#pred-${roundSlug(round.name)}">${round.name}</a>`).join("")}
+      <a href="#actual-schedule">Op datum</a>
     </nav>
   `;
 }
