@@ -1253,8 +1253,8 @@ function thirdRow(row) {
 function renderKnockout(predictedKnockout, liveKnockout) {
   const currentRound = currentKnockoutRound(liveKnockout);
   knockoutView.innerHTML = `
-    <div class="note">Focus: eerst de huidige echte knock-outronde. Scores zijn altijd na 90 minuten inclusief blessuretijd; doorgang staat apart op de regel "Door". Voorspellingen staan apart en verschijnen alleen bij echt bekende matchups.</div>
-    ${renderCurrentKnockoutRound(currentRound, liveKnockout)}
+    <div class="note">Focus: eerst de voorspellingen voor de huidige knock-outronde. Scores zijn altijd na 90 minuten inclusief blessuretijd; doorgang staat apart op de regel "Door". Echte uitslagen staan apart op datum.</div>
+    ${renderCurrentKnockoutPrediction(currentRound, predictedKnockout, liveKnockout)}
     ${renderKnockoutJumpNav()}
     <div class="comparison-grid">
       <section class="comparison-column">
@@ -1272,7 +1272,7 @@ function renderKnockout(predictedKnockout, liveKnockout) {
 function renderKnockoutJumpNav() {
   return `
     <nav class="knockout-jump-nav" aria-label="Snel naar ronde">
-      <a href="#current-knockout">Huidige ronde</a>
+      <a href="#current-knockout">Voorspelling nu</a>
       ${rounds.map((round) => `<a href="#pred-${roundSlug(round.name)}">${round.name}</a>`).join("")}
       <a href="#actual-schedule">Op datum</a>
     </nav>
@@ -1527,18 +1527,18 @@ function createKnockoutMatch(id, a, b) {
   return { id, a, b, score, advanceScore, regularScore: score, probabilities, method, winner, loser: oppositeEntry(winner, a, b) };
 }
 
-function renderCurrentKnockoutRound(round, matches) {
+function renderCurrentKnockoutPrediction(round, predictedMatches, liveMatches) {
   if (!round) return "";
   const ids = [...round.ids].sort((a, b) => scheduleSortValue(a).localeCompare(scheduleSortValue(b)));
-  const played = ids.filter((id) => matches[id]?.score).length;
+  const played = ids.filter((id) => liveMatches[id]?.score).length;
   return `
     <section id="current-knockout" class="current-knockout-panel">
       <div class="round-head">
-        <h2>Huidige ronde: ${round.name}</h2>
+        <h2>Voorspelling nu: ${round.name}</h2>
         <span>${played}/${ids.length} gespeeld</span>
       </div>
       <div class="current-knockout-list">
-        ${ids.map((id) => renderKnockoutMatch(matches[id], "Echt schema")).join("")}
+        ${ids.map((id) => renderKnockoutMatch(predictedMatches[id], "Voorspelling")).join("")}
       </div>
     </section>
   `;
