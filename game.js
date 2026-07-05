@@ -233,6 +233,27 @@ const verifiedTopScorers = [
   { player: "Ruben Vargas", team: "Switzerland", goals: 2, assists: 1, minutes: 194 },
 ];
 
+const verifiedKnockoutMatches = {
+  73: { a: "South Africa", b: "Canada", home: 0, away: 1 },
+  74: { a: "Germany", b: "Paraguay", home: 1, away: 1, pensHome: 3, pensAway: 4 },
+  75: { a: "Netherlands", b: "Morocco", home: 1, away: 1, pensHome: 2, pensAway: 3 },
+  76: { a: "Brazil", b: "Japan", home: 2, away: 1 },
+  77: { a: "France", b: "Sweden", home: 3, away: 0 },
+  78: { a: "Cote d'Ivoire", b: "Norway", home: 1, away: 2 },
+  79: { a: "Mexico", b: "Ecuador", home: 2, away: 0 },
+  80: { a: "England", b: "Congo DR", home: 2, away: 1 },
+  81: { a: "United States", b: "Bosnia and Herzegovina", home: 2, away: 0 },
+  82: { a: "Belgium", b: "Senegal", home: 3, away: 2 },
+  83: { a: "Portugal", b: "Croatia", home: 2, away: 1 },
+  84: { a: "Spain", b: "Austria", home: 3, away: 0 },
+  85: { a: "Switzerland", b: "Algeria", home: 2, away: 0 },
+  86: { a: "Argentina", b: "Cabo Verde", home: 3, away: 2 },
+  87: { a: "Colombia", b: "Ghana", home: 1, away: 0 },
+  88: { a: "Australia", b: "Egypt", home: 1, away: 1, pensHome: 2, pensAway: 4 },
+  89: { a: "Paraguay", b: "France", home: 0, away: 1 },
+  90: { a: "Canada", b: "Morocco", home: 0, away: 3 },
+};
+
 let marketAdjustments = {
   France: 4.5,
   Spain: 3.5,
@@ -384,10 +405,11 @@ let actualScorers = loadScorerGoals();
 let liveTopScorers = [...verifiedTopScorers];
 let baselinePredictions = {};
 let baselineMeta = { modelVersion: "2026-06-11-pre-tournament", generatedFromCommit: "8cee0d3" };
-let actualKnockoutEntries = {};
+const verifiedKnockoutData = normalizeImportedKnockoutScores(verifiedKnockoutMatches);
+let actualKnockoutEntries = { ...verifiedKnockoutData.entries };
 let defaultScores = computeDefaultScores();
 let scores = { ...defaultScores, ...loadScores() };
-let actualKnockoutScores = loadKnockoutScores();
+let actualKnockoutScores = { ...loadKnockoutScores(), ...verifiedKnockoutData.scores };
 
 const matchesView = document.querySelector("#matchesView");
 const daysView = document.querySelector("#daysView");
@@ -403,11 +425,12 @@ const updateActualResultsButton = document.querySelector("#updateActualResults")
 
 document.querySelectorAll(".tab").forEach((button) => {
   button.addEventListener("click", () => {
-    document.querySelectorAll(".tab").forEach((tab) => tab.classList.toggle("is-active", tab === button));
-    document.querySelectorAll(".view").forEach((view) => view.classList.remove("is-active"));
-    document.querySelector(`#${button.dataset.view}View`).classList.add("is-active");
+    activateView(button.dataset.view);
+    window.history.replaceState(null, "", `#${button.dataset.view}`);
   });
 });
+
+activateView(initialView());
 
 resetScoresButton.addEventListener("click", () => {
   refreshPredictedScores();
@@ -451,6 +474,18 @@ window.setInterval(updateActualResultsFromFile, 15 * 60 * 1000);
 window.setInterval(updateKnockoutResultsFromFile, 15 * 60 * 1000);
 window.setInterval(updateTopScorersFromFile, 15 * 60 * 1000);
 window.setInterval(updateMarketAdjustmentsFromFile, 60 * 60 * 1000);
+
+function initialView() {
+  const hashView = window.location.hash.replace("#", "");
+  if (hashView && document.querySelector(`[data-view="${hashView}"]`)) return hashView;
+  return new Date() >= new Date("2026-06-28T00:00:00") ? "knockout" : "matches";
+}
+
+function activateView(viewId) {
+  document.querySelectorAll(".tab").forEach((tab) => tab.classList.toggle("is-active", tab.dataset.view === viewId));
+  document.querySelectorAll(".view").forEach((view) => view.classList.remove("is-active"));
+  document.querySelector(`#${viewId}View`)?.classList.add("is-active");
+}
 
 function loadScores() {
   try {
@@ -1216,18 +1251,31 @@ function thirdRow(row) {
 }
 
 function renderKnockout(predictedKnockout, liveKnockout) {
+  const currentRound = currentKnockoutRound(liveKnockout);
   knockoutView.innerHTML = `
-    <div class="note">De score is altijd de stand na 90 minuten inclusief blessuretijd. Verlenging en penalties tellen niet mee voor die uitslag; doorgang staat apart op de regel "Door". Links staat alleen een modelvoorspelling als de matchup echt bekend is. Latere rondes blijven op W/L-labels tot de voorafgaande wedstrijd is gespeeld.</div>
+    <div class="note">Focus: eerst de huidige echte knock-outronde. Scores zijn altijd na 90 minuten inclusief blessuretijd; doorgang staat apart op de regel "Door". Voorspellingen staan apart en verschijnen alleen bij echt bekende matchups.</div>
+    ${renderCurrentKnockoutRound(currentRound, liveKnockout)}
+    ${renderKnockoutJumpNav()}
     <div class="comparison-grid">
       <section class="comparison-column">
-        <h2>Voorspelling bekende matchups</h2>
-        <div class="knockout-grid">${rounds.map((round) => renderRound(round, predictedKnockout)).join("")}</div>
-      </section>
-      <section class="comparison-column">
-        <h2>Zekere knock-out</h2>
+        <h2>Echte knock-out op datum</h2>
         <div class="knockout-grid">${renderScheduledKnockoutList(liveKnockout)}</div>
       </section>
+      <section class="comparison-column">
+        <h2>Voorspelling bekende matchups</h2>
+        <div class="knockout-grid">${rounds.map((round) => renderRound(round, predictedKnockout, "pred", "Voorspelling")).join("")}</div>
+      </section>
     </div>
+  `;
+}
+
+function renderKnockoutJumpNav() {
+  return `
+    <nav class="knockout-jump-nav" aria-label="Snel naar ronde">
+      <a href="#current-knockout">Huidige ronde</a>
+      <a href="#actual-schedule">Op datum</a>
+      ${rounds.map((round) => `<a href="#pred-${roundSlug(round.name)}">${round.name}</a>`).join("")}
+    </nav>
   `;
 }
 
@@ -1394,7 +1442,6 @@ function createCertainKnockoutMatch(id, a, b) {
     b,
     score: actual,
     regularScore: actual,
-    probabilities: knockoutProbabilities(a.team, b.team, id),
     method: actual.pensHome !== undefined ? "na penalties" : "gespeeld",
     winner,
     loser: oppositeEntry(winner, a, b),
@@ -1480,22 +1527,47 @@ function createKnockoutMatch(id, a, b) {
   return { id, a, b, score, advanceScore, regularScore: score, probabilities, method, winner, loser: oppositeEntry(winner, a, b) };
 }
 
-function renderRound(round, matches) {
+function renderCurrentKnockoutRound(round, matches) {
+  if (!round) return "";
+  const ids = [...round.ids].sort((a, b) => scheduleSortValue(a).localeCompare(scheduleSortValue(b)));
+  const played = ids.filter((id) => matches[id]?.score).length;
   return `
-    <section class="knockout-round">
+    <section id="current-knockout" class="current-knockout-panel">
+      <div class="round-head">
+        <h2>Huidige ronde: ${round.name}</h2>
+        <span>${played}/${ids.length} gespeeld</span>
+      </div>
+      <div class="current-knockout-list">
+        ${ids.map((id) => renderKnockoutMatch(matches[id], "Echt schema")).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function currentKnockoutRound(matches) {
+  return rounds.find((round) => round.ids.some((id) => !matches[id]?.score)) ?? rounds.at(-1);
+}
+
+function renderRound(round, matches, prefix = "round", label = "") {
+  return `
+    <section id="${prefix}-${roundSlug(round.name)}" class="knockout-round">
       <div class="round-head"><h2>${round.name}</h2><span>${round.ids.length} wedstrijden</span></div>
-      ${round.ids.map((id) => renderKnockoutMatch(matches[id])).join("")}
+      ${round.ids.map((id) => renderKnockoutMatch(matches[id], label)).join("")}
     </section>
   `;
 }
 
 function renderScheduledKnockoutList(matches) {
   return `
-    <section class="knockout-round">
+    <section id="actual-schedule" class="knockout-round">
       <div class="round-head"><h2>Op datum</h2><span>${scheduledKnockoutIds().length} wedstrijden</span></div>
-      ${scheduledKnockoutIds().map((id) => renderKnockoutMatch(matches[id])).join("")}
+      ${scheduledKnockoutIds().map((id) => renderKnockoutMatch(matches[id], "Echt schema")).join("")}
     </section>
   `;
+}
+
+function roundSlug(name) {
+  return name.toLowerCase().replace(/\s+/g, "-");
 }
 
 function scheduledKnockoutIds() {
@@ -1509,7 +1581,7 @@ function scheduleSortValue(id) {
   return `${schedule.date} ${schedule.time}`;
 }
 
-function renderKnockoutMatch(match) {
+function renderKnockoutMatch(match, label = "") {
   const a = entryLabel(match.a);
   const b = entryLabel(match.b);
   const score = match.score ? formatKnockoutScore(match.score) : "-";
@@ -1517,10 +1589,15 @@ function renderKnockoutMatch(match) {
   const scheduleText = schedule ? `${formatKnockoutDate(schedule.date)} · ${schedule.time} · ${schedule.venue}` : "Datum n.t.b.";
   const advanceText = advancementText(match);
   const chanceBlock = renderKnockoutProbabilityBlock(match);
+  const status = match.score ? "Uitslag" : match.a?.team && match.b?.team ? "Gepland" : "Nog onbekend";
   return `
     <div class="knockout-match">
-      <span class="team-meta">Match ${match.id}</span>
-      <span class="team-meta">${scheduleText}</span>
+      <div class="match-status-line">
+        <span class="status-badge">${label || "Wedstrijd"}</span>
+        <span class="status-badge ${match.score ? "is-played" : ""}">${status}</span>
+        <span class="team-meta">Match ${match.id}</span>
+      </div>
+      <span class="team-meta schedule-meta">${scheduleText}</span>
       <div class="knockout-teams">
         <span class="team-name ${match.winner?.team === match.a?.team ? "winner" : ""} ${match.a?.team ? "" : "placeholder"}">${a}</span>
         <span class="score-pill">${score}</span>
@@ -1543,7 +1620,7 @@ function renderKnockoutProbabilityBlock(match) {
     <div class="knockout-probabilities">
       <span>90 min: ${match.a.team} ${pct(probabilities.homeWin90)} · gelijk ${pct(probabilities.draw90)} · ${match.b.team} ${pct(probabilities.awayWin90)}</span>
       <span>Door: ${match.a.team} ${pct(probabilities.homeAdvance)} · ${match.b.team} ${pct(probabilities.awayAdvance)}</span>
-      <span>Verlenging ${pct(probabilities.extraTime)} · penalties ${pct(probabilities.penalties)} · modelrating ${probabilities.homeRating.toFixed(1)}-${probabilities.awayRating.toFixed(1)}</span>
+      <span class="model-detail">Verlenging ${pct(probabilities.extraTime)} · penalties ${pct(probabilities.penalties)} · modelrating ${probabilities.homeRating.toFixed(1)}-${probabilities.awayRating.toFixed(1)}</span>
     </div>
   `;
 }

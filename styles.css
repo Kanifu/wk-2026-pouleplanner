@@ -551,6 +551,37 @@ h3 {
   grid-template-columns: 1fr;
 }
 
+.knockout-jump-nav {
+  display: flex;
+  gap: 8px;
+  margin: -2px 0 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.knockout-jump-nav a {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 850;
+  padding: 7px 10px;
+  text-decoration: none;
+}
+
+.current-knockout-panel {
+  border: 2px solid #0f766e;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.current-knockout-list {
+  display: grid;
+}
+
 .knockout-round {
   background: #ffffff;
 }
@@ -604,6 +635,32 @@ h3 {
   display: grid;
   gap: 8px;
   padding: 12px 14px;
+}
+
+.match-status-line {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.status-badge {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  display: inline-flex;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+  padding: 5px 7px;
+  text-transform: uppercase;
+}
+
+.status-badge.is-played {
+  background: var(--accent-soft);
+  border-color: #a5d6cf;
+  color: var(--accent-dark);
 }
 
 .knockout-teams {
@@ -742,14 +799,126 @@ h3 {
 }
 
 @media (max-width: 720px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  .app-header {
+    gap: 10px;
+    padding-bottom: 10px;
+    padding-top: 14px;
+  }
+
   .app-header,
   .app-shell {
     padding-left: 12px;
     padding-right: 12px;
   }
 
+  .header-actions {
+    gap: 6px;
+  }
+
+  .ghost-button,
+  .primary-button {
+    min-height: 36px;
+    padding: 8px 10px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .tabs {
+    position: sticky;
+    top: 0;
+    z-index: 12;
+  }
+
   .view {
     padding: 12px;
+  }
+
+  .note {
+    font-size: 12px;
+    margin-bottom: 10px;
+    padding: 9px 10px;
+  }
+
+  .knockout-jump-nav {
+    background: var(--surface);
+    margin-bottom: 10px;
+    padding: 8px 0;
+    position: sticky;
+    top: 48px;
+    z-index: 11;
+  }
+
+  .knockout-jump-nav a {
+    font-size: 11px;
+    padding: 7px 9px;
+  }
+
+  .comparison-grid {
+    gap: 12px;
+  }
+
+  .comparison-column > h2 {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  .current-knockout-panel {
+    margin-bottom: 10px;
+  }
+
+  .round-head {
+    min-height: 38px;
+    padding: 7px 10px;
+  }
+
+  .round-head h2 {
+    font-size: 14px;
+  }
+
+  .round-head span {
+    font-size: 11px;
+  }
+
+  .knockout-match {
+    gap: 5px;
+    padding: 8px 10px;
+  }
+
+  .match-status-line {
+    gap: 4px;
+  }
+
+  .status-badge {
+    font-size: 9px;
+    padding: 4px 6px;
+  }
+
+  .schedule-meta {
+    font-size: 11px;
+  }
+
+  .knockout-teams {
+    gap: 6px;
+  }
+
+  .score-pill {
+    min-width: 48px;
+    padding: 4px 6px;
+  }
+
+  .knockout-probabilities {
+    font-size: 11px;
+    gap: 2px;
+  }
+
+  .knockout-probabilities .model-detail {
+    display: none;
   }
 
   .match-row {

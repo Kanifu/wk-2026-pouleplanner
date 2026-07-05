@@ -4,6 +4,8 @@ const sourceUrl =
   "https://www.sbnation.com/soccer/1117513/world-cup-schedule-2026-how-to-watch-every-match-scores-and-more";
 const knockoutSourceUrl =
   "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32";
+const roundOf16SourceUrl =
+  "https://www.sbnation.com/soccer/1121525/2026-world-cup-round-of-16-scores-schedule";
 const scorerSourceUrl =
   "https://www.sbnation.com/fifa-world-cup/1118693/world-cup-2026-golden-boot-standings";
 const resultsPath = new URL("../actual-results.json", import.meta.url);
@@ -83,6 +85,26 @@ const knockoutTemplate = [
   { id: 88, a: "2D", b: "2G" },
 ];
 
+const nextRoundPairs = {
+  89: [74, 77],
+  90: [73, 75],
+  91: [76, 78],
+  92: [79, 80],
+  93: [81, 82],
+  94: [83, 84],
+  95: [86, 88],
+  96: [85, 87],
+  97: [89, 90],
+  98: [93, 94],
+  99: [91, 92],
+  100: [95, 96],
+  101: [97, 98],
+  102: [99, 100],
+  104: [101, 102],
+};
+
+const thirdPlacePair = [101, 102];
+
 const confirmedRoundOf32Pairs = [
   { id: "73", a: "South Africa", b: "Canada" },
   { id: "74", a: "Germany", b: "Paraguay" },
@@ -105,6 +127,19 @@ const confirmedRoundOf32Pairs = [
 const verifiedKnockoutResults = {
   85: { a: "Switzerland", b: "Algeria", home: 2, away: 0 },
 };
+
+const confirmedRoundOf16Pairs = [
+  { id: "89", a: "Paraguay", b: "France" },
+  { id: "90", a: "Canada", b: "Morocco" },
+  { id: "91", a: "Brazil", b: "Norway" },
+  { id: "92", a: "Mexico", b: "England" },
+  { id: "93", a: "United States", b: "Belgium" },
+  { id: "94", a: "Portugal", b: "Spain" },
+  { id: "95", a: "Argentina", b: "Egypt" },
+  { id: "96", a: "Switzerland", b: "Colombia" },
+];
+
+const seedKnockoutSourceUrls = [knockoutSourceUrl, roundOf16SourceUrl];
 
 const html = await fetch(sourceUrl).then((response) => {
   if (!response.ok) throw new Error(`Fetch failed: ${response.status}`);
@@ -140,22 +175,24 @@ const results = {
 await fs.writeFile(resultsPath, `${JSON.stringify(results, null, 2)}\n`);
 console.log(`${Object.keys(orderedMatches).length} echte uitslagen bijgewerkt.`);
 
-const knockoutHtml = await fetch(knockoutSourceUrl).then((response) => {
-  if (!response.ok) throw new Error(`Knockout fetch failed: ${response.status}`);
-  return response.text();
-});
-const knockoutMatches = parseKnockoutResults(knockoutHtml, orderedMatches);
+const knockoutSources = await discoverKnockoutSources(seedKnockoutSourceUrls);
 const verifiedKnockoutMatches = {
   ...verifiedKnockoutResults,
-  ...knockoutMatches,
 };
+for (let pass = 0; pass < 4; pass += 1) {
+  const knownPairs = buildKnownKnockoutPairs(verifiedKnockoutMatches);
+  for (const { html } of knockoutSources.values()) {
+    Object.assign(verifiedKnockoutMatches, parseKnockoutResults(html, orderedMatches, knownPairs));
+  }
+}
 await fs.writeFile(
   knockoutPath,
   `${JSON.stringify(
     {
       updatedAt: new Date().toISOString().slice(0, 10),
       sourceUrl: knockoutSourceUrl,
-      sourceNote: "Automatisch bijgewerkt vanuit de SBNation Round of 32-scorelijst. Match 85 is gecorrigeerd naar Switzerland 2-0 Algeria omdat de bronregel Austria vermeldt terwijl FIFA/verslaggeving Algeria bevestigt.",
+      sourceUrls: [...knockoutSources.keys()],
+      sourceNote: "Automatisch bijgewerkt vanuit SBNation knockout-scorepagina's. Nieuwe knockoutrondes worden automatisch ontdekt via gelinkte WK-scorepagina's. Match 85 is gecorrigeerd naar Switzerland 2-0 Algeria omdat de bronregel Austria vermeldt terwijl FIFA/verslaggeving Algeria bevestigt.",
       matches: verifiedKnockoutMatches,
     },
     null,
@@ -201,7 +238,81 @@ function parseLine(line) {
   return null;
 }
 
-function parseKnockoutResults(html, groupMatches) {
+async function discoverKnockoutSources(seedUrls) {
+  const sources = new Map();
+  const queue = [...seedUrls];
+
+  while (queue.length && sources.size < 24) {
+    const url = queue.shift();
+    if (sources.has(url)) continue;
+    const html = await fetchOptionalText(url);
+    if (!html) continue;
+    sources.set(url, { html });
+    for (const discoveredUrl of discoverSbnationScoreLinks(html)) {
+      if (!sources.has(discoveredUrl) && !queue.includes(discoveredUrl)) queue.push(discoveredUrl);
+    }
+  }
+
+  return sources;
+}
+
+async function fetchOptionalText(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) return null;
+    return response.text();
+  } catch {
+    return null;
+  }
+}
+
+function discoverSbnationScoreLinks(html) {
+  const urls = new Set();
+  const matches = html.matchAll(/https:\/\/www\.sbnation\.com\/(?:soccer|fifa-world-cup)\/[a-z0-9/-]+/gi);
+  for (const match of matches) {
+    const url = match[0].replace(/["'<>)\\]+$/, "");
+    const lower = url.toLowerCase();
+    const isWorldCup = lower.includes("world-cup");
+    const isKnockout = /(round|quarter|semi|final|knockout|scores|schedule|bracket)/.test(lower);
+    if (isWorldCup && isKnockout) urls.add(url);
+  }
+  return [...urls];
+}
+
+function buildKnownKnockoutPairs(matches) {
+  const pairs = [...confirmedRoundOf32Pairs, ...confirmedRoundOf16Pairs];
+
+  Object.entries(nextRoundPairs).forEach(([id, [first, second]]) => {
+    const a = winnerTeamFromMatch(matches[first]);
+    const b = winnerTeamFromMatch(matches[second]);
+    if (a && b) pairs.push({ id, a, b });
+  });
+
+  const thirdA = loserTeamFromMatch(matches[thirdPlacePair[0]]);
+  const thirdB = loserTeamFromMatch(matches[thirdPlacePair[1]]);
+  if (thirdA && thirdB) pairs.push({ id: "103", a: thirdA, b: thirdB });
+
+  return pairs;
+}
+
+function winnerTeamFromMatch(match) {
+  if (!match) return null;
+  if (match.home > match.away) return match.a;
+  if (match.away > match.home) return match.b;
+  if (Number.isFinite(match.pensHome) && Number.isFinite(match.pensAway)) {
+    return match.pensHome >= match.pensAway ? match.a : match.b;
+  }
+  return null;
+}
+
+function loserTeamFromMatch(match) {
+  if (!match) return null;
+  const winner = winnerTeamFromMatch(match);
+  if (!winner) return null;
+  return winner === match.a ? match.b : match.a;
+}
+
+function parseKnockoutResults(html, groupMatches, confirmedPairs) {
   const bracket = buildRoundOf32Bracket(groupMatches);
   const lines = cleanTextLines(html);
   const matches = {};
@@ -213,7 +324,7 @@ function parseKnockoutResults(html, groupMatches) {
       (match) =>
         (match.a.team === parsed.firstTeam && match.b.team === parsed.secondTeam) ||
         (match.a.team === parsed.secondTeam && match.b.team === parsed.firstTeam)
-    ) ?? confirmedRoundOf32Pairs.find(
+    ) ?? confirmedPairs.find(
       (match) =>
         (match.a === parsed.firstTeam && match.b === parsed.secondTeam) ||
         (match.a === parsed.secondTeam && match.b === parsed.firstTeam)
