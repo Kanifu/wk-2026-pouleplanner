@@ -39,18 +39,18 @@
       "minutes": 304
     },
     {
-      "player": "Mikel Oyarzabal",
-      "team": "Spain",
-      "goals": 4,
-      "assists": 1,
-      "minutes": 328
-    },
-    {
       "player": "Ismaila Sarr",
       "team": "Senegal",
       "goals": 4,
       "assists": 1,
       "minutes": 419
+    },
+    {
+      "player": "Mikel Oyarzabal",
+      "team": "Spain",
+      "goals": 4,
+      "assists": 1,
+      "minutes": 431
     },
     {
       "player": "Julian Quinones",
@@ -130,13 +130,6 @@
       "minutes": 349
     },
     {
-      "player": "Cristiano Ronaldo",
-      "team": "Portugal",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 386
-    },
-    {
       "player": "Kai Havertz",
       "team": "Germany",
       "goals": 3,
@@ -163,6 +156,13 @@
       "goals": 3,
       "assists": 0,
       "minutes": 476
+    },
+    {
+      "player": "Cristiano Ronaldo",
+      "team": "Portugal",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 491
     },
     {
       "player": "Crysencio Summerville",

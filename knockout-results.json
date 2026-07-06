@@ -138,6 +138,12 @@
       "b": "England",
       "home": 2,
       "away": 3
+    },
+    "94": {
+      "a": "Portugal",
+      "b": "Spain",
+      "home": 0,
+      "away": 1
     }
   }
 }
