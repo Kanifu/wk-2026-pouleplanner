@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-05",
+  "updatedAt": "2026-07-06",
   "sourceUrl": "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32",
   "sourceUrls": [
     "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32",
@@ -126,6 +126,18 @@
       "a": "Canada",
       "b": "Morocco",
       "home": 0,
+      "away": 3
+    },
+    "91": {
+      "a": "Brazil",
+      "b": "Norway",
+      "home": 1,
+      "away": 2
+    },
+    "92": {
+      "a": "Mexico",
+      "b": "England",
+      "home": 2,
       "away": 3
     }
   }

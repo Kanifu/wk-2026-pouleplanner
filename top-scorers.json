@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-05",
+  "updatedAt": "2026-07-06",
   "sourceUrl": "https://www.sbnation.com/fifa-world-cup/1118693/world-cup-2026-golden-boot-standings",
   "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Golden Boot-stand.",
   "scorers": [
@@ -20,16 +20,16 @@
     {
       "player": "Erling Haaland",
       "team": "Norway",
-      "goals": 5,
+      "goals": 7,
       "assists": 0,
-      "minutes": 310
+      "minutes": 418
     },
     {
       "player": "Harry Kane",
       "team": "England",
-      "goals": 5,
-      "assists": 0,
-      "minutes": 394
+      "goals": 6,
+      "assists": 1,
+      "minutes": 489
     },
     {
       "player": "Ousmane Dembele",
@@ -46,18 +46,32 @@
       "minutes": 328
     },
     {
-      "player": "Vinicius Jr.",
-      "team": "Brazil",
-      "goals": 4,
-      "assists": 1,
-      "minutes": 398
-    },
-    {
       "player": "Ismaila Sarr",
       "team": "Senegal",
       "goals": 4,
       "assists": 1,
       "minutes": 419
+    },
+    {
+      "player": "Julian Quinones",
+      "team": "Mexico",
+      "goals": 4,
+      "assists": 1,
+      "minutes": 440
+    },
+    {
+      "player": "Jude Bellingham",
+      "team": "England",
+      "goals": 4,
+      "assists": 1,
+      "minutes": 448
+    },
+    {
+      "player": "Vinicius Jr.",
+      "team": "Brazil",
+      "goals": 4,
+      "assists": 1,
+      "minutes": 506
     },
     {
       "player": "Deniz Undav",
@@ -72,13 +86,6 @@
       "goals": 3,
       "assists": 2,
       "minutes": 221
-    },
-    {
-      "player": "Julian Quinones",
-      "team": "Mexico",
-      "goals": 3,
-      "assists": 1,
-      "minutes": 354
     },
     {
       "player": "Cody Gakpo",
@@ -102,18 +109,25 @@
       "minutes": 253
     },
     {
-      "player": "Matheus Cunha",
-      "team": "Brazil",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 261
-    },
-    {
       "player": "Elijah Just",
       "team": "New Zealand",
       "goals": 3,
       "assists": 0,
       "minutes": 292
+    },
+    {
+      "player": "Matheus Cunha",
+      "team": "Brazil",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 324
+    },
+    {
+      "player": "Raul Jimenez",
+      "team": "Mexico",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 349
     },
     {
       "player": "Cristiano Ronaldo",
@@ -228,13 +242,6 @@
       "minutes": 309
     },
     {
-      "player": "Jude Bellingham",
-      "team": "England",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 341
-    },
-    {
       "player": "Ayase Ueda",
       "team": "Japan",
       "goals": 2,
@@ -282,13 +289,6 @@
       "goals": 2,
       "assists": 0,
       "minutes": 224
-    },
-    {
-      "player": "Raul Jimenez",
-      "team": "Mexico",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 242
     },
     {
       "player": "Anthony Elanga",
