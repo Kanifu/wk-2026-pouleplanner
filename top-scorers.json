@@ -4,18 +4,18 @@
   "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Golden Boot-stand.",
   "scorers": [
     {
+      "player": "Lionel Messi",
+      "team": "Argentina",
+      "goals": 8,
+      "assists": 1,
+      "minutes": 465
+    },
+    {
       "player": "Kylian Mbappe",
       "team": "France",
       "goals": 7,
       "assists": 2,
       "minutes": 378
-    },
-    {
-      "player": "Lionel Messi",
-      "team": "Argentina",
-      "goals": 7,
-      "assists": 0,
-      "minutes": 358
     },
     {
       "player": "Erling Haaland",
@@ -256,6 +256,13 @@
       "minutes": 350
     },
     {
+      "player": "Mostafa Ziko",
+      "team": "Egypt",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 399
+    },
+    {
       "player": "Malik Tillman",
       "team": "United States",
       "goals": 2,
@@ -319,13 +326,6 @@
       "minutes": 319
     },
     {
-      "player": "Emam Ashour",
-      "team": "Egypt",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 340
-    },
-    {
       "player": "Daichi Kamada",
       "team": "Japan",
       "goals": 2,
@@ -345,6 +345,13 @@
       "goals": 2,
       "assists": 0,
       "minutes": 376
+    },
+    {
+      "player": "Emam Ashour",
+      "team": "Egypt",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 385
     },
     {
       "player": "Youri Tielemans",
