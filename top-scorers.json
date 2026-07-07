@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-06",
+  "updatedAt": "2026-07-07",
   "sourceUrl": "https://www.sbnation.com/fifa-world-cup/1118693/world-cup-2026-golden-boot-standings",
   "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Golden Boot-stand.",
   "scorers": [
@@ -88,6 +88,13 @@
       "minutes": 221
     },
     {
+      "player": "Romelu Lukaku",
+      "team": "Belgium",
+      "goals": 3,
+      "assists": 1,
+      "minutes": 242
+    },
+    {
       "player": "Cody Gakpo",
       "team": "Netherlands",
       "goals": 3,
@@ -100,13 +107,6 @@
       "goals": 3,
       "assists": 0,
       "minutes": 245
-    },
-    {
-      "player": "Folarin Balogun",
-      "team": "United States",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 253
     },
     {
       "player": "Elijah Just",
@@ -128,6 +128,13 @@
       "goals": 3,
       "assists": 0,
       "minutes": 349
+    },
+    {
+      "player": "Folarin Balogun",
+      "team": "United States",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 352
     },
     {
       "player": "Kai Havertz",
@@ -179,18 +186,18 @@
       "minutes": 369
     },
     {
+      "player": "Leandro Trossard",
+      "team": "Belgium",
+      "goals": 2,
+      "assists": 2,
+      "minutes": 496
+    },
+    {
       "player": "Soufiane Rahimi",
       "team": "Morocco",
       "goals": 2,
       "assists": 1,
       "minutes": 180
-    },
-    {
-      "player": "Romelu Lukaku",
-      "team": "Belgium",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 215
     },
     {
       "player": "Nicolas Pépé",
@@ -249,11 +256,11 @@
       "minutes": 350
     },
     {
-      "player": "Leandro Trossard",
-      "team": "Belgium",
+      "player": "Malik Tillman",
+      "team": "United States",
       "goals": 2,
       "assists": 1,
-      "minutes": 401
+      "minutes": 416
     },
     {
       "player": "Ermin Mahmic",
@@ -298,6 +305,13 @@
       "minutes": 247
     },
     {
+      "player": "Charles De Ketelaere",
+      "team": "Belgium",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 279
+    },
+    {
       "player": "Daniel Munoz",
       "team": "Colombia",
       "goals": 2,
@@ -337,7 +351,7 @@
       "team": "Belgium",
       "goals": 2,
       "assists": 0,
-      "minutes": 438
+      "minutes": 538
     }
   ]
 }
