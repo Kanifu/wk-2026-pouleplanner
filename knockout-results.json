@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-07-07",
+  "updatedAt": "2026-07-08",
   "sourceUrl": "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32",
   "sourceUrls": [
     "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32",
     "https://www.sbnation.com/soccer/1121525/2026-world-cup-round-of-16-scores-schedule",
     "https://www.sbnation.com/fifa-world-cup/1121671/world-cup-2026-quarterfinals-matches-potential-semifinal-fixtures",
-    "https://www.sbnation.com/fifa-world-cup/1121530/world-cup-2026-quarterfinals-teams",
     "https://www.sbnation.com/fifa-world-cup/24481341/world-cup-round-of-16-matches-quarterfinals",
+    "https://www.sbnation.com/fifa-world-cup/1121530/world-cup-2026-quarterfinals-teams",
     "https://www.sbnation.com/soccer/1120850/world-cup-2026-round-of-16",
     "https://www.sbnation.com/fifa-world-cup/1119051/world-cup-2026-knockout-bracket-who-qualified"
   ],
@@ -155,6 +155,14 @@
       "b": "Egypt",
       "home": 3,
       "away": 2
+    },
+    "96": {
+      "a": "Switzerland",
+      "b": "Colombia",
+      "home": 0,
+      "away": 0,
+      "pensHome": 4,
+      "pensAway": 3
     }
   }
 }

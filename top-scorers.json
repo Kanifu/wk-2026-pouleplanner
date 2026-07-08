@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-07",
+  "updatedAt": "2026-07-08",
   "sourceUrl": "https://www.sbnation.com/fifa-world-cup/1118693/world-cup-2026-golden-boot-standings",
   "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Golden Boot-stand.",
   "scorers": [
@@ -183,7 +183,7 @@
       "team": "Switzerland",
       "goals": 2,
       "assists": 2,
-      "minutes": 369
+      "minutes": 459
     },
     {
       "player": "Leandro Trossard",
@@ -214,13 +214,6 @@
       "minutes": 257
     },
     {
-      "player": "Ruben Vargas",
-      "team": "Switzerland",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 268
-    },
-    {
       "player": "Maxi Araujo",
       "team": "Uruguay",
       "goals": 2,
@@ -240,6 +233,13 @@
       "goals": 2,
       "assists": 1,
       "minutes": 298
+    },
+    {
+      "player": "Ruben Vargas",
+      "team": "Switzerland",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 302
     },
     {
       "player": "Ramin Rezaeian",
@@ -319,13 +319,6 @@
       "minutes": 279
     },
     {
-      "player": "Daniel Munoz",
-      "team": "Colombia",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 319
-    },
-    {
       "player": "Daichi Kamada",
       "team": "Japan",
       "goals": 2,
@@ -352,6 +345,13 @@
       "goals": 2,
       "assists": 0,
       "minutes": 385
+    },
+    {
+      "player": "Daniel Munoz",
+      "team": "Colombia",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 449
     },
     {
       "player": "Youri Tielemans",
