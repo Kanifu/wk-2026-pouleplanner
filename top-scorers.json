@@ -4,18 +4,18 @@
   "sourceNote": "Automatisch bijgewerkt vanuit de SBNation Golden Boot-stand.",
   "scorers": [
     {
+      "player": "Kylian Mbappe",
+      "team": "France",
+      "goals": 8,
+      "assists": 3,
+      "minutes": 564
+    },
+    {
       "player": "Lionel Messi",
       "team": "Argentina",
       "goals": 8,
       "assists": 1,
       "minutes": 465
-    },
-    {
-      "player": "Kylian Mbappe",
-      "team": "France",
-      "goals": 7,
-      "assists": 2,
-      "minutes": 378
     },
     {
       "player": "Erling Haaland",
@@ -34,9 +34,9 @@
     {
       "player": "Ousmane Dembele",
       "team": "France",
-      "goals": 4,
+      "goals": 5,
       "assists": 2,
-      "minutes": 304
+      "minutes": 492
     },
     {
       "player": "Ismaila Sarr",
@@ -197,7 +197,7 @@
       "team": "Morocco",
       "goals": 2,
       "assists": 1,
-      "minutes": 180
+      "minutes": 215
     },
     {
       "player": "Nicolas Pépé",
@@ -228,13 +228,6 @@
       "minutes": 289
     },
     {
-      "player": "Bradley Barcola",
-      "team": "France",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 298
-    },
-    {
       "player": "Ruben Vargas",
       "team": "Switzerland",
       "goals": 2,
@@ -247,6 +240,13 @@
       "goals": 2,
       "assists": 1,
       "minutes": 309
+    },
+    {
+      "player": "Bradley Barcola",
+      "team": "France",
+      "goals": 2,
+      "assists": 1,
+      "minutes": 317
     },
     {
       "player": "Ayase Ueda",
@@ -333,13 +333,6 @@
       "minutes": 371
     },
     {
-      "player": "Azz-Eddine Ounahi",
-      "team": "Morocco",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 376
-    },
-    {
       "player": "Emam Ashour",
       "team": "Egypt",
       "goals": 2,
@@ -352,6 +345,13 @@
       "goals": 2,
       "assists": 0,
       "minutes": 449
+    },
+    {
+      "player": "Azz-Eddine Ounahi",
+      "team": "Morocco",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 477
     },
     {
       "player": "Youri Tielemans",
