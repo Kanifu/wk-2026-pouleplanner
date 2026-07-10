@@ -46,13 +46,6 @@
       "minutes": 419
     },
     {
-      "player": "Mikel Oyarzabal",
-      "team": "Spain",
-      "goals": 4,
-      "assists": 1,
-      "minutes": 431
-    },
-    {
       "player": "Julian Quinones",
       "team": "Mexico",
       "goals": 4,
@@ -74,6 +67,13 @@
       "minutes": 506
     },
     {
+      "player": "Mikel Oyarzabal",
+      "team": "Spain",
+      "goals": 4,
+      "assists": 1,
+      "minutes": 515
+    },
+    {
       "player": "Deniz Undav",
       "team": "Germany",
       "goals": 3,
@@ -92,7 +92,7 @@
       "team": "Belgium",
       "goals": 3,
       "assists": 1,
-      "minutes": 242
+      "minutes": 279
     },
     {
       "player": "Cody Gakpo",
@@ -135,6 +135,13 @@
       "goals": 3,
       "assists": 0,
       "minutes": 352
+    },
+    {
+      "player": "Charles De Ketelaere",
+      "team": "Belgium",
+      "goals": 3,
+      "assists": 0,
+      "minutes": 381
     },
     {
       "player": "Kai Havertz",
@@ -190,7 +197,7 @@
       "team": "Belgium",
       "goals": 2,
       "assists": 2,
-      "minutes": 496
+      "minutes": 561
     },
     {
       "player": "Soufiane Rahimi",
@@ -291,6 +298,13 @@
       "minutes": 169
     },
     {
+      "player": "Mikel Merino",
+      "team": "Spain",
+      "goals": 2,
+      "assists": 0,
+      "minutes": 181
+    },
+    {
       "player": "Amad Diallo",
       "team": "Cote d'Ivoire",
       "goals": 2,
@@ -310,13 +324,6 @@
       "goals": 2,
       "assists": 0,
       "minutes": 247
-    },
-    {
-      "player": "Charles De Ketelaere",
-      "team": "Belgium",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 279
     },
     {
       "player": "Daichi Kamada",
