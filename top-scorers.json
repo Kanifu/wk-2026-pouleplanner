@@ -8,7 +8,7 @@
       "team": "France",
       "goals": 8,
       "assists": 3,
-      "minutes": 564
+      "minutes": 667
     },
     {
       "player": "Lionel Messi",
@@ -25,13 +25,6 @@
       "minutes": 536
     },
     {
-      "player": "Harry Kane",
-      "team": "England",
-      "goals": 6,
-      "assists": 1,
-      "minutes": 489
-    },
-    {
       "player": "Jude Bellingham",
       "team": "England",
       "goals": 6,
@@ -39,11 +32,25 @@
       "minutes": 572
     },
     {
+      "player": "Harry Kane",
+      "team": "England",
+      "goals": 6,
+      "assists": 1,
+      "minutes": 624
+    },
+    {
       "player": "Ousmane Dembele",
       "team": "France",
       "goals": 5,
       "assists": 2,
-      "minutes": 492
+      "minutes": 595
+    },
+    {
+      "player": "Mikel Oyarzabal",
+      "team": "Spain",
+      "goals": 5,
+      "assists": 1,
+      "minutes": 595
     },
     {
       "player": "Ismaila Sarr",
@@ -65,321 +72,6 @@
       "goals": 4,
       "assists": 1,
       "minutes": 506
-    },
-    {
-      "player": "Mikel Oyarzabal",
-      "team": "Spain",
-      "goals": 4,
-      "assists": 1,
-      "minutes": 515
-    },
-    {
-      "player": "Deniz Undav",
-      "team": "Germany",
-      "goals": 3,
-      "assists": 2,
-      "minutes": 175
-    },
-    {
-      "player": "Johan Manzambi",
-      "team": "Switzerland",
-      "goals": 3,
-      "assists": 2,
-      "minutes": 221
-    },
-    {
-      "player": "Romelu Lukaku",
-      "team": "Belgium",
-      "goals": 3,
-      "assists": 1,
-      "minutes": 279
-    },
-    {
-      "player": "Cody Gakpo",
-      "team": "Netherlands",
-      "goals": 3,
-      "assists": 1,
-      "minutes": 394
-    },
-    {
-      "player": "Brian Brobbey",
-      "team": "Netherlands",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 245
-    },
-    {
-      "player": "Elijah Just",
-      "team": "New Zealand",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 292
-    },
-    {
-      "player": "Matheus Cunha",
-      "team": "Brazil",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 324
-    },
-    {
-      "player": "Raul Jimenez",
-      "team": "Mexico",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 349
-    },
-    {
-      "player": "Folarin Balogun",
-      "team": "United States",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 352
-    },
-    {
-      "player": "Charles De Ketelaere",
-      "team": "Belgium",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 381
-    },
-    {
-      "player": "Kai Havertz",
-      "team": "Germany",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 388
-    },
-    {
-      "player": "Yoane Wissa",
-      "team": "Congo DR",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 410
-    },
-    {
-      "player": "Ismael Saibari",
-      "team": "Morocco",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 411
-    },
-    {
-      "player": "Jonathan David",
-      "team": "Canada",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 476
-    },
-    {
-      "player": "Cristiano Ronaldo",
-      "team": "Portugal",
-      "goals": 3,
-      "assists": 0,
-      "minutes": 491
-    },
-    {
-      "player": "Crysencio Summerville",
-      "team": "Netherlands",
-      "goals": 2,
-      "assists": 2,
-      "minutes": 281
-    },
-    {
-      "player": "Breel Embolo",
-      "team": "Switzerland",
-      "goals": 2,
-      "assists": 2,
-      "minutes": 534
-    },
-    {
-      "player": "Leandro Trossard",
-      "team": "Belgium",
-      "goals": 2,
-      "assists": 2,
-      "minutes": 561
-    },
-    {
-      "player": "Soufiane Rahimi",
-      "team": "Morocco",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 215
-    },
-    {
-      "player": "Nicolas Pépé",
-      "team": "Cote d'Ivoire",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 255
-    },
-    {
-      "player": "Pape Gueye",
-      "team": "Senegal",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 257
-    },
-    {
-      "player": "Maxi Araujo",
-      "team": "Uruguay",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 278
-    },
-    {
-      "player": "Riyad Mahrez",
-      "team": "Algeria",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 289
-    },
-    {
-      "player": "Ramin Rezaeian",
-      "team": "IR Iran",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 309
-    },
-    {
-      "player": "Ruben Vargas",
-      "team": "Switzerland",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 311
-    },
-    {
-      "player": "Bradley Barcola",
-      "team": "France",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 317
-    },
-    {
-      "player": "Lautaro Martínez",
-      "team": "Argentina",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 346
-    },
-    {
-      "player": "Ayase Ueda",
-      "team": "Japan",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 350
-    },
-    {
-      "player": "Mostafa Ziko",
-      "team": "Egypt",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 399
-    },
-    {
-      "player": "Malik Tillman",
-      "team": "United States",
-      "goals": 2,
-      "assists": 1,
-      "minutes": 416
-    },
-    {
-      "player": "Ermin Mahmic",
-      "team": "Bosnia and Herzegovina",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 88
-    },
-    {
-      "player": "Marko Arnautovic",
-      "team": "Austria",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 133
-    },
-    {
-      "player": "Habib Diarra",
-      "team": "Senegal",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 169
-    },
-    {
-      "player": "Mikel Merino",
-      "team": "Spain",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 181
-    },
-    {
-      "player": "Amad Diallo",
-      "team": "Cote d'Ivoire",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 208
-    },
-    {
-      "player": "Cyle Larin",
-      "team": "Canada",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 224
-    },
-    {
-      "player": "Anthony Elanga",
-      "team": "Sweden",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 247
-    },
-    {
-      "player": "Daichi Kamada",
-      "team": "Japan",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 359
-    },
-    {
-      "player": "Yasin Ayari",
-      "team": "Sweden",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 371
-    },
-    {
-      "player": "Emam Ashour",
-      "team": "Egypt",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 385
-    },
-    {
-      "player": "Dan Ndoye",
-      "team": "Switzerland",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 437
-    },
-    {
-      "player": "Daniel Munoz",
-      "team": "Colombia",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 449
-    },
-    {
-      "player": "Azz-Eddine Ounahi",
-      "team": "Morocco",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 477
-    },
-    {
-      "player": "Youri Tielemans",
-      "team": "Belgium",
-      "goals": 2,
-      "assists": 0,
-      "minutes": 538
     }
   ]
 }
