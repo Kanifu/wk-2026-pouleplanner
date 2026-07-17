@@ -4,7 +4,9 @@
   "sourceUrls": [
     "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32",
     "https://www.sbnation.com/soccer/1121525/2026-world-cup-round-of-16-scores-schedule",
-    "https://www.sbnation.com/soccer/1122434/world-cup-final-instant-prediction-for-spain-vs-argentina",
+    "https://www.foxsports.com/stories/soccer/2026-world-cup-bracket-semifinals-final-matchups",
+    "https://www.espn.com/soccer/match/_/gameId/760514/spain-france",
+    "https://www.espn.co.uk/football/match/_/gameId/760515",
     "https://www.sbnation.com/fifa-world-cup/1121671/world-cup-2026-quarterfinals-matches-potential-semifinal-fixtures",
     "https://www.sbnation.com/soccer/1122036/world-cup-2026-quarterfinals-schedule-scores",
     "https://www.sbnation.com/soccer/1122145/world-cup-2026-what-teams-have-advanced-semifinals",
@@ -191,6 +193,18 @@
       "b": "Switzerland",
       "home": 3,
       "away": 1
+    },
+    "101": {
+      "a": "France",
+      "b": "Spain",
+      "home": 0,
+      "away": 2
+    },
+    "102": {
+      "a": "England",
+      "b": "Argentina",
+      "home": 1,
+      "away": 2
     }
   }
 }

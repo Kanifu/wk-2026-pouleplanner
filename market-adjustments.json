@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-06-26",
-  "sourceNote": "Handmatige marktcorrectie op basis van toernooivorm en actuele kampioensmarkt-signalen per 26 juni 2026. Positieve waarde verhoogt de modelrating voor liveprojecties, niet voor baseline-backtests.",
+  "updatedAt": "2026-07-17",
+  "sourceNote": "Handmatige marktcorrectie op basis van toernooivorm, halvefinale-resultaten en actuele markt-signalen per 17 juli 2026. Positieve waarde verhoogt de modelrating voor liveprojecties, niet voor baseline-backtests.",
   "teams": {
-    "France": 4.5,
-    "Spain": 3.5,
-    "Argentina": 3,
-    "England": 3,
+    "France": 3.8,
+    "Spain": 6.1,
+    "Argentina": 4.2,
+    "England": 1.9,
     "Portugal": 3.2,
     "Brazil": 2.8,
     "Germany": 2.4,

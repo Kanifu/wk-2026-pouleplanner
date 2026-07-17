@@ -6,6 +6,12 @@ const knockoutSourceUrl =
   "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32";
 const roundOf16SourceUrl =
   "https://www.sbnation.com/soccer/1121525/2026-world-cup-round-of-16-scores-schedule";
+const semifinalBracketSourceUrl =
+  "https://www.foxsports.com/stories/soccer/2026-world-cup-bracket-semifinals-final-matchups";
+const franceSpainSemifinalSourceUrl =
+  "https://www.espn.com/soccer/match/_/gameId/760514/spain-france";
+const englandArgentinaSemifinalSourceUrl =
+  "https://www.espn.co.uk/football/match/_/gameId/760515";
 const scorerSourceUrl =
   "https://www.sbnation.com/fifa-world-cup/1118693/world-cup-2026-golden-boot-standings";
 const resultsPath = new URL("../actual-results.json", import.meta.url);
@@ -139,7 +145,13 @@ const confirmedRoundOf16Pairs = [
   { id: "96", a: "Switzerland", b: "Colombia" },
 ];
 
-const seedKnockoutSourceUrls = [knockoutSourceUrl, roundOf16SourceUrl];
+const seedKnockoutSourceUrls = [
+  knockoutSourceUrl,
+  roundOf16SourceUrl,
+  semifinalBracketSourceUrl,
+  franceSpainSemifinalSourceUrl,
+  englandArgentinaSemifinalSourceUrl,
+];
 
 const html = await fetch(sourceUrl).then((response) => {
   if (!response.ok) throw new Error(`Fetch failed: ${response.status}`);
@@ -274,7 +286,8 @@ function discoverSbnationScoreLinks(html) {
     const lower = url.toLowerCase();
     const isWorldCup = lower.includes("world-cup");
     const isKnockout = /(round|quarter|semi|final|knockout|scores|schedule|bracket)/.test(lower);
-    if (isWorldCup && isKnockout) urls.add(url);
+    const isPredictionOnly = /(prediction|odds|picks|betting)/.test(lower);
+    if (isWorldCup && isKnockout && !isPredictionOnly) urls.add(url);
   }
   return [...urls];
 }
@@ -348,23 +361,95 @@ function parseKnockoutResults(html, groupMatches, confirmedPairs) {
     };
   }
 
+  Object.assign(matches, parseEmbeddedKnockoutScores(html, confirmedPairs));
+
   return Object.fromEntries(Object.entries(matches).sort(([a], [b]) => Number(a) - Number(b)));
 }
 
+function parseEmbeddedKnockoutScores(html, confirmedPairs) {
+  const text = cleanTextBlob(html);
+  const matches = {};
+
+  for (const pair of confirmedPairs) {
+    const directVs = text.match(new RegExp(`\\b${teamPattern(pair.a)}\\s+(\\d+)\\s+vs\\.?\\s+${teamPattern(pair.b)}\\s+(\\d+)\\b`, "i"));
+    const reverseVs = text.match(new RegExp(`\\b${teamPattern(pair.b)}\\s+(\\d+)\\s+vs\\.?\\s+${teamPattern(pair.a)}\\s+(\\d+)\\b`, "i"));
+    const directDash = text.match(new RegExp(`\\b${teamPattern(pair.a)}\\s+(\\d+)-(\\d+)\\s+${teamPattern(pair.b)}\\b`, "i"));
+    const reverseDash = text.match(new RegExp(`\\b${teamPattern(pair.b)}\\s+(\\d+)-(\\d+)\\s+${teamPattern(pair.a)}\\b`, "i"));
+
+    if (directVs) matches[pair.id] = { a: pair.a, b: pair.b, home: Number(directVs[1]), away: Number(directVs[2]) };
+    if (reverseVs) matches[pair.id] = { a: pair.a, b: pair.b, home: Number(reverseVs[2]), away: Number(reverseVs[1]) };
+    if (directDash) matches[pair.id] = { a: pair.a, b: pair.b, home: Number(directDash[1]), away: Number(directDash[2]) };
+    if (reverseDash) matches[pair.id] = { a: pair.a, b: pair.b, home: Number(reverseDash[2]), away: Number(reverseDash[1]) };
+  }
+
+  return matches;
+}
+
+function cleanTextBlob(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&#x27;/g, "'")
+    .replace(/&#8217;/g, "'")
+    .replace(/&#8216;/g, "'")
+    .replace(/&#8212;/g, "-")
+    .replace(/&quot;/g, "\"")
+    .replace(/\s+/g, " ");
+}
+
+function teamPattern(team) {
+  const names = [team, ...(aliases[team] ?? [])].map(escapeRegExp);
+  return `(?:${names.join("|")})`;
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function parseKnockoutScoreLine(line) {
-  const match = line.match(/^(.+?)\s+(\d+),?\s+(.+?)\s+(\d+)(?:\s+\((.+?) wins (\d+)-(\d+) on penalties\))?$/i);
-  if (!match) return null;
-  const firstTeam = normalizeTeam(match[1].trim());
-  const secondTeam = normalizeTeam(match[3].trim());
+  const scoreLine =
+    line.match(/^(.+?)\s+(\d+),?\s+(.+?)\s+(\d+)(?:\s+\((.+?) wins (\d+)-(\d+) on penalties\))?$/i) ??
+    line.match(/^(.+?)\s+(\d+)\s+vs\.?\s+(.+?)\s+(\d+)(?:\s+\((.+?) wins (\d+)-(\d+) on penalties\))?$/i);
+  if (scoreLine) {
+    return normalizeParsedScore({
+      firstTeam: scoreLine[1],
+      firstGoals: scoreLine[2],
+      secondTeam: scoreLine[3],
+      secondGoals: scoreLine[4],
+      penaltyWinner: scoreLine[5],
+      winnerPens: scoreLine[6],
+      loserPens: scoreLine[7],
+    });
+  }
+
+  const dashedLine = line.match(/^(.+?)\s+(\d+)-(\d+)\s+(.+?)(?:\s+\(.+\))?$/i);
+  if (dashedLine) {
+    return normalizeParsedScore({
+      firstTeam: dashedLine[1],
+      firstGoals: dashedLine[2],
+      secondTeam: dashedLine[4],
+      secondGoals: dashedLine[3],
+    });
+  }
+
+  return null;
+}
+
+function normalizeParsedScore(raw) {
+  const firstTeam = normalizeTeam(raw.firstTeam.trim());
+  const secondTeam = normalizeTeam(raw.secondTeam.trim());
   if (!teamNames.includes(firstTeam) || !teamNames.includes(secondTeam)) return null;
   return {
     firstTeam,
-    firstGoals: Number(match[2]),
+    firstGoals: Number(raw.firstGoals),
     secondTeam,
-    secondGoals: Number(match[4]),
-    penaltyWinner: match[5] ? normalizeTeam(match[5].trim()) : null,
-    winnerPens: match[6] ? Number(match[6]) : null,
-    loserPens: match[7] ? Number(match[7]) : null,
+    secondGoals: Number(raw.secondGoals),
+    penaltyWinner: raw.penaltyWinner ? normalizeTeam(raw.penaltyWinner.trim()) : null,
+    winnerPens: raw.winnerPens ? Number(raw.winnerPens) : null,
+    loserPens: raw.loserPens ? Number(raw.loserPens) : null,
   };
 }
 

@@ -252,13 +252,25 @@ const verifiedKnockoutMatches = {
   88: { a: "Australia", b: "Egypt", home: 1, away: 1, pensHome: 2, pensAway: 4 },
   89: { a: "Paraguay", b: "France", home: 0, away: 1 },
   90: { a: "Canada", b: "Morocco", home: 0, away: 3 },
+  91: { a: "Brazil", b: "Norway", home: 1, away: 2 },
+  92: { a: "Mexico", b: "England", home: 2, away: 3 },
+  93: { a: "United States", b: "Belgium", home: 1, away: 4 },
+  94: { a: "Portugal", b: "Spain", home: 0, away: 1 },
+  95: { a: "Argentina", b: "Egypt", home: 3, away: 2 },
+  96: { a: "Switzerland", b: "Colombia", home: 0, away: 0, pensHome: 4, pensAway: 3 },
+  97: { a: "France", b: "Morocco", home: 2, away: 0 },
+  98: { a: "Belgium", b: "Spain", home: 1, away: 2 },
+  99: { a: "Norway", b: "England", home: 1, away: 2 },
+  100: { a: "Argentina", b: "Switzerland", home: 3, away: 1 },
+  101: { a: "France", b: "Spain", home: 0, away: 2 },
+  102: { a: "England", b: "Argentina", home: 1, away: 2 },
 };
 
 let marketAdjustments = {
-  France: 4.5,
-  Spain: 3.5,
-  Argentina: 3,
-  England: 3,
+  France: 3.8,
+  Spain: 6.1,
+  Argentina: 4.2,
+  England: 1.9,
   Portugal: 3.2,
   Brazil: 2.8,
   Germany: 2.4,
@@ -274,6 +286,47 @@ let marketAdjustments = {
   Curacao: -2,
   Tunisia: -2,
   Qatar: -2,
+};
+
+const lateMatchMarketProfiles = {
+  103: {
+    a: "France",
+    b: "England",
+    score: { a: 2, b: 1 },
+    winner: "France",
+    method: "na 90 min",
+    sourceLabel: "marktprofiel 17 jul",
+    probabilities: {
+      aWin90: 0.5,
+      draw90: 0.25,
+      bWin90: 0.25,
+      aAdvance: 0.64,
+      bAdvance: 0.36,
+      extraTime: 0.25,
+      penalties: 0.12,
+      aExtraTimeWin: 0.58,
+      aPenaltyWin: 0.51,
+    },
+  },
+  104: {
+    a: "Spain",
+    b: "Argentina",
+    score: { a: 1, b: 1 },
+    winner: "Spain",
+    method: "na verlenging",
+    sourceLabel: "Kalshi/marktprofiel 17 jul",
+    probabilities: {
+      aWin90: 0.41,
+      draw90: 0.32,
+      bWin90: 0.27,
+      aAdvance: 0.58,
+      bAdvance: 0.42,
+      extraTime: 0.32,
+      penalties: 0.13,
+      aExtraTimeWin: 0.62,
+      aPenaltyWin: 0.45,
+    },
+  },
 };
 
 const rounds = [
@@ -1508,6 +1561,9 @@ function createKnockoutMatch(id, a, b) {
     };
   }
 
+  const marketProfile = lateMatchMarketProfile(id, a, b);
+  if (marketProfile) return createMarketProfileMatch(id, a, b, marketProfile);
+
   const score = predictScore(a.team, b.team);
   const probabilities = knockoutProbabilities(a.team, b.team, id);
   const strengthGap = knockoutRating(a.team, id) - knockoutRating(b.team, id);
@@ -1527,14 +1583,66 @@ function createKnockoutMatch(id, a, b) {
   return { id, a, b, score, advanceScore, regularScore: score, probabilities, method, winner, loser: oppositeEntry(winner, a, b) };
 }
 
+function lateMatchMarketProfile(id, a, b) {
+  const profile = lateMatchMarketProfiles[id];
+  if (!profile || !a?.team || !b?.team) return null;
+  if (profile.a === a.team && profile.b === b.team) return { profile, reversed: false };
+  if (profile.a === b.team && profile.b === a.team) return { profile, reversed: true };
+  return null;
+}
+
+function createMarketProfileMatch(id, a, b, marketProfile) {
+  const { profile, reversed } = marketProfile;
+  const score = {
+    home: reversed ? profile.score.b : profile.score.a,
+    away: reversed ? profile.score.a : profile.score.b,
+  };
+  const winner = profile.winner === a.team ? a : b;
+  return {
+    id,
+    a,
+    b,
+    score,
+    regularScore: score,
+    probabilities: marketProfileProbabilities(profile, reversed, a.team, b.team, id),
+    method: profile.method,
+    winner,
+    loser: oppositeEntry(winner, a, b),
+  };
+}
+
+function marketProfileProbabilities(profile, reversed, home, away, matchId) {
+  const probabilities = profile.probabilities;
+  const homeExtraTimeWin = reversed ? 1 - probabilities.aExtraTimeWin : probabilities.aExtraTimeWin;
+  const homePenaltyWin = reversed ? 1 - probabilities.aPenaltyWin : probabilities.aPenaltyWin;
+  return {
+    homeWin90: reversed ? probabilities.bWin90 : probabilities.aWin90,
+    draw90: probabilities.draw90,
+    awayWin90: reversed ? probabilities.aWin90 : probabilities.bWin90,
+    extraTime: probabilities.extraTime,
+    penalties: probabilities.penalties,
+    extraTimeDecided: probabilities.extraTime - probabilities.penalties,
+    homeAdvance: reversed ? probabilities.bAdvance : probabilities.aAdvance,
+    awayAdvance: reversed ? probabilities.aAdvance : probabilities.bAdvance,
+    homeExtraTimeWin,
+    awayExtraTimeWin: 1 - homeExtraTimeWin,
+    homePenaltyWin,
+    awayPenaltyWin: 1 - homePenaltyWin,
+    homeRating: knockoutRating(home, matchId),
+    awayRating: knockoutRating(away, matchId),
+    sourceLabel: profile.sourceLabel,
+  };
+}
+
 function renderCurrentKnockoutPrediction(round, predictedMatches, liveMatches) {
   if (!round) return "";
-  const ids = [...round.ids].sort((a, b) => scheduleSortValue(a).localeCompare(scheduleSortValue(b)));
+  const focus = currentKnockoutFocus(round, liveMatches);
+  const ids = [...focus.ids].sort((a, b) => scheduleSortValue(a).localeCompare(scheduleSortValue(b)));
   const played = ids.filter((id) => liveMatches[id]?.score).length;
   return `
     <section id="current-knockout" class="current-knockout-panel">
       <div class="round-head">
-        <h2>Voorspelling nu: ${round.name}</h2>
+        <h2>Voorspelling nu: ${focus.name}</h2>
         <span>${played}/${ids.length} gespeeld</span>
       </div>
       <div class="current-knockout-list">
@@ -1542,6 +1650,17 @@ function renderCurrentKnockoutPrediction(round, predictedMatches, liveMatches) {
       </div>
     </section>
   `;
+}
+
+function currentKnockoutFocus(round, liveMatches) {
+  const remainingFinalWeekendIds = [103, 104].filter((id) => !liveMatches[id]?.score);
+  if (remainingFinalWeekendIds.length > 0 && remainingFinalWeekendIds.length <= 2) {
+    const earlierOpen = rounds
+      .flatMap((knockoutRound) => knockoutRound.ids)
+      .some((id) => id < 103 && !liveMatches[id]?.score);
+    if (!earlierOpen) return { name: "slotweekend", ids: remainingFinalWeekendIds };
+  }
+  return round;
 }
 
 function currentKnockoutRound(matches) {
@@ -1616,11 +1735,12 @@ function entryLabel(entry) {
 function renderKnockoutProbabilityBlock(match) {
   if (!match.probabilities || !match.a?.team || !match.b?.team) return "";
   const probabilities = match.probabilities;
+  const sourceText = probabilities.sourceLabel ? `${probabilities.sourceLabel} · ` : "";
   return `
     <div class="knockout-probabilities">
       <span>90 min: ${match.a.team} ${pct(probabilities.homeWin90)} · gelijk ${pct(probabilities.draw90)} · ${match.b.team} ${pct(probabilities.awayWin90)}</span>
       <span>Door: ${match.a.team} ${pct(probabilities.homeAdvance)} · ${match.b.team} ${pct(probabilities.awayAdvance)}</span>
-      <span class="model-detail">Verlenging ${pct(probabilities.extraTime)} · penalties ${pct(probabilities.penalties)} · modelrating ${probabilities.homeRating.toFixed(1)}-${probabilities.awayRating.toFixed(1)}</span>
+      <span class="model-detail">${sourceText}Verlenging ${pct(probabilities.extraTime)} · penalties ${pct(probabilities.penalties)} · modelrating ${probabilities.homeRating.toFixed(1)}-${probabilities.awayRating.toFixed(1)}</span>
     </div>
   `;
 }
