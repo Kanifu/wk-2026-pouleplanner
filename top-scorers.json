@@ -6,51 +6,51 @@
     {
       "player": "Kylian Mbappe",
       "team": "France",
-      "goals": 8,
-      "assists": 3,
-      "minutes": 667
+      "goals": 10,
+      "assists": 4,
+      "minutes": 769
     },
     {
       "player": "Lionel Messi",
       "team": "Argentina",
       "goals": 8,
-      "assists": 2,
-      "minutes": 602
+      "assists": 4,
+      "minutes": 712
+    },
+    {
+      "player": "Jude Bellingham",
+      "team": "England",
+      "goals": 7,
+      "assists": 1,
+      "minutes": 698
     },
     {
       "player": "Erling Haaland",
       "team": "Norway",
       "goals": 7,
       "assists": 0,
-      "minutes": 536
+      "minutes": 537
     },
     {
-      "player": "Jude Bellingham",
-      "team": "England",
+      "player": "Ousmane Dembele",
+      "team": "France",
       "goals": 6,
-      "assists": 1,
-      "minutes": 572
+      "assists": 2,
+      "minutes": 648
     },
     {
       "player": "Harry Kane",
       "team": "England",
       "goals": 6,
       "assists": 1,
-      "minutes": 624
-    },
-    {
-      "player": "Ousmane Dembele",
-      "team": "France",
-      "goals": 5,
-      "assists": 2,
-      "minutes": 595
+      "minutes": 732
     },
     {
       "player": "Mikel Oyarzabal",
       "team": "Spain",
       "goals": 5,
       "assists": 1,
-      "minutes": 595
+      "minutes": 599
     },
     {
       "player": "Ismaila Sarr",
@@ -71,7 +71,7 @@
       "team": "Brazil",
       "goals": 4,
       "assists": 1,
-      "minutes": 506
+      "minutes": 505
     }
   ]
 }
